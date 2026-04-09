@@ -4,6 +4,7 @@ export interface Leader {
   role: string;
   category: 'pastor' | 'elder' | 'deacon' | 'worship' | 'youth' | 'women-children' | 'media';
   bio: string;
+  photo?: string | null;
 }
 
 export const leaders: Leader[] = [

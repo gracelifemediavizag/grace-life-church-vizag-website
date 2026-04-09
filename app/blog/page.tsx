@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import BlogCard from '@/components/church/BlogCard';
-import { posts } from '@/lib/posts';
+import { createReader } from '@keystatic/core/reader';
+import config from '@/keystatic.config';
 
 export const metadata: Metadata = {
   title: "Pastor's Blog",
@@ -10,7 +11,19 @@ export const metadata: Metadata = {
     "Theological articles and pastoral reflections from the teaching team at Grace Life Church Vizag.",
 };
 
-export default function BlogIndexPage() {
+export default async function BlogIndexPage() {
+  const reader = createReader(process.cwd(), config);
+  const allEntries = await reader.collections.blogPosts.all();
+  const posts = allEntries
+    .map(({ slug, entry }) => ({
+      slug,
+      title: entry.title,
+      author: entry.author,
+      date: entry.date ?? '',
+      readTime: entry.readTime ?? '',
+      excerpt: entry.excerpt ?? '',
+    }))
+    .sort((a, b) => (a.date < b.date ? 1 : -1));
   const [featured, ...rest] = posts;
 
   return (

@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import LeadershipTabs from '@/components/church/LeadershipTabs';
-import { leaders } from '@/lib/leaders';
+import { createReader } from '@keystatic/core/reader';
+import config from '@/keystatic.config';
 
 export const metadata: Metadata = {
   title: 'Leadership',
@@ -10,7 +11,23 @@ export const metadata: Metadata = {
     'Meet the pastors, elders, deacons, and ministry leaders of Grace Life Church Vizag.',
 };
 
-export default function LeadershipPage() {
+export default async function LeadershipPage() {
+  const reader = createReader(process.cwd(), config);
+  const allEntries = await reader.collections.leadership.all();
+  const leaders = allEntries
+    .map(({ slug, entry }) => ({
+      slug,
+      name: entry.name,
+      role: entry.title ?? '',
+      category: (entry.category ?? 'elder') as 'pastor' | 'elder' | 'deacon' | 'worship' | 'youth' | 'women-children' | 'media',
+      bio: '',
+      photo: entry.photo ?? null,
+    }))
+    .sort((a, b) => {
+      const orderA = allEntries.find(e => e.slug === a.slug)?.entry.order ?? 99;
+      const orderB = allEntries.find(e => e.slug === b.slug)?.entry.order ?? 99;
+      return orderA - orderB;
+    });
   return (
     <>
       <NavBar />

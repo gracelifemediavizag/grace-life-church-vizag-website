@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import type { Leader } from '@/lib/leaders';
 
@@ -42,20 +43,30 @@ function MemberCard({ leader }: { leader: Leader }) {
           overflow: 'hidden',
         }}
       >
-        {/* Large initials */}
-        <span
-          style={{
-            fontFamily: 'var(--font-poppins)',
-            fontSize: 'clamp(2.5rem, 6vw, 4rem)',
-            fontWeight: 300,
-            color: hovered ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.35)',
-            letterSpacing: '0.06em',
-            transition: 'color 0.25s ease',
-            userSelect: 'none',
-          }}
-        >
-          {getInitials(leader.name)}
-        </span>
+        {leader.photo ? (
+          <Image
+            src={leader.photo}
+            alt={leader.name}
+            fill
+            style={{ objectFit: 'cover', objectPosition: 'top' }}
+            sizes="(max-width: 768px) 50vw, 200px"
+          />
+        ) : (
+          /* Large initials fallback */
+          <span
+            style={{
+              fontFamily: 'var(--font-poppins)',
+              fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+              fontWeight: 300,
+              color: hovered ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.35)',
+              letterSpacing: '0.06em',
+              transition: 'color 0.25s ease',
+              userSelect: 'none',
+            }}
+          >
+            {getInitials(leader.name)}
+          </span>
+        )}
 
         {/* Gold bottom rule — appears on hover */}
         <div
@@ -69,6 +80,7 @@ function MemberCard({ leader }: { leader: Leader }) {
             transform: hovered ? 'scaleX(1)' : 'scaleX(0)',
             transformOrigin: 'left',
             transition: 'transform 0.25s ease',
+            zIndex: 1,
           }}
         />
       </div>

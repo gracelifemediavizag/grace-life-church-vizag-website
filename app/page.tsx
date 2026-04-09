@@ -4,6 +4,8 @@ import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import BlogCard from '@/components/church/BlogCard';
 import ServiceTimesAccordion from '@/components/church/ServiceTimesAccordion';
+import { createReader } from '@keystatic/core/reader';
+import config from '@/keystatic.config';
 
 export const metadata: Metadata = {
   title: 'Grace Life Church Vizag — Preaching the Whole Counsel of God',
@@ -11,38 +13,22 @@ export const metadata: Metadata = {
     'Grace Life Church Vizag is a Reformed church in Visakhapatnam, Andhra Pradesh, preaching the whole counsel of God. A church plant of Fullness of Joy Ministries.',
 };
 
-
-const blogPosts = [
-  {
-    title: 'Why Jesus Must Be God to Save Us from Our Sins',
-    author: 'Dr. Jamie Bissmeyer',
-    date: 'Oct 11, 2025',
-    readTime: '6 min read',
-    excerpt:
-      'There is no greater question than what Jesus asked His disciples: "Who do you say that I am?" For centuries, this question preoccupied the church, because early believers knew that to misunderstand who Jesus is, is to misunderstand the gospel.',
-    slug: 'why-jesus-must-be-god',
-  },
-  {
-    title: 'Is Man Made Up of a Spirit, Soul and Body?',
-    author: 'Daniel Surya Avula',
-    date: 'Jun 1, 2018',
-    readTime: '4 min read',
-    excerpt:
-      'Many today believe that human beings are made up of a body, soul, and spirit. They believe that physicians care for the body, pastors care for the spirit, and psychologists care for the human soul. Which view is biblically accurate?',
-    slug: 'is-man-made-of-spirit-soul-body',
-  },
-  {
-    title: 'What is the Image of God?',
-    author: 'Daniel Surya Avula',
-    date: 'Jun 1, 2018',
-    readTime: '5 min read',
-    excerpt:
-      'The topic of the image of God is the heart of Christian anthropology. This is an important topic that every Christian should understand clearly because of its massive implications in theology, psychology, human dignity and value.',
-    slug: 'what-is-the-image-of-god',
-  },
-];
-
-export default function HomePage() {
+export default async function HomePage() {
+  const reader = createReader(process.cwd(), config);
+  const allEntries = await reader.collections.blogPosts.all();
+  const blogPosts = allEntries
+    .map(({ slug, entry }) => ({
+      slug,
+      title: entry.title,
+      author: entry.author,
+      date: entry.date
+        ? new Date(entry.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+        : '',
+      readTime: entry.readTime ?? '',
+      excerpt: entry.excerpt ?? '',
+    }))
+    .sort((a, b) => (a.date < b.date ? 1 : -1))
+    .slice(0, 3);
   return (
     <>
       <NavBar />

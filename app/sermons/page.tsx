@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
+import { createReader } from '@keystatic/core/reader';
+import config from '@/keystatic.config';
 
 export const metadata: Metadata = {
   title: 'Sermons',
@@ -8,24 +10,17 @@ export const metadata: Metadata = {
     'Listen to sermons from Grace Life Church Vizag. Audio and video messages from the pulpit, covering the whole counsel of God.',
 };
 
-const series = [
-  {
-    name: '1 Peter',
-    description:
-      'A verse-by-verse exposition of the letter of 1 Peter, exploring themes of suffering, holiness, and hope in Christ.',
-    reference: '1 Peter 1:1 – 5:14',
-    status: 'Current',
-  },
-  {
-    name: 'Colossians 1',
-    description:
-      "An expository series through the first chapter of Colossians, unpacking the supremacy and sufficiency of Christ.",
-    reference: 'Colossians 1:1 – 1:29',
-    status: 'Recent',
-  },
-];
-
-export default function SermonsPage() {
+export default async function SermonsPage() {
+  const reader = createReader(process.cwd(), config);
+  const allEntries = await reader.collections.sermonSeries.all();
+  const series = allEntries
+    .map(({ entry }) => ({
+      name: entry.name,
+      description: entry.description ?? '',
+      reference: entry.reference ?? '',
+      status: entry.status ?? 'Past',
+    }))
+    .sort((a) => (a.status === 'Current' ? -1 : a.status === 'Recent' ? 0 : 1));
   return (
     <>
       <NavBar />

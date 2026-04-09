@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import EventsList, { type ChurchEvent } from './EventsList';
+import { createReader } from '@keystatic/core/reader';
+import config from '@/keystatic.config';
 
 export const metadata: Metadata = {
   title: 'Events',
@@ -9,132 +11,20 @@ export const metadata: Metadata = {
     'Upcoming events and gatherings at Grace Life Church Vizag — worship services, prayer meetings, youth fellowship, and more.',
 };
 
-/* ─── Events data — replace with Keystatic CMS queries when configured ────── */
-const events: ChurchEvent[] = [
-  {
-    id: 1,
-    title: 'English Worship Service',
-    date: '2026-04-12',
-    time: '8:30 AM – 10:00 AM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Weekly English-medium corporate worship with expository preaching.',
-  },
-  {
-    id: 2,
-    title: 'Sunday School',
-    date: '2026-04-12',
-    time: '10:30 AM – 12:30 PM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Age-appropriate Bible instruction for children, based on the Generations of Grace curriculum.',
-  },
-  {
-    id: 3,
-    title: 'Telugu Worship Service',
-    date: '2026-04-12',
-    time: '10:30 AM – 12:30 PM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Telugu-medium corporate worship and preaching.',
-  },
-  {
-    id: 4,
-    title: 'Telugu Evening Worship',
-    date: '2026-04-12',
-    time: '6:00 PM – 8:00 PM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Evening Telugu worship gathering.',
-  },
-  {
-    id: 5,
-    title: 'Congregational Prayer',
-    date: '2026-04-15',
-    time: '7:00 PM – 8:30 PM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Midweek corporate prayer meeting. All members are encouraged to attend.',
-  },
-  {
-    id: 6,
-    title: 'Youth Fellowship',
-    date: '2026-04-18',
-    time: '7:00 PM – 8:30 PM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Saturday evening youth gathering — Bible study, fellowship, and prayer.',
-  },
-  {
-    id: 7,
-    title: 'English Worship Service',
-    date: '2026-04-19',
-    time: '8:30 AM – 10:00 AM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Weekly English-medium corporate worship with expository preaching.',
-  },
-  {
-    id: 8,
-    title: 'Sunday School',
-    date: '2026-04-19',
-    time: '10:30 AM – 12:30 PM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Age-appropriate Bible instruction for children.',
-  },
-  {
-    id: 9,
-    title: 'Telugu Worship Service',
-    date: '2026-04-19',
-    time: '10:30 AM – 12:30 PM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Telugu-medium corporate worship and preaching.',
-  },
-  {
-    id: 10,
-    title: 'Congregational Prayer',
-    date: '2026-04-22',
-    time: '7:00 PM – 8:30 PM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Midweek corporate prayer meeting.',
-  },
-  {
-    id: 11,
-    title: 'Whole Night Prayer',
-    date: '2026-04-10',
-    time: '8:00 PM – 12:00 AM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: '2nd Friday of each month. Whole-church overnight prayer vigil.',
-    isPast: true,
-  },
-  {
-    id: 12,
-    title: 'English Worship Service',
-    date: '2026-05-03',
-    time: '8:30 AM – 10:00 AM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Weekly English-medium corporate worship with expository preaching.',
-  },
-  {
-    id: 13,
-    title: 'Sunday School',
-    date: '2026-05-03',
-    time: '10:30 AM – 12:30 PM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Age-appropriate Bible instruction for children.',
-  },
-  {
-    id: 14,
-    title: 'Telugu Worship Service',
-    date: '2026-05-03',
-    time: '10:30 AM – 12:30 PM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Telugu-medium corporate worship and preaching.',
-  },
-  {
-    id: 15,
-    title: 'Youth Fellowship',
-    date: '2026-05-02',
-    time: '7:00 PM – 8:30 PM',
-    location: 'Grace Life Church, Seethammadhara',
-    description: 'Saturday evening youth gathering.',
-  },
-];
-
-export default function EventsPage() {
+export default async function EventsPage() {
+  const reader = createReader(process.cwd(), config);
+  const allEntries = await reader.collections.events.all();
+  const events: ChurchEvent[] = allEntries
+    .map(({ slug, entry }, id) => ({
+      id,
+      title: entry.title,
+      date: entry.date ?? '',
+      time: entry.time ?? '',
+      location: entry.location ?? '',
+      description: entry.description ?? '',
+      isPast: entry.isPast ?? false,
+    }))
+    .sort((a, b) => (a.date > b.date ? 1 : -1));
   return (
     <>
       <NavBar />
