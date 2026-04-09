@@ -1,0 +1,253 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Grace Life Church Vizag Design System ──────────────────────────────────
+   Brand blue #3399CC · Gold accent #EFBF04 · Poppins / Lato / Roboto
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@theme inline {
+  /* Fonts */
+  --font-sans:      var(--font-poppins);   /* Poppins 400 — default */
+  --font-heading:   var(--font-poppins);   /* Poppins 400 — headings */
+  --font-secondary: var(--font-lato);      /* Lato — nav, labels, captions */
+  --font-tertiary:  var(--font-roboto);    /* Roboto — forms, metadata */
+  --font-mono:      ui-monospace, monospace;
+
+  /* shadcn semantic tokens — mapped to GLC palette */
+  --color-background:           var(--background);
+  --color-foreground:           var(--foreground);
+  --color-card:                 var(--card);
+  --color-card-foreground:      var(--card-foreground);
+  --color-popover:              var(--popover);
+  --color-popover-foreground:   var(--popover-foreground);
+  --color-primary:              var(--primary);
+  --color-primary-foreground:   var(--primary-foreground);
+  --color-secondary:            var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted:                var(--muted);
+  --color-muted-foreground:     var(--muted-foreground);
+  --color-accent:               var(--accent);
+  --color-accent-foreground:    var(--accent-foreground);
+  --color-destructive:          var(--destructive);
+  --color-border:               var(--border);
+  --color-input:                var(--input);
+  --color-ring:                 var(--ring);
+
+  /* Radius — buttons 4px, cards 8px */
+  --radius-sm: 0.25rem;  /* 4px — buttons */
+  --radius-md: 0.5rem;   /* 8px — cards */
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.5rem;
+
+  /* GLC brand tokens ————————————————————————————————————————————————————————
+     These generate Tailwind utilities: bg-glc-navy, text-glc-navy, etc.
+     Hard rules: #3399CC verbatim for blue, #EFBF04 verbatim for gold.       */
+  --color-glc-navy:               #3399CC;   /* Core brand blue */
+  --color-glc-navy-hover:         #2277AA;   /* Darker blue — hover states */
+  --color-gold-accent:            #EFBF04;   /* Gold — accent only, never large bg */
+  --color-glc-surface:            #F8F8F8;   /* Off-white section backgrounds */
+  --color-glc-surface-low:        #F8F8F8;
+  --color-glc-surface-high:       #E0E0E0;   /* Button hover bg on white */
+  --color-glc-surface-highest:    #E0E0E0;
+  --color-glc-surface-card:       #ffffff;
+  --color-glc-on-surface:         #1A1A1A;   /* Primary text */
+  --color-glc-on-surface-variant: #1A1A1A;   /* Body text */
+  --color-glc-outline-variant:    #E0E0E0;   /* Card borders */
+  --color-glc-outline:            #3399CC;   /* Brand blue for section labels */
+}
+
+:root {
+  /* shadcn tokens — GLC values */
+  --background:           #F8F8F8;
+  --foreground:           #1A1A1A;
+  --card:                 #ffffff;
+  --card-foreground:      #1A1A1A;
+  --popover:              #ffffff;
+  --popover-foreground:   #1A1A1A;
+  --primary:              #3399CC;
+  --primary-foreground:   #ffffff;
+  --secondary:            #F8F8F8;
+  --secondary-foreground: #1A1A1A;
+  --muted:                #F8F8F8;
+  --muted-foreground:     #1A1A1A;
+  --accent:               #E0E0E0;
+  --accent-foreground:    #1A1A1A;
+  --destructive:          #ba1a1a;
+  --border:               #E0E0E0;
+  --input:                #E0E0E0;
+  --ring:                 #3399CC;
+  --radius:               0.5rem;
+
+  /* Backward-compat aliases — so existing font-[family-name:var(--font-playfair)]
+     and font-[family-name:var(--font-crimson)] classes still compile correctly.
+     Both now resolve to Poppins. */
+  --font-playfair: var(--font-poppins);
+  --font-crimson:  var(--font-poppins);
+}
+
+/* No dark mode — church site is light-only */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+
+  html {
+    /* Set Poppins directly — avoids relying on the @theme inline var() chain */
+    font-family: var(--font-poppins), system-ui, sans-serif;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-poppins), system-ui, sans-serif;
+    font-weight: 300; /* Poppins Light for paragraphs */
+    color: #1A1A1A;
+  }
+
+  /* Headings: Poppins Regular (400) — !important overrides Tailwind font-bold utilities */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins), system-ui, sans-serif !important;
+    font-weight: 400 !important;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* ─── Scripture Block ────────────────────────────────────────────────────────
+   Left border in brand blue, italic quote in Poppins, ref in Lato + blue     */
+.scripture-block {
+  background: #F8F8F8;
+  border-left: 4px solid #3399CC;
+  padding: 1.5rem 1.75rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.scripture-block blockquote {
+  font-family: var(--font-poppins), sans-serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.125rem;
+  color: #1A1A1A;
+  margin: 0 0 0.5rem 0;
+}
+
+.scripture-block cite {
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3399CC;
+}
+
+/* ─── Section utilities ──────────────────────────────────────────────────────
+   Background helpers for alternating sections                                 */
+.section-surface     { background: #F8F8F8; }
+.section-surface-low { background: #F8F8F8; }
+.section-blue        { background: #3399CC; color: #ffffff; }
+
+/* ─── Button System — Sitewide ───────────────────────────────────────────────
+   Default: blue outline. Hover: blue fill, white text.
+   accent variant: hover turns gold.
+   Usage: className="btn-primary" or className="btn-accent"                    */
+
+.btn-primary {
+  background: transparent;
+  color: #3399CC;
+  border: 2px solid #3399CC;
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.65rem 1.75rem;
+  border-radius: 4px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.8125rem;
+}
+
+.btn-primary:hover {
+  background: #EFBF04;
+  border-color: #EFBF04;
+  color: #000000;
+}
+
+.btn-accent {
+  background: transparent;
+  color: #3399CC;
+  border: 2px solid #3399CC;
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.65rem 1.75rem;
+  border-radius: 4px;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 0.8125rem;
+}
+
+.btn-accent:hover {
+  background: #EFBF04;
+  color: #000000;
+  border-color: #EFBF04;
+}
+
+/* Hero-specific button variants — white outline on dark/image backgrounds */
+.btn-hero-outline {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  border-radius: 4px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.btn-hero-outline:hover {
+  background: #EFBF04;
+  border-color: #EFBF04;
+  color: #000000;
+}
+
+.btn-hero-ghost {
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 1rem 2.5rem;
+  border-radius: 4px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.btn-hero-ghost:hover {
+  background: #EFBF04;
+  border-color: #EFBF04;
+  color: #000000;
+}

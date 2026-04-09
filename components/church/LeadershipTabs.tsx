@@ -1,0 +1,175 @@
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+import type { Leader } from '@/lib/leaders';
+
+const tabs = [
+  { key: 'pastor',          label: 'Pastor'               },
+  { key: 'elder',           label: 'Elders'               },
+  { key: 'deacon',          label: 'Deacons'              },
+  { key: 'worship',         label: 'Worship'              },
+  { key: 'youth',           label: 'Youth'                },
+  { key: 'women-children',  label: "Women & Children"     },
+  { key: 'media',           label: 'Media'                },
+] as const;
+
+function getInitials(name: string) {
+  return name.split(' ').filter(Boolean).map(n => n[0]).join('').toUpperCase().slice(0, 2);
+}
+
+function MemberCard({ leader }: { leader: Leader }) {
+  const [hovered, setHovered] = useState(false);
+
+  return (
+    <Link
+      href={`/leadership/${leader.slug}`}
+      className="group flex flex-col"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ textDecoration: 'none' }}
+    >
+      {/* Portrait area — large, like a headshot */}
+      <div
+        style={{
+          aspectRatio: '3 / 4',
+          background: hovered ? '#242424' : '#1c1c1c',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          transition: 'background 0.25s ease',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Large initials */}
+        <span
+          style={{
+            fontFamily: 'var(--font-poppins)',
+            fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+            fontWeight: 300,
+            color: hovered ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.35)',
+            letterSpacing: '0.06em',
+            transition: 'color 0.25s ease',
+            userSelect: 'none',
+          }}
+        >
+          {getInitials(leader.name)}
+        </span>
+
+        {/* Gold bottom rule — appears on hover */}
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 3,
+            background: '#EFBF04',
+            transform: hovered ? 'scaleX(1)' : 'scaleX(0)',
+            transformOrigin: 'left',
+            transition: 'transform 0.25s ease',
+          }}
+        />
+      </div>
+
+      {/* Name + role footer */}
+      <div className="pt-4 pb-1">
+        <h3
+          style={{
+            fontFamily: 'var(--font-poppins)',
+            fontWeight: 400,
+            fontSize: '0.9375rem',
+            color: '#ffffff',
+            lineHeight: 1.3,
+            marginBottom: '0.3rem',
+          }}
+        >
+          {leader.name}
+        </h3>
+        <p
+          style={{
+            fontFamily: 'var(--font-lato)',
+            fontSize: '0.6rem',
+            fontWeight: 700,
+            letterSpacing: '0.12em',
+            textTransform: 'uppercase',
+            color: '#EFBF04',
+            opacity: 0.7,
+          }}
+        >
+          {leader.role}
+        </p>
+      </div>
+    </Link>
+  );
+}
+
+export default function LeadershipTabs({ leaders }: { leaders: Leader[] }) {
+  const [activeTab, setActiveTab] = useState<string>('pastor');
+
+  const activeMembers = leaders.filter(l => l.category === activeTab);
+
+  return (
+    <section className="bg-[#0d0d0d] px-6 md:px-8 pb-24">
+      <div className="max-w-screen-2xl mx-auto">
+
+        {/* Tab bar */}
+        <div
+          className="flex gap-0 overflow-x-auto border-b mb-14"
+          style={{ borderColor: 'rgba(255,255,255,0.08)', scrollbarWidth: 'none' }}
+        >
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab.key;
+            const count = leaders.filter(l => l.category === tab.key).length;
+            return (
+              <button
+                key={tab.key}
+                onClick={() => setActiveTab(tab.key)}
+                className="shrink-0 flex items-center gap-2 px-5 py-5 transition-colors"
+                style={{
+                  background: 'none',
+                  border: 'none',
+                  borderBottom: isActive ? '2px solid #EFBF04' : '2px solid transparent',
+                  marginBottom: '-1px',
+                  cursor: 'pointer',
+                  fontFamily: 'var(--font-lato)',
+                  fontSize: '0.65rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: isActive ? '#EFBF04' : 'rgba(255,255,255,0.35)',
+                  transition: 'color 0.15s',
+                }}
+              >
+                {tab.label}
+                <span
+                  style={{
+                    fontSize: '0.55rem',
+                    color: isActive ? 'rgba(239,191,4,0.6)' : 'rgba(255,255,255,0.2)',
+                    fontWeight: 700,
+                  }}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Members grid */}
+        <div
+          className="grid gap-x-6 gap-y-10"
+          style={{
+            gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+          }}
+        >
+          {activeMembers.map(leader => (
+            <MemberCard key={leader.slug} leader={leader} />
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}

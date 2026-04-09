@@ -1,0 +1,48 @@
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  devIndicators: false,
+
+  images: {
+    // Vercel Blob URLs for uploaded media (headshots, images via Keystatic)
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+      },
+    ],
+  },
+
+  async redirects() {
+    return [
+      // Wix slug → new slug
+      { source: "/i-m-new",                 destination: "/im-new",             permanent: true },
+      { source: "/contactus",               destination: "/contact",            permanent: true },
+      { source: "/support",                 destination: "/give",               permanent: true },
+      { source: "/our-doctrine",            destination: "/about/doctrine",     permanent: true },
+      { source: "/core-biliefs",            destination: "/about/core-beliefs", permanent: true }, // Wix typo
+      { source: "/core-beliefs",            destination: "/about/core-beliefs", permanent: true },
+      { source: "/core-values",             destination: "/about/core-values",  permanent: true },
+      { source: "/the-gospel",              destination: "/about/the-gospel",   permanent: true },
+      { source: "/mission",                 destination: "/about/mission",      permanent: true },
+      // Sermons consolidation
+      { source: "/messages",                destination: "/sermons",            permanent: true },
+      { source: "/archives",                destination: "/sermons",            permanent: true },
+      { source: "/1peter",                  destination: "/sermons",            permanent: true },
+      { source: "/colossians-1",            destination: "/sermons",            permanent: true },
+      // Blog posts
+      { source: "/post/:slug",              destination: "/blog/:slug",         permanent: true },
+      // Pages folded into other pages
+      { source: "/what-to-expect-on-sunday", destination: "/im-new",           permanent: true },
+      { source: "/testimonials",            destination: "/",                   permanent: true },
+      { source: "/calendar",               destination: "/",                   permanent: true },
+      // Resources (future scope)
+      { source: "/resources",              destination: "/",                   permanent: true },
+      { source: "/books",                  destination: "/",                   permanent: true },
+      { source: "/songs",                  destination: "/",                   permanent: true },
+      { source: "/album-1",               destination: "/",                   permanent: true },
+    ];
+  },
+};
+
+export default nextConfig;
