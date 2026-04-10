@@ -1,33 +1,41 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createReader } from '@keystatic/core/reader';
+import config from '@/keystatic.config';
 
-/* ─── Searchable content index ───────────────────────────────────────────────
-   Extend this with Keystatic CMS queries once keystatic.config.ts is set up.
-   ─────────────────────────────────────────────────────────────────────────── */
-const content = [
-  { type: 'Page', title: 'Home', href: '/' },
-  { type: 'Page', title: 'Our Mission', href: '/about/mission' },
-  { type: 'Page', title: 'Our Doctrine', href: '/about/doctrine' },
-  { type: 'Page', title: 'Core Beliefs', href: '/about/core-beliefs' },
-  { type: 'Page', title: 'Core Values', href: '/about/core-values' },
-  { type: 'Page', title: 'The Gospel', href: '/about/the-gospel' },
-  { type: 'Page', title: 'Leadership', href: '/leadership' },
-  { type: 'Page', title: 'Sermons & Messages', href: '/sermons' },
-  { type: 'Page', title: 'Events', href: '/events' },
-  { type: 'Page', title: "Pastor's Blog", href: '/blog' },
-  { type: 'Page', title: 'Give', href: '/give' },
-  { type: 'Page', title: "I'm New Here", href: '/im-new' },
-  { type: 'Page', title: 'Contact Us', href: '/contact' },
-  { type: 'Sermon Series', title: '1 Peter — Suffering, Holiness, and Hope', href: '/sermons#1-peter' },
-  { type: 'Sermon Series', title: 'Colossians 1 — The Supremacy of Christ', href: '/sermons#colossians' },
-  { type: 'Article', title: 'Why Jesus Must Be God to Save Us from Our Sins', href: '/blog/why-jesus-must-be-god' },
-  { type: 'Article', title: 'Is Man Made Up of a Spirit, Soul and Body?', href: '/blog/is-man-made-of-spirit-soul-body' },
-  { type: 'Article', title: 'What is the Image of God?', href: '/blog/what-is-the-image-of-god' },
-  { type: 'Doctrine', title: 'Sola Scriptura — Scripture Alone', href: '/about/mission' },
-  { type: 'Doctrine', title: 'Sola Fide — Faith Alone', href: '/about/mission' },
-  { type: 'Doctrine', title: 'Sola Gratia — Grace Alone', href: '/about/mission' },
-  { type: 'Doctrine', title: 'Solus Christus — Christ Alone', href: '/about/mission' },
-  { type: 'Doctrine', title: 'Soli Deo Gloria — Glory to God Alone', href: '/about/mission' },
+export const dynamic = 'force-dynamic';
+
+/* ── Static pages always included in the index ──────────────────────────── */
+const staticPages = [
+  { type: 'Page', title: 'Home',                         href: '/',                       description: '' },
+  { type: 'Page', title: 'Our Mission',                  href: '/about/mission',           description: 'We exist to glorify God through exalting, edifying, and evangelizing.' },
+  { type: 'Page', title: 'Our Doctrine',                 href: '/about/doctrine',          description: 'Reformed doctrinal statement of Grace Life Church.' },
+  { type: 'Page', title: 'Core Beliefs',                 href: '/about/core-beliefs',      description: 'The foundational beliefs of Grace Life Church.' },
+  { type: 'Page', title: 'Core Values',                  href: '/about/core-values',       description: 'The values that shape our church community.' },
+  { type: 'Page', title: 'The Gospel',                   href: '/about/the-gospel',        description: 'What is the gospel? The good news of Jesus Christ.' },
+  { type: 'Page', title: 'Leadership',                   href: '/leadership',              description: 'Meet the pastors and elders of Grace Life Church.' },
+  { type: 'Page', title: 'Sermons & Messages',           href: '/sermons',                 description: 'Listen to sermon series and messages from Grace Life Church.' },
+  { type: 'Page', title: 'Events',                       href: '/events',                  description: 'Upcoming events at Grace Life Church Vizag.' },
+  { type: 'Page', title: "Pastor's Blog",                href: '/blog',                    description: 'Articles and reflections from the pastor.' },
+  { type: 'Page', title: 'Give',                         href: '/give',                    description: 'Support the ministry through generous giving.' },
+  { type: 'Page', title: "I'm New Here",                 href: '/im-new',                  description: 'Plan your first visit to Grace Life Church.' },
+  { type: 'Page', title: 'Contact Us',                   href: '/contact',                 description: 'Get in touch with Grace Life Church Vizag.' },
+  { type: 'Ministry', title: 'Children\'s Ministry',     href: '/ministries/children',     description: 'Nurturing the faith of the next generation.' },
+  { type: 'Ministry', title: "Women's Ministry",         href: '/ministries/women',        description: 'Equipping and discipling women in the grace and knowledge of Christ.' },
+  { type: 'Ministry', title: 'Youth Ministry',           href: '/ministries/youth',        description: 'Equipping young people with the Word of God.' },
+  { type: 'Ministry', title: 'Media Ministry',           href: '/ministries/media',        description: 'Extending the ministry of the Word beyond our walls.' },
+  { type: 'Ministry', title: 'Print Ministry',           href: '/ministries/print',        description: 'Distributing biblical resources to the congregation.' },
+  { type: 'Ministry', title: 'Membership',               href: '/ministries/membership',   description: 'Covenantal membership at Grace Life Church.' },
+  { type: 'Ministry', title: 'Serving',                  href: '/ministries/serving',      description: 'Every believer faithfully serving in the body of Christ.' },
+  { type: 'Ministry', title: 'Counseling',               href: '/ministries/counseling',   description: 'Biblical counseling grounded in the whole counsel of God.' },
+  { type: 'Ministry', title: 'Congregational Care',      href: '/ministries/congregational-care', description: 'Shepherding and caring for one another.' },
+  { type: 'Ministry', title: 'Prayer',                   href: '/ministries/prayer',       description: 'Corporate and personal prayer.' },
+  { type: 'Ministry', title: 'Weddings',                 href: '/ministries/weddings',     description: 'Celebrating and honouring the covenant of marriage.' },
+  { type: 'Service', title: 'Sunday Telugu Service',     href: '/#service-times',          description: 'Sunday Telugu-medium worship service.' },
+  { type: 'Service', title: 'Sunday English Service',    href: '/#service-times',          description: 'Sunday English-medium worship service.' },
+  { type: 'Service', title: 'Service Times',             href: '/#service-times',          description: 'When we meet for Sunday worship and other gatherings.' },
 ];
+
+type SearchResult = { type: string; title: string; href: string; description?: string };
 
 export async function GET(request: NextRequest) {
   const q = request.nextUrl.searchParams.get('q')?.trim().toLowerCase() ?? '';
@@ -36,11 +44,90 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ results: [] });
   }
 
-  const results = content.filter(
-    (item) =>
-      item.title.toLowerCase().includes(q) ||
-      item.type.toLowerCase().includes(q)
-  );
+  const matches: SearchResult[] = [];
 
-  return NextResponse.json({ results: results.slice(0, 8) });
+  /* ── 1. Static pages ─────────────────────────────────────────────────── */
+  for (const item of staticPages) {
+    if (
+      item.title.toLowerCase().includes(q) ||
+      item.type.toLowerCase().includes(q) ||
+      item.description.toLowerCase().includes(q)
+    ) {
+      matches.push({ type: item.type, title: item.title, href: item.href });
+    }
+  }
+
+  /* ── 2. Keystatic CMS content ────────────────────────────────────────── */
+  try {
+    const reader = createReader(process.cwd(), config);
+
+    /* Blog posts */
+    const blogEntries = await reader.collections.blogPosts.all();
+    for (const { slug, entry } of blogEntries) {
+      const text = [entry.title, entry.author ?? '', entry.excerpt ?? ''].join(' ').toLowerCase();
+      if (text.includes(q)) {
+        matches.push({ type: 'Article', title: entry.title, href: `/blog/${slug}` });
+      }
+    }
+
+    /* Events */
+    const eventEntries = await reader.collections.events.all();
+    for (const { slug, entry } of eventEntries) {
+      const text = [entry.title, entry.description ?? '', entry.location ?? '', entry.time ?? ''].join(' ').toLowerCase();
+      if (text.includes(q)) {
+        matches.push({ type: 'Event', title: entry.title, href: `/events#${slug}` });
+      }
+    }
+
+    /* Sermon series */
+    const seriesEntries = await reader.collections.sermonSeries.all();
+    for (const { slug, entry } of seriesEntries) {
+      const text = [entry.name, entry.description ?? '', entry.reference ?? ''].join(' ').toLowerCase();
+      if (text.includes(q)) {
+        matches.push({ type: 'Sermon Series', title: entry.name, href: `/sermons#${slug}` });
+      }
+    }
+
+    /* Leadership */
+    const leadershipEntries = await reader.collections.leadership.all();
+    for (const { slug, entry } of leadershipEntries) {
+      const text = [entry.name, entry.title ?? '', entry.category ?? ''].join(' ').toLowerCase();
+      if (text.includes(q)) {
+        matches.push({ type: 'Leadership', title: entry.name, href: `/leadership/${slug}` });
+      }
+    }
+
+    /* Ministry pages (Keystatic-managed) */
+    const ministryEntries = await reader.collections.ministries.all();
+    for (const { slug, entry } of ministryEntries) {
+      const text = [entry.name, entry.subtitle ?? ''].join(' ').toLowerCase();
+      if (text.includes(q)) {
+        matches.push({ type: 'Ministry', title: entry.name, href: `/ministries/${slug}` });
+      }
+    }
+
+    /* Service times */
+    const serviceTimes = await reader.singletons.serviceTimes.read();
+    if (serviceTimes?.services) {
+      for (const svc of serviceTimes.services) {
+        const text = [svc.name, svc.day, svc.time].join(' ').toLowerCase();
+        if (text.includes(q)) {
+          matches.push({ type: 'Service', title: `${svc.name} — ${svc.day} ${svc.time}`, href: '/#service-times' });
+        }
+      }
+    }
+  } catch {
+    // CMS unavailable — static results still returned
+  }
+
+  /* Deduplicate by href+title */
+  const seen = new Set<string>();
+  const deduped = matches.filter((r) => {
+    const key = `${r.href}::${r.title}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
+  return NextResponse.json({ results: deduped.slice(0, 10) });
 }

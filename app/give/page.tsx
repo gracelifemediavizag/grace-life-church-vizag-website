@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import ScriptureBlock from '@/components/church/ScriptureBlock';
@@ -57,17 +58,16 @@ export default function GivePage() {
                 <p className="text-[0.65rem] uppercase tracking-widest text-glc-on-surface-variant font-bold mb-4">
                   UPI Payment
                 </p>
-                <div className="aspect-square bg-glc-surface-low border border-dashed border-glc-outline-variant flex flex-col items-center justify-center p-8 mb-4">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-glc-on-surface-variant mb-3">
-                    <rect x="3" y="3" width="6" height="6"/><rect x="15" y="3" width="6" height="6"/><rect x="3" y="15" width="6" height="6"/>
-                    <path d="M21 15h-3v3M18 21h3M15 18h3v3M9 9h.01M9 15h.01M15 9h.01"/>
-                  </svg>
-                  <p className="text-[0.65rem] uppercase tracking-widest text-glc-on-surface-variant font-medium text-center">
-                    QR Code — Details Coming Soon
-                  </p>
+                <div className="aspect-square relative overflow-hidden rounded-sm mb-4">
+                  <Image
+                    src="/giveQRcode.jpeg"
+                    alt="UPI QR Code for Grace Life Church"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
                 <p className="text-glc-on-surface-variant text-sm text-center">
-                  Contact us to receive UPI details
+                  Scan with any UPI app to give
                 </p>
               </div>
 
