@@ -386,9 +386,6 @@ export default async function BlogPostPage({ params }: Props) {
                       ) : (
                         <ul style={{ paddingLeft: '1.5rem', display: 'flex', flexDirection: 'column', gap: '0.5rem', listStyleType: 'disc' }}>{children}</ul>
                       ),
-                    listItem: ({ children }) => (
-                      <li style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1.0625rem', color: '#1A1A1A', opacity: 0.75, lineHeight: 1.9 }}>{children}</li>
-                    ),
                     divider: () => <hr style={{ border: 'none', borderTop: '1px solid rgba(0,0,0,0.08)', margin: '2rem 0' }} />,
                     blockquote: ({ children }) => (
                       <blockquote style={{ borderLeft: '4px solid #EFBF04', paddingLeft: '1.5rem' }}>{children}</blockquote>
