@@ -38,11 +38,12 @@ export default function GivePage() {
           <section className="md:ml-[15%] max-w-2xl mb-16">
             <div className="bg-glc-surface-low border-l-4 border-glc-navy p-6 rounded-r-md">
               <p className="text-[0.65rem] uppercase tracking-widest font-bold text-glc-on-surface-variant mb-2">
-                Please Note
+                How to Give
               </p>
               <p className="text-glc-on-surface leading-relaxed">
-                UPI QR code is coming soon. In the meantime, please use bank transfer or
-                contact us directly.
+                You can give using the UPI QR code or by bank transfer. Every contribution
+                goes directly toward the ministry of the Word here in Visakhapatnam. If you
+                have any questions, please reach out to us.
               </p>
               <div className="mt-4">
                 <p className="text-glc-navy font-medium text-lg mt-1">(+91) 91829 49644</p>
@@ -58,12 +59,13 @@ export default function GivePage() {
                 <p className="text-[0.65rem] uppercase tracking-widest text-glc-on-surface-variant font-bold mb-4">
                   UPI Payment
                 </p>
-                <div className="aspect-square relative overflow-hidden rounded-sm mb-4">
+                <div className="flex justify-center mb-4">
                   <Image
                     src="/giveQRcode.jpeg"
                     alt="UPI QR Code for Grace Life Church"
-                    fill
-                    className="object-contain"
+                    width={240}
+                    height={240}
+                    className="rounded-sm"
                   />
                 </div>
                 <p className="text-glc-on-surface-variant text-sm text-center">
