@@ -44,9 +44,6 @@ export default async function HomePage() {
             backgroundRepeat: 'no-repeat',
           }}
         >
-          {/* Dark overlay */}
-          <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.45)' }} />
-
           {/* Content */}
           <div className="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-8 text-center pt-20">
             <p
