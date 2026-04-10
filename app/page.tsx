@@ -33,17 +33,20 @@ export default async function HomePage() {
     <>
       <NavBar />
       <main>
-        {/* Hero — static image background (add /public/hero-bg.jpg to activate) */}
+        {/* Hero */}
         <section
-          className="relative flex items-center justify-center bg-[#3399CC]"
+          className="relative flex items-center justify-center bg-[#1A1A1A]"
           style={{
             minHeight: '100vh',
-            backgroundImage: "url('/hero-bg.jpg')",
+            backgroundImage: "url('/mainpagehero.jpg')",
             backgroundSize: 'cover',
-            backgroundPosition: 'center center',
+            backgroundPosition: 'center 80px',
             backgroundRepeat: 'no-repeat',
           }}
         >
+          {/* Dark overlay */}
+          <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.45)' }} />
+
           {/* Content */}
           <div className="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-8 text-center pt-20">
             <p
