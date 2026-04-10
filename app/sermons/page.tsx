@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import { createReader } from '@keystatic/core/reader';
@@ -27,9 +28,32 @@ export default async function SermonsPage() {
       <main>
 
         {/* ── Hero ── */}
-        <section style={{ background: '#1A1A1A', paddingTop: '10rem', paddingBottom: '7rem' }} className="px-6 md:px-8">
-          <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-end">
-            <div className="md:pl-[20%]">
+        {/* Mobile: full image bg with overlay. Desktop: split panels. */}
+        <section className="relative md:flex md:flex-row" style={{ minHeight: '75vh' }}>
+
+          {/* Image — full bg on mobile, left panel on desktop */}
+          <div className="absolute inset-0 md:relative md:inset-auto md:w-1/2">
+            <Image
+              src="/sermonspage.jpeg"
+              alt="Pastor preaching at the pulpit of Grace Life Church"
+              fill
+              className="object-cover"
+              style={{ objectPosition: 'center 65%' }}
+              priority
+            />
+            {/* Mobile-only dark overlay for text legibility */}
+            <div
+              className="absolute inset-0 md:hidden"
+              style={{ backgroundColor: 'rgba(0,0,0,0.58)' }}
+            />
+          </div>
+
+          {/* Right — dark panel (desktop) / overlay content (mobile) */}
+          <div
+            className="relative z-10 flex items-end w-full md:w-1/2 px-8 md:px-16 md:bg-[#1A1A1A]"
+            style={{ paddingTop: '10rem', paddingBottom: '5rem' }}
+          >
+            <div className="max-w-lg md:pr-[15%]">
               <p
                 className="mb-6"
                 style={{
@@ -47,7 +71,7 @@ export default async function SermonsPage() {
                 style={{
                   fontFamily: 'var(--font-poppins)',
                   fontWeight: 300,
-                  fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+                  fontSize: 'clamp(2.5rem, 4vw, 4.5rem)',
                   color: '#ffffff',
                   lineHeight: 1.05,
                   letterSpacing: '-0.02em',
@@ -63,22 +87,21 @@ export default async function SermonsPage() {
                   fontSize: '1.0625rem',
                   color: 'rgba(255,255,255,0.5)',
                   lineHeight: 1.8,
-                  maxWidth: '30rem',
+                  maxWidth: '28rem',
+                  marginBottom: '2.5rem',
                 }}
               >
                 Preaching the whole counsel of God — all books, all chapters, all verses.
               </p>
-            </div>
 
-            {/* Pull quote */}
-            <div className="md:pr-[10%]">
+              {/* Pull quote */}
               <div className="border-l-4 pl-6" style={{ borderColor: '#EFBF04' }}>
                 <p
                   style={{
                     fontFamily: 'var(--font-poppins)',
                     fontWeight: 300,
-                    fontSize: '1.0625rem',
-                    color: 'rgba(255,255,255,0.75)',
+                    fontSize: '0.9375rem',
+                    color: 'rgba(255,255,255,0.7)',
                     lineHeight: 1.85,
                     fontStyle: 'italic',
                   }}
@@ -86,7 +109,7 @@ export default async function SermonsPage() {
                   &ldquo;For I did not shrink from declaring to you the whole counsel of God.&rdquo;
                 </p>
                 <p
-                  className="mt-4"
+                  className="mt-3"
                   style={{
                     fontFamily: 'var(--font-lato)',
                     fontSize: '0.65rem',
@@ -94,7 +117,6 @@ export default async function SermonsPage() {
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
                     color: '#EFBF04',
-                    opacity: 0.8,
                   }}
                 >
                   Acts 20:27
@@ -102,6 +124,7 @@ export default async function SermonsPage() {
               </div>
             </div>
           </div>
+
         </section>
 
         {/* ── Listen / Watch ── */}
