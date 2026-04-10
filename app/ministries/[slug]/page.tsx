@@ -7,6 +7,8 @@ const ministryMeta: Record<string, { title: string; category: string; descriptio
   'telugu-service':       { title: 'Telugu Service',       category: 'Worship',             description: 'Our Telugu-medium corporate worship service.' },
   'english-service':      { title: 'English Service',      category: 'Worship',             description: 'Our English-medium corporate worship service.' },
   'kids':                 { title: 'Kids Ministry',        category: 'Ministry',            description: 'Nurturing the faith of the next generation.' },
+  'children':             { title: "Children's Ministry",  category: 'Ministry',            description: 'Nurturing the faith of the next generation in the Word of God.' },
+  'women':                { title: "Women's Ministry",     category: 'Ministry',            description: 'Equipping and discipling women in the grace and knowledge of Christ.' },
   'youth':                { title: 'Youth Ministry',       category: 'Ministry',            description: 'Equipping young people with the Word of God.' },
   'media':                { title: 'Media Ministry',       category: 'Ministry',            description: 'Extending the ministry of the Word beyond our walls.' },
   'print':                { title: 'Print Ministry',       category: 'Ministry',            description: 'Distributing biblical resources to the congregation.' },
