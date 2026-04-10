@@ -78,7 +78,7 @@ export default function GivePage() {
                 </p>
                 <div className="space-y-5">
                   {[
-                    { label: 'Account Name',   value: 'Grace Life Church Welfare Society' },
+                    { label: 'Account Name',   value: 'Grace Life Church' },
                     { label: 'Account Number', value: '249405001197' },
                     { label: 'IFSC Code',      value: 'ICIC0002494' },
                     { label: 'Bank',           value: 'ICICI Bank' },
