@@ -223,22 +223,17 @@ export default async function LeaderPage({ params }: Props) {
                     </p>
                   ),
                   heading: ({ level, children }) => {
-                    const Tag = `h${level}` as keyof JSX.IntrinsicElements;
-                    return (
-                      <Tag
-                        className="mb-4 mt-8"
-                        style={{
-                          fontFamily: 'var(--font-poppins)',
-                          fontWeight: 400,
-                          fontSize: level === 2 ? '1.25rem' : '1.05rem',
-                          color: '#1A1A1A',
-                          borderLeft: '3px solid #EFBF04',
-                          paddingLeft: '1rem',
-                        }}
-                      >
-                        {children}
-                      </Tag>
-                    );
+                    const style = {
+                      fontFamily: 'var(--font-poppins)',
+                      fontWeight: 400,
+                      fontSize: level === 2 ? '1.25rem' : '1.05rem',
+                      color: '#1A1A1A',
+                      borderLeft: '3px solid #EFBF04',
+                      paddingLeft: '1rem',
+                    };
+                    return level === 2
+                      ? <h2 className="mb-4 mt-8" style={style}>{children}</h2>
+                      : <h3 className="mb-4 mt-8" style={style}>{children}</h3>;
                   },
                 },
                 inline: {
