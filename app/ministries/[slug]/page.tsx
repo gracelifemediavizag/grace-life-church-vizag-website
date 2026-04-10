@@ -14,7 +14,7 @@ const ministryMeta: Record<string, { title: string; category: string; descriptio
   'print':                { title: 'Print Ministry',       category: 'Ministry',            description: 'Distributing biblical resources to the congregation.' },
   'membership':           { title: 'Membership',           category: 'Membership Services', description: 'What it means to be a covenantal member of Grace Life Church.' },
   'serving':              { title: 'Serving',              category: 'Membership Services', description: 'Every believer faithfully serving in the body of Christ.' },
-  'counselling':          { title: 'Counselling',          category: 'Membership Services', description: 'Biblical counselling grounded in the whole counsel of God.' },
+  'counseling':          { title: 'Counselling',          category: 'Membership Services', description: 'Biblical counseling grounded in the whole counsel of God.' },
   'congregational-care':  { title: 'Congregational Care', category: 'Membership Services', description: 'Shepherding and caring for one another within the local body.' },
   'prayer':               { title: 'Prayer',               category: 'Membership Services', description: 'Corporate and personal prayer as the engine of our ministry.' },
   'weddings':             { title: 'Weddings',             category: 'Membership Services', description: 'Celebrating and honouring the covenant of marriage.' },

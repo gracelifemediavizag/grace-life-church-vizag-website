@@ -49,7 +49,7 @@ const navLinks: NavItem[] = [
         children: [
           { label: 'Membership',          href: '/ministries/membership'          },
           { label: 'Serving',             href: '/ministries/serving'             },
-          { label: 'Counselling',         href: '/ministries/counselling'         },
+          { label: 'Counseling',         href: '/ministries/counseling'         },
           { label: 'Congregational Care', href: '/ministries/congregational-care' },
           { label: 'Prayer',              href: '/ministries/prayer'              },
           { label: 'Weddings',            href: '/ministries/weddings'            },
