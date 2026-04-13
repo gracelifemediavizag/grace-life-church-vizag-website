@@ -11,20 +11,107 @@ export const metadata: Metadata = {
     'Upcoming events and gatherings at Grace Life Church Vizag — worship services, prayer meetings, youth fellowship, and more.',
 };
 
+/* ── Recurring event expansion ─────────────────────────────────────────────── */
+
+const DAY_NAMES = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+function toISODate(d: Date): string {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}
+
+/** Return the Nth occurrence (1-based) of a given weekday in a given month/year. */
+function nthDayOfMonth(year: number, month: number, weekday: number, n: number): Date | null {
+  const first = new Date(year, month, 1);
+  const offset = (weekday - first.getDay() + 7) % 7;
+  const day = 1 + offset + (n - 1) * 7;
+  if (day > new Date(year, month + 1, 0).getDate()) return null;
+  return new Date(year, month, day);
+}
+
+/**
+ * Given a recurrenceDay string (e.g. "Sunday", "Wednesday", "2nd Friday"),
+ * return the next `count` ISO date strings starting from today.
+ */
+function getNextOccurrences(recurrenceDay: string, count: number): string[] {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const dates: string[] = [];
+
+  const nthMatch = recurrenceDay.match(/^(\d+)(st|nd|rd|th)\s+(.+)$/i);
+
+  if (nthMatch) {
+    // "2nd Friday" style
+    const nth = parseInt(nthMatch[1], 10);
+    const dayName = nthMatch[3];
+    const weekday = DAY_NAMES.indexOf(dayName);
+    if (weekday === -1) return [];
+
+    let year = today.getFullYear();
+    let month = today.getMonth();
+    while (dates.length < count) {
+      const d = nthDayOfMonth(year, month, weekday, nth);
+      if (d && d >= today) dates.push(toISODate(d));
+      month++;
+      if (month > 11) { month = 0; year++; }
+      if (year > today.getFullYear() + 2) break;
+    }
+  } else {
+    // "Sunday", "Wednesday" etc. — every week
+    const weekday = DAY_NAMES.indexOf(recurrenceDay);
+    if (weekday === -1) return [];
+
+    const d = new Date(today);
+    const daysUntil = (weekday - d.getDay() + 7) % 7;
+    d.setDate(d.getDate() + daysUntil);
+
+    while (dates.length < count) {
+      dates.push(toISODate(new Date(d)));
+      d.setDate(d.getDate() + 7);
+    }
+  }
+
+  return dates;
+}
+
+/* ─────────────────────────────────────────────────────────────────────────── */
+
 export default async function EventsPage() {
   const reader = createReader(process.cwd(), config);
   const allEntries = await reader.collections.events.all();
-  const events: ChurchEvent[] = allEntries
-    .map(({ slug, entry }, id) => ({
-      id,
-      title: entry.title,
-      date: entry.date ?? '',
-      time: entry.time ?? '',
-      location: entry.location ?? '',
-      description: entry.description ?? '',
-      isPast: entry.isPast ?? false,
-    }))
-    .sort((a, b) => (a.date > b.date ? 1 : -1));
+
+  let idCounter = 0;
+  const events: ChurchEvent[] = [];
+
+  for (const { entry } of allEntries) {
+    if (entry.isRecurring && entry.recurrenceDay) {
+      // Expand into the next 8 occurrences
+      const dates = getNextOccurrences(entry.recurrenceDay, 8);
+      for (const date of dates) {
+        events.push({
+          id: idCounter++,
+          title: entry.title,
+          date,
+          time: entry.time ?? '',
+          location: entry.location ?? '',
+          description: entry.description ?? '',
+          isPast: false,
+        });
+      }
+    } else {
+      events.push({
+        id: idCounter++,
+        title: entry.title,
+        date: entry.date ?? '',
+        time: entry.time ?? '',
+        location: entry.location ?? '',
+        description: entry.description ?? '',
+        isPast: entry.isPast ?? false,
+      });
+    }
+  }
+
+  events.sort((a, b) => (a.date > b.date ? 1 : -1));
+
   return (
     <>
       <NavBar />

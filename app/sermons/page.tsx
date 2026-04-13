@@ -34,9 +34,10 @@ export default async function SermonsPage() {
           {/* Image — full bg on mobile, left panel on desktop */}
           <div className="absolute inset-0 md:relative md:inset-auto md:w-1/2">
             <Image
-              src="/sermonspage.jpeg"
+              src="/images/heroes/sermonspage.jpeg"
               alt="Pastor preaching at the pulpit of Grace Life Church"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
               style={{ objectPosition: 'center 65%' }}
               priority

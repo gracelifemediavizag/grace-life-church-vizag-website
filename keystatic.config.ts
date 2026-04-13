@@ -47,12 +47,21 @@ export default config({
       slugField: 'title',
       path: 'content/events/*',
       schema: {
-        title:       fields.slug({ name: { label: 'Event Title' } }),
-        date:        fields.date({ label: 'Date' }),
-        time:        fields.text({ label: 'Time', description: 'e.g. "8:30 AM – 10:00 AM"' }),
-        location:    fields.text({ label: 'Location' }),
-        description: fields.text({ label: 'Description', multiline: true }),
-        isPast:      fields.checkbox({ label: 'Mark as past event', defaultValue: false }),
+        title:          fields.slug({ name: { label: 'Event Title' } }),
+        date:           fields.date({ label: 'Date', description: 'Leave blank for recurring events — the date is computed automatically.' }),
+        time:           fields.text({ label: 'Time', description: 'e.g. "4:00 PM – 6:00 PM"' }),
+        location:       fields.text({ label: 'Location' }),
+        description:    fields.text({ label: 'Description', multiline: true }),
+        isPast:         fields.checkbox({ label: 'Mark as past event', defaultValue: false }),
+        isRecurring:    fields.checkbox({
+          label: 'Recurring Event',
+          description: 'Check if this event repeats on a fixed schedule.',
+          defaultValue: false,
+        }),
+        recurrenceDay:  fields.text({
+          label: 'Recurrence Day',
+          description: 'e.g. "Sunday", "Wednesday", "Saturday", "2nd Friday". Required when Recurring is checked.',
+        }),
       },
     }),
 
@@ -127,9 +136,11 @@ export default config({
       path: 'content/ministries/*',
       format: { contentField: 'content' },
       schema: {
-        name:     fields.slug({ name: { label: 'Ministry Name' } }),
-        subtitle: fields.text({ label: 'Subtitle / Tagline', description: 'One-line description shown under the page title.' }),
-        content:  fields.document({
+        name:        fields.slug({ name: { label: 'Ministry Name' } }),
+        category:    fields.text({ label: 'Category', description: 'e.g. "Worship", "Ministry", "Membership Services"' }),
+        subtitle:    fields.text({ label: 'Subtitle / Tagline', description: 'One-line description shown under the page title.' }),
+        description: fields.text({ label: 'Description', multiline: true, description: 'Used in page metadata and as fallback subtitle.' }),
+        content:     fields.document({
           label: 'Page Content',
           formatting: true,
           dividers: true,
@@ -151,6 +162,24 @@ export default config({
         content: fields.text({ label: 'Testimony', multiline: true }),
       },
     }),
+
+    // Individual Sermons
+    sermons: collection({
+      label: 'Sermons',
+      slugField: 'title',
+      path: 'content/sermons/*',
+      schema: {
+        title:       fields.slug({ name: { label: 'Sermon Title' } }),
+        date:        fields.date({ label: 'Date' }),
+        speaker:     fields.text({ label: 'Speaker', description: 'e.g. "Pastor Daniel Surya Avula"' }),
+        series:      fields.text({ label: 'Series Name', description: 'e.g. "1 Peter", "Colossians"' }),
+        scripture:   fields.text({ label: 'Scripture Passage', description: 'e.g. "1 Peter 1:1–12"' }),
+        youtubeUrl:  fields.text({ label: 'YouTube URL', description: 'Direct link to the video on YouTube.' }),
+        audioUrl:    fields.text({ label: 'Audio URL (optional)', description: 'Direct link to audio file or podcast episode.' }),
+        description: fields.text({ label: 'Description', multiline: true, description: 'Short summary of the message.' }),
+      },
+    }),
+
   },
 
   // ─── Singletons ─────────────────────────────────────────────────────────────
@@ -175,10 +204,51 @@ export default config({
       },
     }),
 
+    faqs: singleton({
+      label: "I'm New — FAQs",
+      path: 'content/singletons/faqs',
+      schema: {
+        items: fields.array(
+          fields.object({
+            question: fields.text({ label: 'Question' }),
+            answer:   fields.text({ label: 'Answer', multiline: true }),
+          }),
+          {
+            label: 'FAQ Items',
+            itemLabel: (props) => props.fields.question.value || 'Question',
+          }
+        ),
+      },
+    }),
+
+    coreValues: singleton({
+      label: 'Core Values',
+      path: 'content/singletons/core-values',
+      schema: {
+        values: fields.array(
+          fields.object({
+            value:       fields.text({ label: 'Value Name', description: 'e.g. "God\'s Word"' }),
+            description: fields.text({ label: 'Description', multiline: true }),
+            references:  fields.text({ label: 'Scripture References', description: 'e.g. "2 Tim 3:16–17; 1 Pet 2:2"' }),
+            image:       fields.image({
+              label: 'Image (optional)',
+              directory: 'public/images/core-values',
+              publicPath: '/images/core-values/',
+            }),
+          }),
+          {
+            label: 'Values',
+            itemLabel: (props) => props.fields.value.value || 'Value',
+          }
+        ),
+      },
+    }),
+
     siteSettings: singleton({
       label: 'Site Settings',
       path: 'content/singletons/site-settings',
       schema: {
+        // ── Contact & Address ──────────────────────────────────
         primaryContactName: fields.text({ label: 'Primary Contact Name'     }),
         phone1:             fields.text({ label: 'Primary Phone Number'      }),
         phone2:             fields.text({ label: 'Secondary Phone Number'    }),
@@ -187,9 +257,36 @@ export default config({
         city:               fields.text({ label: 'City'                      }),
         state:              fields.text({ label: 'State'                     }),
         pincode:            fields.text({ label: 'Pincode'                   }),
+        mapsUrl:            fields.text({ label: 'Google Maps Embed/Link URL' }),
+
+        // ── Social Links ───────────────────────────────────────
         youtubeUrl:         fields.text({ label: 'YouTube Channel URL'       }),
+        instagramUrl:       fields.text({ label: 'Instagram Profile URL'     }),
+        facebookUrl:        fields.text({ label: 'Facebook Page URL'         }),
+        soundcloudUrl:      fields.text({ label: 'SoundCloud Profile URL'    }),
         danielsuryaUrl:     fields.text({ label: 'Daniel Surya Website URL'  }),
-        mapsUrl:            fields.text({ label: 'Google Maps URL'           }),
+
+        // ── Give / Bank Details ────────────────────────────────
+        giveAccountName:    fields.text({ label: 'Account Name'              }),
+        giveAccountNumber:  fields.text({ label: 'Account Number'            }),
+        giveIFSC:           fields.text({ label: 'IFSC Code'                 }),
+        giveBank:           fields.text({ label: 'Bank Name'                 }),
+        giveBranch:         fields.text({ label: 'Bank Branch'               }),
+
+        // ── Announcement Banner ────────────────────────────────
+        announcementActive: fields.checkbox({
+          label: 'Show Announcement Banner',
+          description: 'Enable to display the banner across all pages.',
+          defaultValue: false,
+        }),
+        announcementText:   fields.text({
+          label: 'Announcement Text',
+          description: 'Short message shown in the sitewide banner when active.',
+        }),
+        announcementLink:   fields.text({
+          label: 'Announcement Link (optional)',
+          description: 'URL to link from the banner. Leave blank for no link.',
+        }),
       },
     }),
   },

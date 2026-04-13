@@ -38,7 +38,7 @@ export default async function HomePage() {
           className="relative flex items-center justify-center bg-[#1A1A1A]"
           style={{
             minHeight: '100vh',
-            backgroundImage: "url('/mainpagehero.jpg')",
+            backgroundImage: "url('/images/heroes/mainpagehero.jpg')",
             backgroundSize: 'cover',
             backgroundPosition: 'center 80px',
             backgroundRepeat: 'no-repeat',

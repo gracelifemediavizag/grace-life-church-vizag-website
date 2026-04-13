@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import ContactForm from './ContactForm';
+import { createReader } from '@keystatic/core/reader';
+import config from '@/keystatic.config';
 
 export const metadata: Metadata = {
   title: 'Contact Us',
@@ -9,19 +11,30 @@ export const metadata: Metadata = {
     'Get in touch with Grace Life Church Vizag. We are located in Seethammadhara, Visakhapatnam, Andhra Pradesh.',
 };
 
-const MAPS_URL =
-  'https://www.google.com/maps/place/Grace+Life+Church,+Vizag/@17.7456557,83.312457,99m/data=!3m1!1e3!4m6!3m5!1s0x3a395d7a60e10f17:0x23137b54b808f3b2!8m2!3d17.745603!4d83.312793!16s%2Fg%2F11ghpmzkvl';
+export default async function ContactPage() {
+  const reader = createReader(process.cwd(), config);
+  const [settingsEntry, serviceTimesEntry] = await Promise.all([
+    reader.singletons.siteSettings.read(),
+    reader.singletons.serviceTimes.read(),
+  ]);
 
-const serviceTimes = [
-  { service: 'Sunday School',         time: 'Sun 10:30 AM – 12:30 PM'    },
-  { service: 'Telugu Worship',        time: 'Sun 10:30 AM – 12:30 PM'    },
-  { service: 'English Worship',       time: 'Sun 4:00 PM – 6:00 PM'      },
-  { service: 'Congregational Prayer', time: 'Wed 7:00 PM – 8:30 PM'      },
-  { service: 'Whole Night Prayer',    time: '2nd Fri 8:00 PM – 12:00 AM' },
-  { service: 'Youth Fellowship',      time: 'Sat 7:00 PM – 8:30 PM'      },
-];
+  const s = settingsEntry ?? {
+    primaryContactName: 'Mohan Nitta',
+    phone1: '(+91) 91829 49644',
+    phone2: '(+91) 95025 42648',
+    addressLine1: '50-1-43, ASR Nagar',
+    addressLine2: 'Seethammadhara',
+    city: 'Visakhapatnam',
+    state: 'Andhra Pradesh',
+    pincode: '530013',
+    mapsUrl: '',
+  };
 
-export default function ContactPage() {
+  const services = serviceTimesEntry?.services ?? [];
+
+  const mapsLink = s.mapsUrl ||
+    'https://www.google.com/maps/place/Grace+Life+Church,+Vizag/@17.7456557,83.312457,99m';
+
   return (
     <>
       <NavBar />
@@ -62,22 +75,22 @@ export default function ContactPage() {
                 </p>
               </div>
 
-              {/* Service times */}
+              {/* Service times — driven from serviceTimes singleton */}
               <div className="bg-white p-8">
                 <p className="mb-6" style={{ fontFamily: 'var(--font-lato)', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#3399CC' }}>
                   Service Times
                 </p>
-                {serviceTimes.map((s, i) => (
+                {services.map((svc, i) => (
                   <div
-                    key={s.service}
+                    key={svc.name}
                     className="flex justify-between items-center py-3"
-                    style={{ borderBottom: i < serviceTimes.length - 1 ? '1px solid rgba(0,0,0,0.06)' : 'none' }}
+                    style={{ borderBottom: i < services.length - 1 ? '1px solid rgba(0,0,0,0.06)' : 'none' }}
                   >
                     <span style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '0.9375rem', color: '#1A1A1A' }}>
-                      {s.service}
+                      {svc.name}
                     </span>
                     <span style={{ fontFamily: 'var(--font-lato)', fontWeight: 700, fontSize: '0.72rem', color: '#3399CC', letterSpacing: '0.04em' }}>
-                      {s.time}
+                      {svc.day} · {svc.time}
                     </span>
                   </div>
                 ))}
@@ -90,16 +103,16 @@ export default function ContactPage() {
                     Location
                   </p>
                   <p style={{ fontFamily: 'var(--font-poppins)', fontWeight: 400, fontSize: '0.9375rem', color: '#1A1A1A', lineHeight: 1.8 }}>
-                    50-1-43, ASR Nagar<br />
-                    Seethammadhara<br />
-                    Visakhapatnam<br />
-                    Andhra Pradesh — 530013
+                    {s.addressLine1}<br />
+                    {s.addressLine2}<br />
+                    {s.city}<br />
+                    {s.state} — {s.pincode}
                   </p>
                   <p className="mt-2" style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '0.8rem', color: '#1A1A1A', opacity: 0.45, lineHeight: 1.7 }}>
                     Opposite Little Giggles Playschool, up from Alluri Seetharamaraju Statue Junction.
                   </p>
                   <a
-                    href={MAPS_URL}
+                    href={mapsLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-block mt-4"
@@ -113,15 +126,27 @@ export default function ContactPage() {
                   <p className="mb-4" style={{ fontFamily: 'var(--font-lato)', fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase', color: '#3399CC' }}>
                     Phone
                   </p>
-                  <p className="mb-3" style={{ fontFamily: 'var(--font-poppins)', fontWeight: 400, fontSize: '0.9375rem', color: '#1A1A1A' }}>
-                    Mohan Nitta
-                  </p>
-                  <a href="tel:+919182949644" style={{ display: 'block', fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1.05rem', color: '#3399CC', marginBottom: '0.4rem' }}>
-                    (+91) 91829 49644
-                  </a>
-                  <a href="tel:+919502542648" style={{ display: 'block', fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1.05rem', color: '#3399CC' }}>
-                    (+91) 95025 42648
-                  </a>
+                  {s.primaryContactName && (
+                    <p className="mb-3" style={{ fontFamily: 'var(--font-poppins)', fontWeight: 400, fontSize: '0.9375rem', color: '#1A1A1A' }}>
+                      {s.primaryContactName}
+                    </p>
+                  )}
+                  {s.phone1 && (
+                    <a
+                      href={`tel:${s.phone1.replace(/[^+\d]/g, '')}`}
+                      style={{ display: 'block', fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1.05rem', color: '#3399CC', marginBottom: '0.4rem' }}
+                    >
+                      {s.phone1}
+                    </a>
+                  )}
+                  {s.phone2 && (
+                    <a
+                      href={`tel:${s.phone2.replace(/[^+\d]/g, '')}`}
+                      style={{ display: 'block', fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1.05rem', color: '#3399CC' }}
+                    >
+                      {s.phone2}
+                    </a>
+                  )}
                 </div>
               </div>
 
@@ -145,7 +170,7 @@ export default function ContactPage() {
               Find Us
             </p>
             <p style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '0.9rem', color: 'rgba(255,255,255,0.4)' }}>
-              50-1-43, ASR Nagar, Seethammadhara, Visakhapatnam
+              {s.addressLine1}, {s.addressLine2}, {s.city}
             </p>
           </div>
           <div className="w-full" style={{ height: '560px' }}>

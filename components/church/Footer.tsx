@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { createReader } from '@keystatic/core/reader';
+import config from '@/keystatic.config';
 
 function InstagramIcon() {
   return (
@@ -46,7 +48,38 @@ const quickLinks = [
   { label: 'Contact', href: '/contact' },
 ];
 
-export default function Footer() {
+export default async function Footer() {
+  const reader = createReader(process.cwd(), config);
+  const settings = await reader.singletons.siteSettings.read();
+  const serviceTimes = await reader.singletons.serviceTimes.read();
+
+  const s = settings ?? {
+    primaryContactName: 'Mohan Nitta',
+    phone1: '(+91) 91829 49644',
+    phone2: '(+91) 95025 42648',
+    addressLine1: '50-1-43, ASR Nagar',
+    addressLine2: 'Seethammadhara',
+    city: 'Visakhapatnam',
+    state: 'Andhra Pradesh',
+    pincode: '530013',
+    youtubeUrl: 'https://www.youtube.com/@DanielSuryaAvula',
+    instagramUrl: 'https://www.instagram.com/gracelifechurchvizag/',
+    facebookUrl: 'https://www.facebook.com/danielsurya.avula.1',
+    soundcloudUrl: 'https://soundcloud.com/user-267402632-188676084',
+    danielsuryaUrl: 'https://www.danielsurya.in/',
+    mapsUrl: '',
+    announcementActive: false,
+    announcementText: '',
+    announcementLink: '',
+    giveAccountName: '',
+    giveAccountNumber: '',
+    giveIFSC: '',
+    giveBank: '',
+    giveBranch: '',
+  };
+
+  const services = serviceTimes?.services ?? [];
+
   return (
     <footer className="bg-[#111111] text-white border-t-4 border-[#EFBF04]">
       <div className="max-w-screen-2xl mx-auto px-6 md:px-12 py-20 grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -60,30 +93,38 @@ export default function Footer() {
             A church plant of Fullness of Joy Ministries.
           </p>
           <div className="space-y-1">
-            <p className="text-white/80 text-sm">50-1-43, ASR Nagar</p>
-            <p className="text-white/80 text-sm">Seethammadhara, Visakhapatnam</p>
-            <p className="text-white/80 text-sm">Andhra Pradesh — 530013</p>
+            <p className="text-white/80 text-sm">{s.addressLine1}</p>
+            <p className="text-white/80 text-sm">{s.addressLine2}, {s.city}</p>
+            <p className="text-white/80 text-sm">{s.state} — {s.pincode}</p>
           </div>
           <div className="space-y-1">
             <p className="text-[0.7rem] uppercase tracking-widest text-[#3399CC] font-semibold mb-2" style={{ fontFamily: 'var(--font-lato)' }}>Contact</p>
-            <p className="text-white/80 text-sm">Mohan Nitta</p>
-            <p className="text-white/70 text-sm">(+91) 91829 49644</p>
-            <p className="text-white/70 text-sm">(+91) 95025 42648</p>
+            <p className="text-white/80 text-sm">{s.primaryContactName}</p>
+            {s.phone1 && <p className="text-white/70 text-sm">{s.phone1}</p>}
+            {s.phone2 && <p className="text-white/70 text-sm">{s.phone2}</p>}
           </div>
           {/* Social links */}
           <div className="flex gap-4 pt-2">
-            <a href="https://www.youtube.com/@DanielSuryaAvula" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-white/40 hover:text-[#EFBF04] transition-colors">
-              <YouTubeIcon />
-            </a>
-            <a href="https://www.instagram.com/gracelifechurchvizag/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/40 hover:text-[#EFBF04] transition-colors">
-              <InstagramIcon />
-            </a>
-            <a href="https://www.facebook.com/danielsurya.avula.1" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white/40 hover:text-[#EFBF04] transition-colors">
-              <FacebookIcon />
-            </a>
-            <a href="https://soundcloud.com/user-267402632-188676084" target="_blank" rel="noopener noreferrer" aria-label="SoundCloud" className="text-white/40 hover:text-[#EFBF04] transition-colors">
-              <SoundCloudIcon />
-            </a>
+            {s.youtubeUrl && (
+              <a href={s.youtubeUrl} target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-white/40 hover:text-[#EFBF04] transition-colors">
+                <YouTubeIcon />
+              </a>
+            )}
+            {s.instagramUrl && (
+              <a href={s.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-white/40 hover:text-[#EFBF04] transition-colors">
+                <InstagramIcon />
+              </a>
+            )}
+            {s.facebookUrl && (
+              <a href={s.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-white/40 hover:text-[#EFBF04] transition-colors">
+                <FacebookIcon />
+              </a>
+            )}
+            {s.soundcloudUrl && (
+              <a href={s.soundcloudUrl} target="_blank" rel="noopener noreferrer" aria-label="SoundCloud" className="text-white/40 hover:text-[#EFBF04] transition-colors">
+                <SoundCloudIcon />
+              </a>
+            )}
           </div>
         </div>
 
@@ -91,19 +132,10 @@ export default function Footer() {
         <div className="space-y-6">
           <p className="text-[0.7rem] uppercase tracking-widest text-[#3399CC] font-bold" style={{ fontFamily: 'var(--font-lato)' }}>Service Times</p>
           <div className="space-y-5">
-            {[
-              { service: 'Sunday School', time: 'Sun 10:30 AM – 12:30 PM' },
-              { service: 'Telugu Worship', time: 'Sun 10:30 AM – 12:30 PM' },
-              { service: 'English Worship', time: 'Sun 4:00 PM – 6:00 PM' },
-              { service: 'Congregational Prayer', time: 'Wed 7:00 PM – 8:30 PM' },
-              { service: 'Whole Night Prayer', time: '2nd Fri 8:00 PM – 12:00 AM' },
-              { service: 'Youth Fellowship', time: 'Sat 7:00 PM – 8:30 PM' },
-            ].map((item) => (
-              <div key={item.service}>
-                <p className="text-white font-medium text-sm">{item.service}</p>
-                {item.time.split('\n').map((t, i) => (
-                  <p key={i} className="text-white/60 text-xs mt-0.5">{t}</p>
-                ))}
+            {services.map((item) => (
+              <div key={item.name}>
+                <p className="text-white font-medium text-sm">{item.name}</p>
+                <p className="text-white/60 text-xs mt-0.5">{item.day} · {item.time}</p>
               </div>
             ))}
           </div>
@@ -113,26 +145,30 @@ export default function Footer() {
         <div className="space-y-6">
           <p className="text-[0.7rem] uppercase tracking-widest text-[#3399CC] font-bold" style={{ fontFamily: 'var(--font-lato)' }}>Our Ministries</p>
           <ul className="space-y-3">
-            <li>
-              <a
-                href="https://www.danielsurya.in/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-white text-sm transition-colors"
-              >
-                Fullness of Joy Ministries
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.youtube.com/@DanielSuryaAvula"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-white text-sm transition-colors"
-              >
-                YouTube — Daniel Surya Avula
-              </a>
-            </li>
+            {s.danielsuryaUrl && (
+              <li>
+                <a
+                  href={s.danielsuryaUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/70 hover:text-white text-sm transition-colors"
+                >
+                  Fullness of Joy Ministries
+                </a>
+              </li>
+            )}
+            {s.youtubeUrl && (
+              <li>
+                <a
+                  href={s.youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/70 hover:text-white text-sm transition-colors"
+                >
+                  YouTube — Daniel Surya Avula
+                </a>
+              </li>
+            )}
           </ul>
         </div>
 

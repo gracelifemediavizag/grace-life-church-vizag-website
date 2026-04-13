@@ -3,13 +3,27 @@ import Image from 'next/image';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import ScriptureBlock from '@/components/church/ScriptureBlock';
+import { createReader } from '@keystatic/core/reader';
+import config from '@/keystatic.config';
 
 export const metadata: Metadata = {
   title: 'Give',
   description: 'Support the ministry of Grace Life Church Vizag through generous giving.',
 };
 
-export default function GivePage() {
+export default async function GivePage() {
+  const reader = createReader(process.cwd(), config);
+  const settings = await reader.singletons.siteSettings.read();
+
+  const phone1 = settings?.phone1 ?? '(+91) 91829 49644';
+  const bankDetails = [
+    { label: 'Account Name',   value: settings?.giveAccountName   ?? 'Grace Life Church' },
+    { label: 'Account Number', value: settings?.giveAccountNumber ?? '249405001197'       },
+    { label: 'IFSC Code',      value: settings?.giveIFSC          ?? 'ICIC0002494'        },
+    { label: 'Bank',           value: settings?.giveBank          ?? 'ICICI Bank'         },
+    { label: 'Branch',         value: settings?.giveBranch        ?? 'Seethammadhara'     },
+  ];
+
   return (
     <>
       <NavBar />
@@ -46,7 +60,7 @@ export default function GivePage() {
                 have any questions, please reach out to us.
               </p>
               <div className="mt-4">
-                <p className="text-glc-navy font-medium text-lg mt-1">(+91) 91829 49644</p>
+                <p className="text-glc-navy font-medium text-lg mt-1">{phone1}</p>
               </div>
             </div>
           </section>
@@ -61,11 +75,12 @@ export default function GivePage() {
                 </p>
                 <div className="flex justify-center mb-4">
                   <Image
-                    src="/giveQRcode.jpeg"
+                    src="/images/give/giveQRcode.jpeg"
                     alt="UPI QR Code for Grace Life Church"
                     width={240}
                     height={240}
                     className="rounded-sm"
+                    style={{ width: 240, height: 240 }}
                   />
                 </div>
                 <p className="text-glc-on-surface-variant text-sm text-center">
@@ -79,13 +94,7 @@ export default function GivePage() {
                   Bank Transfer
                 </p>
                 <div className="space-y-5">
-                  {[
-                    { label: 'Account Name',   value: 'Grace Life Church' },
-                    { label: 'Account Number', value: '249405001197' },
-                    { label: 'IFSC Code',      value: 'ICIC0002494' },
-                    { label: 'Bank',           value: 'ICICI Bank' },
-                    { label: 'Branch',         value: 'Seethammadhara' },
-                  ].map((item) => (
+                  {bankDetails.map((item) => (
                     <div key={item.label} className="border-b border-glc-outline-variant pb-3">
                       <p className="text-[0.6rem] uppercase tracking-widest text-glc-on-surface-variant font-semibold mb-1">
                         {item.label}

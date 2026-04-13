@@ -4,6 +4,8 @@ import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import ImNewFAQ from '@/components/church/ImNewFAQ';
 import ServiceTimesCards from '@/components/church/ServiceTimesCards';
+import { createReader } from '@keystatic/core/reader';
+import config from '@/keystatic.config';
 
 export const metadata: Metadata = {
   title: "I'm New Here",
@@ -29,7 +31,13 @@ const pillars = [
   },
 ];
 
-export default function ImNewPage() {
+export default async function ImNewPage() {
+  const reader = createReader(process.cwd(), config);
+  const faqEntry = await reader.singletons.faqs.read();
+  const faqs = (faqEntry?.items ?? []).map((item) => ({
+    question: item.question,
+    answer: item.answer,
+  }));
   return (
     <>
       <NavBar />
@@ -39,7 +47,7 @@ export default function ImNewPage() {
         <section
           className="relative pt-40 pb-28 px-6 md:px-8"
           style={{
-            backgroundImage: "url('/vizag.jpg')",
+            backgroundImage: "url('/images/heroes/vizag.jpg')",
             backgroundSize: 'cover',
             backgroundPosition: 'center 40%',
           }}
@@ -352,7 +360,7 @@ export default function ImNewPage() {
               </h2>
             </div>
             <div className="max-w-2xl">
-              <ImNewFAQ />
+              <ImNewFAQ faqs={faqs} />
             </div>
           </div>
         </section>

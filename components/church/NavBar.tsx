@@ -202,7 +202,7 @@ export default function NavBar() {
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0 mr-8" onClick={closeSearch}>
             <Image
-              src="/GLCvizaglogo-black.png"
+              src="/images/logos/GLCvizaglogo-black.png"
               alt="Grace Life Church Vizag"
               width={340} height={102}
               className="h-16 w-auto md:h-[5.5rem] object-contain"
@@ -377,7 +377,7 @@ export default function NavBar() {
         <div className="flex items-center justify-between px-6 py-5 border-b border-[#E8E8E8] shrink-0">
           <Link href="/" onClick={() => setMobileOpen(false)}>
             <Image
-              src="/GLCvizaglogo-black.png"
+              src="/images/logos/GLCvizaglogo-black.png"
               alt="Grace Life Church Vizag"
               width={200} height={60}
               className="h-10 w-auto object-contain"

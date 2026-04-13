@@ -161,7 +161,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!entry && !meta) return { title: 'Not Found' };
   return {
     title: entry?.name ?? meta?.title ?? 'Ministry',
-    description: entry?.subtitle ?? meta?.description ?? '',
+    description: entry?.description ?? entry?.subtitle ?? meta?.description ?? '',
   };
 }
 
@@ -283,7 +283,7 @@ export default async function MinistryPage({ params }: Props) {
                   color: '#EFBF04',
                 }}
               >
-                {meta?.category ?? 'Ministry'}
+                {entry.category || meta?.category || 'Ministry'}
               </p>
               <h1
                 style={{
@@ -308,7 +308,7 @@ export default async function MinistryPage({ params }: Props) {
                   lineHeight: 1.75,
                 }}
               >
-                {entry.subtitle || meta?.description}
+                {entry.subtitle || entry.description || meta?.description}
               </p>
             </div>
             {enhancement ? (
