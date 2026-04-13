@@ -387,7 +387,7 @@ export default async function MinistryPage({ params }: Props) {
                   style={{
                     fontFamily: 'var(--font-poppins)',
                     fontWeight: 300,
-                    fontSize: 'clamp(1.8rem, 3.2vw, 2.6rem)',
+                    fontSize: 'clamp(1.4rem, 2.2vw, 1.9rem)',
                     color: '#1A1A1A',
                     lineHeight: 1.1,
                     borderLeft: '4px solid #EFBF04',

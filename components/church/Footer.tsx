@@ -60,7 +60,7 @@ export default function Footer() {
             A church plant of Fullness of Joy Ministries.
           </p>
           <div className="space-y-1">
-            <p className="text-white/80 text-sm">50-1-43, Ground Floor, ASR Nagar</p>
+            <p className="text-white/80 text-sm">50-1-43, ASR Nagar</p>
             <p className="text-white/80 text-sm">Seethammadhara, Visakhapatnam</p>
             <p className="text-white/80 text-sm">Andhra Pradesh — 530013</p>
           </div>
@@ -93,8 +93,8 @@ export default function Footer() {
           <div className="space-y-5">
             {[
               { service: 'Sunday School', time: 'Sun 10:30 AM – 12:30 PM' },
-              { service: 'Telugu Worship', time: 'Sun 10:30 AM – 12:30 PM\nSun 6:00 PM – 8:00 PM' },
-              { service: 'English Worship', time: 'Sun 8:30 AM – 10:00 AM' },
+              { service: 'Telugu Worship', time: 'Sun 10:30 AM – 12:30 PM' },
+              { service: 'English Worship', time: 'Sun 4:00 PM – 6:00 PM' },
               { service: 'Congregational Prayer', time: 'Wed 7:00 PM – 8:30 PM' },
               { service: 'Whole Night Prayer', time: '2nd Fri 8:00 PM – 12:00 AM' },
               { service: 'Youth Fellowship', time: 'Sat 7:00 PM – 8:30 PM' },

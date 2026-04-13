@@ -28,7 +28,7 @@ const values = [
   {
     number: 3,
     value: 'Biblical Family Roles',
-    image: null,
+    image: '/biblicalfamilyroles.jpeg',
     description:
       'We value husbands, wives, and children fulfilling their biblical roles in the family and in the church.',
     references: 'Deut. 6:4–9; Psa. 78:1–9; Eph. 6:4; 2 Tim 3:14–15',
@@ -36,7 +36,7 @@ const values = [
   {
     number: 4,
     value: 'Personal and Corporate Worship',
-    image: null,
+    image: '/personalandcorporateworship.jpeg',
     description:
       'We value personal and corporate worship of God, which engages both the mind and the heart.',
     references: 'John 4:23–24; Jam 4:8; Psa. 16:11; 2 Tim 4:1–4',

@@ -36,8 +36,16 @@ export default function ImNewPage() {
       <main>
 
         {/* ── Hero ── */}
-        <section className="bg-[#1A1A1A] pt-40 pb-28 px-6 md:px-8">
-          <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-end">
+        <section
+          className="relative pt-40 pb-28 px-6 md:px-8"
+          style={{
+            backgroundImage: "url('/vizag.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center 40%',
+          }}
+        >
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.82) 55%, rgba(0,0,0,0.45))' }} />
+          <div className="relative z-10 max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-end">
             <div className="md:pl-[20%]">
               <p
                 className="mb-6"
@@ -260,7 +268,7 @@ export default function ImNewPage() {
               </h2>
               <div className="pl-5 space-y-3">
                 <p style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1rem', color: 'rgba(255,255,255,0.75)', lineHeight: 1.7 }}>
-                  50-1-43, Ground Floor, ASR Nagar<br />
+                  50-1-43, ASR Nagar<br />
                   Seethammadhara, Visakhapatnam<br />
                   Andhra Pradesh — 530013
                 </p>

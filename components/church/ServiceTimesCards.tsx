@@ -7,10 +7,9 @@ const dayGroups = [
     day: 'Sunday',
     shortDay: 'SUN',
     services: [
-      { label: 'English Worship',  time: '8:30 – 10:00 AM'    },
       { label: 'Sunday School',    time: '10:30 AM – 12:30 PM' },
       { label: 'Telugu Worship',   time: '10:30 AM – 12:30 PM' },
-      { label: 'Telugu Evening',   time: '6:00 – 8:00 PM'     },
+      { label: 'English Worship',  time: '4:00 PM – 6:00 PM'   },
     ],
   },
   {

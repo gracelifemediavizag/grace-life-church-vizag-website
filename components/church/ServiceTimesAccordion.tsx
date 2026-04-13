@@ -3,9 +3,9 @@
 import { useState } from 'react';
 
 const serviceTimes = [
-  { label: 'English Worship',       day: 'Sunday',     time: '8:30 AM – 10:00 AM' },
+  { label: 'English Worship',       day: 'Sunday',     time: '4:00 PM – 6:00 PM' },
   { label: 'Sunday School',         day: 'Sunday',     time: '10:30 AM – 12:30 PM' },
-  { label: 'Telugu Worship',        day: 'Sunday',     time: '10:30 AM – 12:30 PM\n6:00 PM – 8:00 PM' },
+  { label: 'Telugu Worship',        day: 'Sunday',     time: '10:30 AM – 12:30 PM' },
   { label: 'Congregational Prayer', day: 'Wednesday',  time: '7:00 PM – 8:30 PM' },
   { label: 'Whole Night Prayer',    day: '2nd Friday', time: '8:00 PM – 12:00 AM' },
   { label: 'Youth Fellowship',      day: 'Saturday',   time: '7:00 PM – 8:30 PM' },
