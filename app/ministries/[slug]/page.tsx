@@ -8,6 +8,18 @@ import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import config from '@/keystatic.config';
 
+const ministryImages: Record<string, { src: string; position?: string; flipX?: boolean }> = {
+  youth:                  { src: '/images/heroes/youthministry.jpg',      position: 'center center' },
+  women:                  { src: '/images/heroes/womensministry.JPG',     position: 'center 50%' },
+  children:               { src: '/images/heroes/childrenministry.jpg',   position: 'center 20%' },
+  kids:                   { src: '/images/heroes/childrenministry.jpg',   position: 'center 20%' },
+  media:                  { src: '/images/heroes/mediaministry.JPG',      position: 'center center' },
+  print:                  { src: '/images/heroes/printministry.jpg',      position: 'center 20%', flipX: true },
+  'congregational-care':  { src: '/images/heroes/serving.JPG',           position: 'center center' },
+  membership:             { src: '/images/heroes/membership.jpg',         position: 'center center' },
+  counseling:             { src: '/images/heroes/counselingministry.jpg', position: 'center center' },
+};
+
 const ministryMeta: Record<string, { title: string; category: string; description: string }> = {
   'telugu-service':       { title: 'Telugu Service',       category: 'Worship',             description: 'Our Telugu-medium corporate worship service.' },
   'english-service':      { title: 'English Service',      category: 'Worship',             description: 'Our English-medium corporate worship service.' },
@@ -173,14 +185,31 @@ export default async function MinistryPage({ params }: Props) {
 
   if (!entry && !meta) notFound();
 
+  const heroImg = ministryImages[slug];
+
   if (!entry) {
     return (
       <>
         <NavBar />
         <main>
           {/* Hero */}
-          <section className="bg-[#1A1A1A] pt-40 pb-28 px-6 md:px-8">
-            <div className="max-w-screen-2xl mx-auto">
+          <section className="relative bg-[#1A1A1A] pt-40 pb-28 px-6 md:px-8">
+            {heroImg && (
+              <>
+                <div className="absolute inset-0 overflow-hidden">
+                  <Image
+                    src={heroImg.src}
+                    alt={meta?.title ?? ''}
+                    fill
+                    sizes="100vw"
+                    priority
+                    style={{ objectFit: 'cover', objectPosition: heroImg.position ?? 'center center', ...(heroImg.flipX ? { transform: 'scaleX(-1)' } : {}) }}
+                  />
+                </div>
+                <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 100%)' }} />
+              </>
+            )}
+            <div className="relative z-10 max-w-screen-2xl mx-auto">
               <div className="md:pl-[15%]">
                 <p
                   className="mb-5"
@@ -267,9 +296,24 @@ export default async function MinistryPage({ params }: Props) {
     <>
       <NavBar />
       <main>
-        <section className="bg-[#1A1A1A] pt-40 pb-24 px-6 md:px-8">
+        <section className="relative bg-[#1A1A1A] pt-40 pb-24 px-6 md:px-8">
+          {heroImg && (
+            <>
+              <div className="absolute inset-0 overflow-hidden">
+                <Image
+                  src={heroImg.src}
+                  alt={entry.name}
+                  fill
+                  sizes="100vw"
+                  priority
+                  style={{ objectFit: 'cover', objectPosition: heroImg.position ?? 'center center', ...(heroImg.flipX ? { transform: 'scaleX(-1)' } : {}) }}
+                />
+              </div>
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 100%)' }} />
+            </>
+          )}
           <div
-            className={`max-w-screen-2xl mx-auto grid gap-12 ${hasSidebar ? 'lg:grid-cols-[minmax(0,1fr)_21rem]' : ''}`}
+            className={`relative z-10 max-w-screen-2xl mx-auto grid gap-12 ${hasSidebar ? 'lg:grid-cols-[minmax(0,1fr)_21rem]' : ''}`}
           >
             <div className="md:pl-[12%]">
               <p

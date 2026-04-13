@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 
@@ -38,8 +39,23 @@ export default function TheGospelPage() {
       <main>
 
         {/* ── Hero ── */}
-        <section style={{ background: '#1A1A1A', paddingTop: '10rem', paddingBottom: '7rem' }} className="px-6 md:px-8">
-          <div className="max-w-screen-2xl mx-auto">
+        <section className="relative px-6 md:px-8" style={{ background: '#1A1A1A', paddingTop: '10rem', paddingBottom: '7rem' }}>
+          {/* Background image with strong gradient so text stays legible */}
+          <div className="absolute inset-0 overflow-hidden">
+            <Image
+              src="/images/heroes/thegospel.JPG"
+              alt="Congregation gathered in prayer"
+              fill
+              sizes="100vw"
+              priority
+              style={{ objectFit: 'cover', objectPosition: 'center 55%' }}
+            />
+          </div>
+          <div
+            className="absolute inset-0"
+            style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.72) 50%, rgba(0,0,0,0.5) 100%)' }}
+          />
+          <div className="relative z-10 max-w-screen-2xl mx-auto">
             <div className="md:pl-[15%] max-w-3xl">
               <p
                 className="mb-6"

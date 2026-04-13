@@ -29,20 +29,51 @@ export default async function GivePage() {
       <NavBar />
       <main className="pb-32">
         {/* Hero */}
-        <section style={{ background: '#1A1A1A', paddingTop: '10rem', paddingBottom: '6rem' }} className="px-6 md:px-8 mb-16">
-          <div className="max-w-screen-2xl mx-auto">
-            <div className="md:pl-[15%]">
+        <section className="relative md:flex md:flex-row mb-16" style={{ minHeight: '60vh' }}>
+          {/* Mobile: image as full background */}
+          <div className="absolute inset-0 md:hidden">
+            <Image
+              src="/images/heroes/giving.jpg"
+              alt="Two hands reaching toward each other"
+              fill
+              sizes="100vw"
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.68)' }} />
+          </div>
+
+          {/* Left — dark text panel */}
+          <div
+            className="relative z-10 flex items-end w-full md:w-1/2 px-8 md:px-16 md:bg-[#1A1A1A]"
+            style={{ paddingTop: '10rem', paddingBottom: '6rem' }}
+          >
+            <div className="max-w-md md:pl-[20%]">
               <p className="mb-5" style={{ fontFamily: 'var(--font-lato)', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#EFBF04' }}>
                 Stewardship
               </p>
               <h1 style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', color: '#ffffff', lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: '1.5rem' }}>
                 Give
               </h1>
-              <p style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1.0625rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, maxWidth: '34rem' }}>
+              <p style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1.0625rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, maxWidth: '30rem' }}>
                 The ministry of Grace Life Church is made possible through the generous
                 stewardship of our congregation and friends.
               </p>
             </div>
+          </div>
+
+          {/* Right — image panel (desktop only) */}
+          <div className="hidden md:block md:w-1/2 relative overflow-hidden">
+            <Image
+              src="/images/heroes/giving.jpg"
+              alt="Two hands reaching toward each other"
+              fill
+              sizes="50vw"
+              className="object-cover"
+              style={{ objectPosition: 'center center' }}
+              priority
+            />
+            <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.18)' }} />
           </div>
         </section>
 

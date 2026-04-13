@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
-import PageHero from '@/components/church/PageHero';
 import ScriptureBlock from '@/components/church/ScriptureBlock';
 
 export const metadata: Metadata = {
@@ -61,11 +61,46 @@ export default function MissionPage() {
     <>
       <NavBar />
       <main>
-        <PageHero
-          label="About — Mission"
-          title="Our Mission"
-          subtitle="Three callings, one purpose — the glory of God."
-        />
+        {/* Hero */}
+        <section className="relative px-6 md:px-8" style={{ background: '#1A1A1A', paddingTop: '10rem', paddingBottom: '7rem', minHeight: '70vh' }}>
+          {/* Full-width background image */}
+          <div className="absolute inset-0 overflow-hidden">
+            <Image
+              src="/images/heroes/mission.jpg"
+              alt="Aerial view of mountains and sky"
+              fill
+              sizes="100vw"
+              className="object-cover"
+              style={{ objectPosition: 'center 35%' }}
+              priority
+            />
+          </div>
+          {/* Dark gradient overlay — heavier on the left so text stays legible */}
+          <div
+            className="absolute inset-0"
+            style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.35) 100%)' }}
+          />
+          <div className="relative z-10 max-w-screen-2xl mx-auto">
+            <div className="md:pl-[15%] max-w-2xl">
+              <p
+                className="mb-5"
+                style={{ fontFamily: 'var(--font-lato)', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#EFBF04' }}
+              >
+                About — Mission
+              </p>
+              <h1
+                style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', color: '#ffffff', lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: '1.5rem' }}
+              >
+                Our Mission
+              </h1>
+              <p
+                style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1.0625rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, maxWidth: '30rem' }}
+              >
+                Three callings, one purpose — the glory of God.
+              </p>
+            </div>
+          </div>
+        </section>
 
         <section className="pt-20 pb-14 px-6 md:px-8 bg-glc-surface">
           <div className="max-w-screen-2xl mx-auto max-w-4xl">

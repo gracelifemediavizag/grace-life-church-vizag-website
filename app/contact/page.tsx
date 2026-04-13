@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import ContactForm from './ContactForm';
@@ -41,22 +42,36 @@ export default async function ContactPage() {
       <main>
 
         {/* ── Hero ── */}
-        <header
-          style={{ background: '#1A1A1A', paddingTop: '10rem', paddingBottom: '6rem' }}
-          className="px-6 md:px-8"
-        >
-          <div className="max-w-screen-2xl mx-auto md:pl-[15%]">
-            <p className="mb-5" style={{ fontFamily: 'var(--font-lato)', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#EFBF04' }}>
-              Get in Touch
-            </p>
-            <h1 style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', color: '#ffffff', lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: '1.25rem' }}>
-              Contact Us
-            </h1>
-            <p style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1.0625rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, maxWidth: '32rem' }}>
-              We would love to hear from you. Reach out with any questions or come visit us on Sunday.
-            </p>
+        <section className="relative px-6 md:px-8" style={{ background: '#1A1A1A', paddingTop: '10rem', paddingBottom: '7rem', minHeight: '65vh' }}>
+          <div className="absolute inset-0 overflow-hidden">
+            <Image
+              src="/images/heroes/contactus.jpg"
+              alt="Vizag coastline at golden hour"
+              fill
+              sizes="100vw"
+              className="object-cover"
+              style={{ objectPosition: 'center 55%' }}
+              priority
+            />
           </div>
-        </header>
+          <div
+            className="absolute inset-0"
+            style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.55) 60%, rgba(0,0,0,0.35) 100%)' }}
+          />
+          <div className="relative z-10 max-w-screen-2xl mx-auto">
+            <div className="md:pl-[15%] max-w-2xl">
+              <p className="mb-5" style={{ fontFamily: 'var(--font-lato)', fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.2em', textTransform: 'uppercase', color: '#EFBF04' }}>
+                Get in Touch
+              </p>
+              <h1 style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', color: '#ffffff', lineHeight: 1.05, letterSpacing: '-0.02em', marginBottom: '1.25rem' }}>
+                Contact Us
+              </h1>
+              <p style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1.0625rem', color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, maxWidth: '30rem' }}>
+                We would love to hear from you. Reach out with any questions or come visit us on Sunday.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* ── Info + Form (two equal columns) ── */}
         <section className="px-6 md:px-8 py-20" style={{ background: '#F8F8F8' }}>

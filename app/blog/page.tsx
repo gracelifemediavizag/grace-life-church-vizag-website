@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import BlogCard from '@/components/church/BlogCard';
@@ -34,9 +35,28 @@ export default async function BlogIndexPage() {
       <main>
 
         {/* ── Hero ── */}
-        <section className="bg-[#1A1A1A] pt-40 pb-28 px-6 md:px-8">
-          <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-end">
-            <div className="md:pl-[20%]">
+        <section className="relative md:flex md:flex-row" style={{ minHeight: '70vh' }}>
+          {/* Image — full bg on mobile, left panel on desktop */}
+          <div className="absolute inset-0 md:relative md:inset-auto md:w-1/2">
+            <Image
+              src="/images/heroes/blog.jpg"
+              alt="Open Bible and journal on a desk"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+              style={{ objectPosition: 'center 40%' }}
+              priority
+            />
+            {/* Mobile-only overlay */}
+            <div className="absolute inset-0 md:hidden" style={{ backgroundColor: 'rgba(0,0,0,0.62)' }} />
+          </div>
+
+          {/* Right — dark text panel */}
+          <div
+            className="relative z-10 flex items-end w-full md:w-1/2 px-8 md:px-16 md:bg-[#1A1A1A]"
+            style={{ paddingTop: '10rem', paddingBottom: '5rem' }}
+          >
+            <div className="max-w-lg md:pr-[10%]">
               <p
                 className="mb-6"
                 style={{
@@ -54,7 +74,7 @@ export default async function BlogIndexPage() {
                 style={{
                   fontFamily: 'var(--font-poppins)',
                   fontWeight: 300,
-                  fontSize: 'clamp(2.5rem, 5vw, 4.5rem)',
+                  fontSize: 'clamp(2.5rem, 4vw, 4.5rem)',
                   color: '#ffffff',
                   lineHeight: 1.05,
                   letterSpacing: '-0.02em',
@@ -70,25 +90,19 @@ export default async function BlogIndexPage() {
                   fontSize: '1.0625rem',
                   color: 'rgba(255,255,255,0.5)',
                   lineHeight: 1.8,
-                  maxWidth: '30rem',
+                  maxWidth: '28rem',
+                  marginBottom: '2.5rem',
                 }}
               >
                 Theological articles and pastoral reflections from the teaching team at Grace Life Church.
               </p>
-            </div>
-
-            {/* Pull stat */}
-            <div className="md:pr-[10%]">
-              <div
-                className="border-l-4 pl-6"
-                style={{ borderColor: '#3399CC' }}
-              >
+              <div className="border-l-4 pl-6" style={{ borderColor: '#3399CC' }}>
                 <p
                   style={{
                     fontFamily: 'var(--font-poppins)',
                     fontWeight: 300,
-                    fontSize: '1.0625rem',
-                    color: 'rgba(255,255,255,0.6)',
+                    fontSize: '0.9375rem',
+                    color: 'rgba(255,255,255,0.65)',
                     lineHeight: 1.85,
                     fontStyle: 'italic',
                   }}
@@ -97,7 +111,7 @@ export default async function BlogIndexPage() {
                   rebuke, and exhort, with complete patience and teaching.&rdquo;
                 </p>
                 <p
-                  className="mt-4"
+                  className="mt-3"
                   style={{
                     fontFamily: 'var(--font-lato)',
                     fontSize: '0.65rem',
