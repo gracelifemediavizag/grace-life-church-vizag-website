@@ -6,6 +6,7 @@ import Link from 'next/link';
 import type { Leader } from '@/lib/leaders';
 
 const tabs = [
+  { key: 'all',             label: 'All'                  },
   { key: 'pastor',          label: 'Pastor'               },
   { key: 'elder',           label: 'Elders'               },
   { key: 'deacon',          label: 'Deacons'              },
@@ -120,7 +121,9 @@ function MemberCard({ leader }: { leader: Leader }) {
 export default function LeadershipTabs({ leaders }: { leaders: Leader[] }) {
   const [activeTab, setActiveTab] = useState<string>('pastor');
 
-  const activeMembers = leaders.filter(l => l.category === activeTab);
+  const activeMembers = activeTab === 'all'
+    ? leaders
+    : leaders.filter(l => l.category === activeTab);
 
   return (
     <section className="bg-[#0d0d0d] px-6 md:px-8 pb-24">
@@ -133,7 +136,9 @@ export default function LeadershipTabs({ leaders }: { leaders: Leader[] }) {
         >
           {tabs.map((tab) => {
             const isActive = activeTab === tab.key;
-            const count = leaders.filter(l => l.category === tab.key).length;
+            const count = tab.key === 'all'
+              ? leaders.length
+              : leaders.filter(l => l.category === tab.key).length;
             return (
               <button
                 key={tab.key}
