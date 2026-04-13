@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import BlogCard from '@/components/church/BlogCard';
+import FadeInUp from '@/components/ui/FadeInUp';
+import { StaggerGrid, StaggerItem } from '@/components/ui/StaggerGrid';
 import { createReader } from '@keystatic/core/reader';
 import config from '@/keystatic.config';
 
@@ -116,6 +118,7 @@ export default async function BlogIndexPage() {
         {/* ── Featured post ── */}
         <section className="px-6 md:px-8 py-16 bg-[#F8F8F8]">
           <div className="max-w-screen-2xl mx-auto">
+            <FadeInUp>
             <BlogCard
               title={featured.title}
               author={featured.author}
@@ -125,6 +128,7 @@ export default async function BlogIndexPage() {
               readTime={featured.readTime}
               featured
             />
+            </FadeInUp>
           </div>
         </section>
 
@@ -148,20 +152,21 @@ export default async function BlogIndexPage() {
               >
                 All Articles
               </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <StaggerGrid className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {rest.map((post, i) => (
-                  <BlogCard
-                    key={post.slug}
-                    title={post.title}
-                    author={post.author}
-                    date={post.date}
-                    excerpt={post.excerpt}
-                    readTime={post.readTime}
-                    slug={post.slug}
-                    index={i}
-                  />
+                  <StaggerItem key={post.slug}>
+                    <BlogCard
+                      title={post.title}
+                      author={post.author}
+                      date={post.date}
+                      excerpt={post.excerpt}
+                      readTime={post.readTime}
+                      slug={post.slug}
+                      index={i}
+                    />
+                  </StaggerItem>
                 ))}
-              </div>
+              </StaggerGrid>
             </div>
 
             {/* Sidebar */}

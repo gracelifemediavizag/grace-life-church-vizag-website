@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
+import FadeInUp from '@/components/ui/FadeInUp';
 import { createReader } from '@keystatic/core/reader';
 import config from '@/keystatic.config';
 
@@ -49,7 +50,8 @@ export default async function CoreValuesPage() {
                 background: isEven ? '#ffffff' : '#F8F8F8',
               }}
             >
-              <div className="max-w-[1400px] mx-auto flex flex-col md:items-center gap-10 md:gap-16">
+              <FadeInUp>
+          <div className="max-w-[1400px] mx-auto flex flex-col md:items-center gap-10 md:gap-16">
                 <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16 w-full">
 
                   {/* Image / placeholder block */}
@@ -104,6 +106,7 @@ export default async function CoreValuesPage() {
                   </div>
                 </div>
               </div>
+          </FadeInUp>
             </section>
           );
         })}

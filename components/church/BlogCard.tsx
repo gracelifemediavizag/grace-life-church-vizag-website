@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 interface BlogCardProps {
   title:     string;
@@ -144,8 +147,10 @@ export default function BlogCard({ title, author, date, excerpt, slug, readTime,
   const num = String(index + 1).padStart(2, '0');
 
   return (
-    <article
+    <motion.article
       className="group"
+      whileHover={{ y: -4 }}
+      transition={{ duration: 0.25, ease: 'easeOut' }}
       style={{
         background: '#ffffff',
         borderTop: `3px solid ${barColor}`,
@@ -154,7 +159,10 @@ export default function BlogCard({ title, author, date, excerpt, slug, readTime,
         borderTopWidth: '3px',
         padding: '1.75rem',
         position: 'relative',
-        transition: 'border-color 0.2s',
+        // Fill the grid cell height so all cards in a row are uniform
+        display: 'flex',
+        flexDirection: 'column',
+        height: '100%',
       }}
     >
       {/* Watermark number */}
@@ -177,7 +185,8 @@ export default function BlogCard({ title, author, date, excerpt, slug, readTime,
         {num}
       </span>
 
-      <div style={{ position: 'relative' }}>
+      {/* Content grows to fill available space */}
+      <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', flex: 1 }}>
         <p
           style={{
             fontFamily: 'var(--font-lato)',
@@ -202,6 +211,11 @@ export default function BlogCard({ title, author, date, excerpt, slug, readTime,
             lineHeight: 1.4,
             marginBottom: '0.75rem',
             paddingRight: '3rem',
+            // Clamp to 2 lines so titles of different lengths don't push cards out of alignment
+            display: '-webkit-box',
+            WebkitLineClamp: 2,
+            WebkitBoxOrient: 'vertical' as const,
+            overflow: 'hidden',
           }}
         >
           {title}
@@ -225,7 +239,8 @@ export default function BlogCard({ title, author, date, excerpt, slug, readTime,
           {excerpt}
         </p>
 
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+        {/* Footer pinned to the bottom of the card */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginTop: 'auto' }}>
           <span
             style={{
               fontFamily: 'var(--font-lato)',
@@ -256,6 +271,6 @@ export default function BlogCard({ title, author, date, excerpt, slug, readTime,
           </Link>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }

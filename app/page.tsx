@@ -4,6 +4,9 @@ import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
 import BlogCard from '@/components/church/BlogCard';
 import ServiceTimesAccordion from '@/components/church/ServiceTimesAccordion';
+import HomeHeroContent from '@/components/church/HomeHeroContent';
+import FadeInUp from '@/components/ui/FadeInUp';
+import { StaggerGrid, StaggerItem } from '@/components/ui/StaggerGrid';
 import { createReader } from '@keystatic/core/reader';
 import config from '@/keystatic.config';
 
@@ -46,47 +49,14 @@ export default async function HomePage() {
         >
           {/* Dark overlay */}
           <div className="absolute inset-0" style={{ backgroundColor: 'rgba(0,0,0,0.45)' }} />
-
-          {/* Content */}
-          <div className="relative z-10 max-w-screen-2xl mx-auto px-6 md:px-8 text-center pt-20">
-            <p
-              className="text-white/60 text-[0.7rem] uppercase tracking-widest mb-6"
-              style={{ fontFamily: 'var(--font-lato)', fontWeight: 700 }}
-            >
-              Visakhapatnam, Andhra Pradesh
-            </p>
-            <h1
-              className="text-white mb-6 leading-[1.05]"
-              style={{
-                fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
-                fontWeight: 400,
-                fontFamily: 'var(--font-poppins)',
-              }}
-            >
-              Welcome to<br />Grace Life Church
-            </h1>
-            <p
-              className="text-white/80 max-w-2xl mx-auto mb-12 leading-relaxed"
-              style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1.25rem' }}
-            >
-              Preaching the Whole Counsel of God
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/im-new" className="btn-hero-outline">
-                Plan Your Visit
-              </Link>
-              <Link href="/sermons" className="btn-hero-ghost">
-                Watch Sermons
-              </Link>
-            </div>
-          </div>
+          <HomeHeroContent />
         </section>
 
         {/* Service Times */}
         <section className="py-24 px-6 md:px-8 bg-white">
           <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-start">
             {/* Left — heading */}
-            <div className="md:pl-8">
+            <FadeInUp className="md:pl-8">
               <p className="text-[#3399CC] text-[0.7rem] uppercase tracking-widest font-bold mb-3"
                  style={{ fontFamily: 'var(--font-lato)' }}>
                 Join Us
@@ -107,16 +77,18 @@ export default async function HomePage() {
               >
                 Get Directions
               </a>
-            </div>
+            </FadeInUp>
             {/* Right — accordion */}
-            <ServiceTimesAccordion />
+            <FadeInUp delay={0.1}>
+              <ServiceTimesAccordion />
+            </FadeInUp>
           </div>
         </section>
 
-        {/* Mission — The 3 M's */}
+        {/* Mission — The 3 E's */}
         <section className="py-24 px-6 md:px-8 bg-[#1A1A1A]">
           <div className="max-w-screen-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
-            <div className="md:pl-8">
+            <FadeInUp className="md:pl-8">
               <p className="text-[#EFBF04] text-[0.7rem] uppercase tracking-widest font-bold mb-6"
                  style={{ fontFamily: 'var(--font-lato)' }}>
                 Our Mission
@@ -136,8 +108,8 @@ export default async function HomePage() {
               >
                 Our Full Mission
               </Link>
-            </div>
-            <div className="flex flex-col gap-8">
+            </FadeInUp>
+            <StaggerGrid className="flex flex-col gap-8">
               {[
                 {
                   heading: 'Exalting God',
@@ -152,7 +124,7 @@ export default async function HomePage() {
                   body: 'To passionately share the gospel of Jesus Christ in order to establish worshipers in His church locally and globally.',
                 },
               ].map((m) => (
-                <div key={m.heading} className="flex gap-6 items-start">
+                <StaggerItem key={m.heading} className="flex gap-6 items-start">
                   <div className="shrink-0 w-12 h-12 bg-[#EFBF04] flex items-center justify-center">
                     <span className="text-black font-bold text-lg font-[family-name:var(--font-playfair)]">E</span>
                   </div>
@@ -160,16 +132,16 @@ export default async function HomePage() {
                     <h3 className="text-lg text-white mb-1">{m.heading}</h3>
                     <p className="text-white/50 text-sm leading-relaxed">{m.body}</p>
                   </div>
-                </div>
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGrid>
           </div>
         </section>
 
         {/* Latest Blog Posts */}
         <section className="pt-14 pb-20 px-6 md:px-8 bg-[#F8F8F8]">
           <div className="max-w-screen-2xl mx-auto">
-            <div className="flex justify-between items-end mb-16">
+            <FadeInUp className="flex justify-between items-end mb-16">
               <div>
                 <p className="text-[#3399CC] text-[0.7rem] uppercase tracking-widest font-bold mb-3"
                    style={{ fontFamily: 'var(--font-lato)' }}>
@@ -185,12 +157,14 @@ export default async function HomePage() {
               >
                 View All Posts
               </Link>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            </FadeInUp>
+            <StaggerGrid className="grid grid-cols-1 md:grid-cols-3 gap-12">
               {blogPosts.map((post, i) => (
-                <BlogCard key={post.slug} {...post} readTime={post.readTime} index={i} />
+                <StaggerItem key={post.slug}>
+                  <BlogCard {...post} readTime={post.readTime} index={i} />
+                </StaggerItem>
               ))}
-            </div>
+            </StaggerGrid>
             <div className="md:hidden mt-10">
               <Link
                 href="/blog"
@@ -203,25 +177,27 @@ export default async function HomePage() {
         </section>
 
         {/* Plan Your Visit CTA */}
-        <section className="py-24 px-6 md:px-8 bg-glc-navy">
-          <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
-            <div className="max-w-2xl">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-                First time visiting?
-              </h2>
-              <p className="text-white/70 text-lg leading-relaxed">
-                We would love to have you join us on Sunday. Here is everything you need to
-                know before your first visit.
-              </p>
+        <FadeInUp>
+          <section className="py-24 px-6 md:px-8 bg-glc-navy">
+            <div className="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
+              <div className="max-w-2xl">
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
+                  First time visiting?
+                </h2>
+                <p className="text-white/70 text-lg leading-relaxed">
+                  We would love to have you join us on Sunday. Here is everything you need to
+                  know before your first visit.
+                </p>
+              </div>
+              <Link
+                href="/im-new"
+                className="shrink-0 px-12 py-5 bg-white text-glc-navy rounded-sm font-bold text-[0.7rem] uppercase tracking-widest hover:bg-[#EFBF04] hover:text-black transition-colors"
+              >
+                Plan Your Visit
+              </Link>
             </div>
-            <Link
-              href="/im-new"
-              className="shrink-0 px-12 py-5 bg-white text-glc-navy rounded-sm font-bold text-[0.7rem] uppercase tracking-widest hover:bg-[#EFBF04] hover:text-black transition-colors"
-            >
-              Plan Your Visit
-            </Link>
-          </div>
-        </section>
+          </section>
+        </FadeInUp>
       </main>
       <Footer />
     </>

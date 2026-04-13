@@ -27,15 +27,6 @@ function formatMonthYear(dateStr: string): string {
   });
 }
 
-function formatShortDate(dateStr: string): string {
-  const [y, m, d] = dateStr.split('-').map(Number);
-  return new Date(y, m - 1, d).toLocaleDateString('en-IN', {
-    weekday: 'short',
-    month: 'short',
-    day: 'numeric',
-  });
-}
-
 function formatDayHeader(dateStr: string): string {
   const [y, m, d] = dateStr.split('-').map(Number);
   return new Date(y, m - 1, d).toLocaleDateString('en-IN', {
@@ -76,7 +67,6 @@ function HorizontalEventCard({ ev, index }: { ev: ChurchEvent; index: number }) 
   const monthShort = dateObj.toLocaleDateString('en-IN', { month: 'short' }).toUpperCase();
   const weekday = dateObj.toLocaleDateString('en-IN', { weekday: 'long' });
 
-  // Alternate header backgrounds for visual variety
   const headerBgs = ['#1A1A1A', '#3399CC', '#1a2e3b', '#2a2a2a'];
   const headerBg = headerBgs[index % headerBgs.length];
 
@@ -161,7 +151,6 @@ function HorizontalEventCard({ ev, index }: { ev: ChurchEvent; index: number }) 
 
       {/* Card body */}
       <div className="flex flex-col flex-1 p-5">
-        {/* Time */}
         <p
           className="mb-2"
           style={{
@@ -176,7 +165,6 @@ function HorizontalEventCard({ ev, index }: { ev: ChurchEvent; index: number }) 
           {ev.time}
         </p>
 
-        {/* Title */}
         <h3
           className="mb-2 leading-snug"
           style={{
@@ -189,7 +177,6 @@ function HorizontalEventCard({ ev, index }: { ev: ChurchEvent; index: number }) 
           {ev.title}
         </h3>
 
-        {/* Description */}
         <p
           className="text-[0.8125rem] leading-relaxed mb-4"
           style={{
@@ -202,33 +189,17 @@ function HorizontalEventCard({ ev, index }: { ev: ChurchEvent; index: number }) 
           {ev.description}
         </p>
 
-        {/* Location + arrow */}
-        <div className="flex items-center justify-between mt-auto">
-          <p
-            style={{
-              fontFamily: 'var(--font-roboto)',
-              fontSize: '0.7rem',
-              color: '#1A1A1A',
-              opacity: 0.4,
-            }}
-          >
-            {ev.location}
-          </p>
-          <span
-            style={{
-              fontFamily: 'var(--font-lato)',
-              fontSize: '0.65rem',
-              fontWeight: 700,
-              letterSpacing: '0.08em',
-              color: hovered ? '#3399CC' : '#1A1A1A',
-              opacity: hovered ? 1 : 0.3,
-              transition: 'color 0.2s, opacity 0.2s',
-              textTransform: 'uppercase',
-            }}
-          >
-            More →
-          </span>
-        </div>
+        <p
+          className="mt-auto"
+          style={{
+            fontFamily: 'var(--font-roboto)',
+            fontSize: '0.7rem',
+            color: '#1A1A1A',
+            opacity: 0.4,
+          }}
+        >
+          {ev.location}
+        </p>
       </div>
     </div>
   );
@@ -325,7 +296,7 @@ export default function EventsList({ events }: { events: ChurchEvent[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [scrollPos, setScrollPos] = useState(0);
 
-  const SCROLL_AMOUNT = 320; // card width (300) + gap (16) + buffer
+  const SCROLL_AMOUNT = 320;
 
   function handleScroll() {
     if (scrollRef.current) setScrollPos(scrollRef.current.scrollLeft);
@@ -352,20 +323,17 @@ export default function EventsList({ events }: { events: ChurchEvent[] }) {
 
   const currentMonthKey = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
 
-  // This month's events (regardless of past/future within the month)
   const thisMonthEvents = events
     .filter((e) => e.date.slice(0, 7) === currentMonthKey)
     .sort((a, b) => a.date.localeCompare(b.date));
 
-  // Past events: before today, NOT in current month
   const pastEvents = events
     .filter((e) => {
       const d = parseDate(e.date);
       return d < today && e.date.slice(0, 7) !== currentMonthKey;
     })
-    .sort((a, b) => b.date.localeCompare(a.date)); // most recent first
+    .sort((a, b) => b.date.localeCompare(a.date));
 
-  // Future months events: after current month, within 1 year
   const futureEvents = events
     .filter((e) => {
       const d = parseDate(e.date);
@@ -469,13 +437,11 @@ export default function EventsList({ events }: { events: ChurchEvent[] }) {
                 </p>
               ) : (
                 Object.entries(futureDatesByMonth).map(([month]) => {
-                  // Get all dates for this month
                   const datesInMonth = Object.keys(futureByDate).filter(
                     (d) => d.slice(0, 7) === month
                   );
                   return (
                     <div key={month} className="mb-12">
-                      {/* Month header */}
                       <div className="mb-6 pb-2" style={{ borderBottom: '2px solid #EFBF04' }}>
                         <h2
                           className="text-[0.75rem] uppercase"
@@ -489,7 +455,6 @@ export default function EventsList({ events }: { events: ChurchEvent[] }) {
                           {formatMonthYear(month + '-01')}
                         </h2>
                       </div>
-
                       {datesInMonth.map((date) => (
                         <div key={date} className="mb-8">
                           <p
@@ -525,11 +490,9 @@ export default function EventsList({ events }: { events: ChurchEvent[] }) {
               ) : (
                 Object.entries(pastByMonth).map(([month, monthEvents]) => {
                   const byDate = groupByDate(monthEvents);
-                  // Reverse date order (most recent first)
                   const dates = Object.keys(byDate).sort((a, b) => b.localeCompare(a));
                   return (
                     <div key={month} className="mb-12">
-                      {/* Month header */}
                       <div className="mb-6 pb-2" style={{ borderBottom: '2px solid #E0E0E0' }}>
                         <h2
                           className="text-[0.75rem] uppercase"
@@ -544,7 +507,6 @@ export default function EventsList({ events }: { events: ChurchEvent[] }) {
                           {formatMonthYear(month + '-01')}
                         </h2>
                       </div>
-
                       {dates.map((date) => (
                         <div key={date} className="mb-8">
                           <p

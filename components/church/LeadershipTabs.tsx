@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { AnimatePresence, motion } from 'framer-motion';
 import type { Leader } from '@/lib/leaders';
 
 const tabs = [
@@ -175,16 +176,23 @@ export default function LeadershipTabs({ leaders }: { leaders: Leader[] }) {
         </div>
 
         {/* Members grid */}
-        <div
-          className="grid gap-x-6 gap-y-10"
-          style={{
-            gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-          }}
-        >
-          {activeMembers.map(leader => (
-            <MemberCard key={leader.slug} leader={leader} />
-          ))}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="grid gap-x-6 gap-y-10"
+            style={{
+              gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+            }}
+          >
+            {activeMembers.map(leader => (
+              <MemberCard key={leader.slug} leader={leader} />
+            ))}
+          </motion.div>
+        </AnimatePresence>
 
       </div>
     </section>
