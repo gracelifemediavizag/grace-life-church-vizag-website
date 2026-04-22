@@ -502,6 +502,7 @@ export default async function MinistryPage({ params }: Props) {
                             lineHeight: 1.9,
                             opacity: 0.78,
                             marginBottom: '1.25rem',
+                            textAlign: 'justify',
                           }}
                         >
                           {children}

@@ -172,6 +172,7 @@ export default async function ImNewPage() {
                     color: '#1A1A1A',
                     lineHeight: 1.9,
                     opacity: i === 0 ? 0.85 : 0.65,
+                    textAlign: 'justify',
                   }}
                 >
                   {para}
@@ -210,7 +211,7 @@ export default async function ImNewPage() {
                     {p.heading}
                   </h3>
                   <p
-                    style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '0.875rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.8 }}
+                    style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '0.875rem', color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, textAlign: 'justify' }}
                   >
                     {p.body}
                   </p>

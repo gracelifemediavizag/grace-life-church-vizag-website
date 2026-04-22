@@ -378,7 +378,7 @@ export default async function BlogPostPage({ params }: Props) {
                         <h3 style={{ fontFamily: 'var(--font-poppins)', fontWeight: 400, fontSize: '1.125rem', color: '#1A1A1A', lineHeight: 1.35, marginTop: '2rem', marginBottom: '0.75rem' }}>{children}</h3>
                       ),
                     paragraph: ({ children }) => (
-                      <p style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1.0625rem', color: '#1A1A1A', opacity: 0.78, lineHeight: 1.9 }}>{children}</p>
+                      <p style={{ fontFamily: 'var(--font-poppins)', fontWeight: 300, fontSize: '1.0625rem', color: '#1A1A1A', opacity: 0.78, lineHeight: 1.9, textAlign: 'justify' }}>{children}</p>
                     ),
                     list: ({ type, children }) =>
                       type === 'ordered' ? (

@@ -106,6 +106,29 @@ Deploys automatically via Vercel on every push to `main`. DNS is managed on Clou
 
 ---
 
+## Temporary Pre-Launch Changes (Revert When Ministries Pages Are Built)
+
+The following changes were made temporarily before the site went live (April 2026) because the Ministries sub-pages are not yet built out. **Revert all of these once the pages are ready.**
+
+### 1. NavBar — Ministries dropdown removed
+- **File:** `components/church/NavBar.tsx`
+- The entire Ministries nav item (with its two-column grouped dropdown) was removed from `navLinks`.
+- The `mobileMinistriesOpen` / `mobileMembershipOpen` state vars and the mobile accordion block were also removed.
+- **Revert:** Restore the Ministries entry to `navLinks` between About and Sermons, restore the two state vars, and restore the mobile accordion block (it rendered `navLinks[2].groups`).
+
+### 2. NavBar — Membership added as a top-level link
+- **File:** `components/church/NavBar.tsx`
+- `{ label: 'Membership', href: '/ministries/membership' }` was added as a standalone nav link between Blog and I'm New.
+- **Revert:** Remove this entry when Membership is accessible again through the Ministries dropdown.
+
+### 3. Search — Unbuilt ministry pages excluded
+- **File:** `app/api/search/route.ts`
+- The `staticPages` array had all ministry entries removed except Membership.
+- The dynamic Keystatic ministry collection query (`reader.collections.ministries.all()`) was removed entirely to prevent unbuilt pages from appearing in search results.
+- **Revert:** Restore all removed ministry entries to `staticPages` and restore the ministries collection query block.
+
+---
+
 ## Maintainer
 
 Built and maintained by [Prabhu Avula](https://github.com/prabhuavula7) on behalf of Grace Life Church Vizag.

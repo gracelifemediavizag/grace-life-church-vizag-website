@@ -85,7 +85,7 @@ export default async function GivePage() {
               <p className="text-[0.65rem] uppercase tracking-widest font-bold text-glc-on-surface-variant mb-2">
                 How to Give
               </p>
-              <p className="text-glc-on-surface leading-relaxed">
+              <p className="text-glc-on-surface leading-relaxed text-justify">
                 You can give using the UPI QR code or by bank transfer. Every contribution
                 goes directly toward the ministry of the Word here in Visakhapatnam. If you
                 have any questions, please reach out to us.
@@ -148,13 +148,13 @@ export default async function GivePage() {
               <p className="text-[0.7rem] uppercase tracking-widest text-glc-on-surface-variant font-bold">
                 Why We Give
               </p>
-              <p className="text-glc-on-surface-variant text-lg leading-[1.9]">
+              <p className="text-glc-on-surface-variant text-lg leading-[1.9] text-justify">
                 Giving is an act of worship. We give not out of obligation but out of gratitude
                 for what God has done for us in Christ. Every gift entrusted to Grace Life Church
                 goes directly toward preaching the gospel, discipling believers, and training
                 faithful leaders for the Telugu church.
               </p>
-              <p className="text-glc-on-surface-variant text-lg leading-[1.9]">
+              <p className="text-glc-on-surface-variant text-lg leading-[1.9] text-justify">
                 We are committed to faithful, transparent stewardship of every contribution we
                 receive. If you have any questions about how funds are used, please reach out to
                 us directly.

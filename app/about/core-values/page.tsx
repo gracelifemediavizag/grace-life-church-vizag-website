@@ -94,7 +94,7 @@ export default async function CoreValuesPage() {
                     </h2>
                     <p
                       className="text-[#1A1A1A] text-base mb-6"
-                      style={{ fontWeight: 300, fontFamily: 'var(--font-poppins)', lineHeight: 1.8, paddingLeft: '1.25rem' }}
+                      style={{ fontWeight: 300, fontFamily: 'var(--font-poppins)', lineHeight: 1.8, paddingLeft: '1.25rem', textAlign: 'justify' }}
                     >
                       {v.description}
                     </p>

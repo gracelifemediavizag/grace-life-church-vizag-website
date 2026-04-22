@@ -84,7 +84,7 @@ export default function DoctrinePage() {
             {/* I. The Holy Scriptures */}
             <section id="scripture" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">I. The Holy Scriptures</h2>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that the Bible is God&rsquo;s written revelation to man, and thus the sixty-six books of the Old and New Testaments, given by inspiration of the Holy Spirit, constitute the Word of God. That is, we teach the plenary verbal inspiration of Scripture, that every word is equally breathed out by God in all its parts (1 Corinthians 2:7–14; 2 Timothy 3:16; 2 Peter 1:20–21).</p>
                 <p>We teach that the Word of God is an objective, propositional revelation (1 Thessalonians 2:13; 1 Corinthians 2:13), infallible (John 10:35), and absolutely inerrant in the original documents, being free from all falsehood, fraud, or deceit (Psalm 12:6; 119:160; Proverbs 30:5).</p>
                 <p>We teach that the Bible constitutes the only infallible rule of faith and practice and is true and reliable in all the matters it addresses (Matthew 5:18; 24:35; John 10:35; 16:12–13; 17:17; 1 Corinthians 2:13; 2 Timothy 3:15–17; Hebrews 4:12; 2 Peter 1:20–21).</p>
@@ -97,7 +97,7 @@ export default function DoctrinePage() {
             {/* II. God */}
             <section id="god" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">II. God</h2>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that there is but one living and true God (Deuteronomy 6:4; Isaiah 45:5–7; 1 Corinthians 8:4), an eternal (Revelation 1:8), infinite (Job 11:7–10), absolute Spirit (John 4:24), without parts (Exodus 3:14; 1 John 1:5; 4:8), perfect in all His attributes, including incomprehensibility (Romans 11:33), omniscience (1 John 3:20), omnipotence (Genesis 18:14), omnipresence (Psalm 139:7–10), immutability (Malachi 3:6), and aseity (Exodus 3:14; John 5:26).</p>
                 <p>We teach that this God is one in essence (having one mind, one will, and one power), eternally existing in three coequal and consubstantial Persons—Father, Son, and Holy Spirit (Matthew 28:19; 2 Corinthians 13:14)—each uncreated and distinct, and each equally deserving worship and obedience. Therefore, we teach that the Father is of none, neither begotten nor proceeding (John 5:26); the Son is eternally begotten of the Father (John 1:14, 18; 3:16; 5:26; cf. Psalm 2:7); and the Holy Spirit eternally proceeds from the Father and the Son (John 15:26).</p>
               </div>
@@ -106,7 +106,7 @@ export default function DoctrinePage() {
             {/* III. God the Father */}
             <section id="father" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">III. God the Father</h2>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that God the Father, the first Person of the Trinity, orders and disposes all things according to His own purpose and grace (Psalm 145:8–9; 1 Corinthians 8:6). He is the Creator of all things (Genesis 1:1–31; Ephesians 3:9). He is sovereign in creation, providence, and redemption (Psalm 103:19; Romans 11:36). His fatherhood involves both His designation within the Trinity and His relationship with mankind. As Creator, He is Father to all men (Ephesians 4:6), but He is spiritual Father only to believers (Romans 8:14; 2 Corinthians 6:18).</p>
                 <p>He has decreed for His own glory all things that come to pass (Ephesians 1:11). He continually upholds, directs, and governs all creatures and events (1 Chronicles 29:11). In His sovereignty He is neither author nor approver of sin (Habakkuk 1:13; John 8:38–47), nor does He abridge the accountability of moral, intelligent creatures (1 Peter 1:17). He has graciously chosen from eternity past those whom He would save to be His own people (Ephesians 1:4–6); He saves from sin all who come to Him through faith in Jesus Christ; He adopts as His own all those who come to Him and thereby becomes Father to them (John 1:12; Romans 8:15; Galatians 4:5; Hebrews 12:5–9).</p>
               </div>
@@ -115,7 +115,7 @@ export default function DoctrinePage() {
             {/* IV. God the Son */}
             <section id="son" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">IV. God the Son</h2>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that Jesus Christ, the second Person of the Trinity, is eternal God, coequal, consubstantial, and coeternal with the Father, possessing all the divine perfections (John 1:1; 10:30; 14:9).</p>
                 <p>We teach that all creation came into being through the eternal Son (John 1:3; 1 Corinthians 8:6; Colossians 1:16; Hebrews 1:2) and is presently sustained by Him (Colossians 1:17; Hebrews 1:3).</p>
                 <p>We teach that in the incarnation the eternal Son, the second Person of the Trinity, without altering His divine nature or surrendering any of the divine attributes, made Himself of no reputation by taking on a full human nature consubstantial with our own, yet without sin (Philippians 2:5–8; Hebrews 4:15; 7:26).</p>
@@ -137,7 +137,7 @@ export default function DoctrinePage() {
             {/* V. God the Holy Spirit */}
             <section id="spirit" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">V. God the Holy Spirit</h2>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that the Holy Spirit, the third Person of the Trinity, is eternal God, coequal, consubstantial, and coeternal with the Father and the Son (Matthew 28:19; Acts 5:3–4; 1 Corinthians 12:4–6; 2 Corinthians 13:14), possessing all the divine perfections, including eternality (Hebrews 9:14), omnipresence (Psalm 139:7–10), omniscience (Isaiah 40:13–14), omnipotence (Romans 15:13), and truth (John 16:13).</p>
                 <p>We teach that the Holy Spirit is not merely a force or a power but a distinct divine person who thinks (1 Corinthians 2:10–13), wills (1 Corinthians 12:11), speaks (Acts 28:25–26), and can be grieved (Ephesians 4:30).</p>
                 <p>We teach that it is the work of the Holy Spirit to execute the divine will with relation to all mankind. We recognize His sovereign activity in creation (Genesis 1:2), the incarnation (Matthew 1:18), the written revelation (2 Peter 1:20–21), and the work of salvation (John 3:5–7).</p>
@@ -151,7 +151,7 @@ export default function DoctrinePage() {
             {/* VI. Man */}
             <section id="man" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">VI. Man</h2>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that man was directly and immediately created by God (Genesis 2:7) in His image and likeness (Genesis 1:26–28; 5:1; James 3:9), free of sin (Genesis 1:31) and endowed with a rational nature, intelligence, volition, and moral responsibility to God (Genesis 2:15–25).</p>
                 <p>We teach that mankind was created by God as either male or female, distinct sexes that are biologically defined and divinely imparted to each individual at conception (Genesis 1:27; 2:5–23; Job 3:3; Psalm 139:13–14; 1 Corinthians 11:3–15). Attempting to confuse the two sexes is an abomination to God (Leviticus 18:22; Deuteronomy 22:5; Romans 1:26–27; 1 Corinthians 6:9–10).</p>
                 <p>We teach that God&rsquo;s intention in the creation of man was that man should glorify God, enjoy God&rsquo;s fellowship, live his life according to the will of God, and by this accomplish God&rsquo;s purpose for man in the world (Isaiah 43:7; 1 Corinthians 10:31; Colossians 1:16; Revelation 4:11).</p>
@@ -163,7 +163,7 @@ export default function DoctrinePage() {
             {/* VII. Salvation */}
             <section id="salvation" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">VII. Salvation</h2>
-              <p className="text-glc-on-surface-variant leading-[1.9]">
+              <p className="text-glc-on-surface-variant leading-[1.9] text-justify">
                 We teach that salvation is wholly of God by grace on the basis of the redemption of Jesus Christ—the merits both of His life of perfect righteousness and His atoning blood—and not on the basis of human merits or works (John 1:12; Romans 5:18–19; Ephesians 1:7; 2:8–10; 1 Peter 1:18–19).
               </p>
             </section>
@@ -171,7 +171,7 @@ export default function DoctrinePage() {
             {/* VIII. Election */}
             <section id="election" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">VIII. Election</h2>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that election is the sovereign act of God by which, before the foundation of the world, He unconditionally chose in Christ all those whom He would ever graciously regenerate, save, and sanctify (Romans 8:28–30; 9:11–16; Ephesians 1:4–11; 2 Thessalonians 2:13; 2 Timothy 2:10; 1 Peter 1:1–2).</p>
                 <p>We teach that sovereign election does not contradict or negate the responsibility of man to repent and trust Christ as Savior and Lord (Ezekiel 18:23, 32; 33:11; John 3:18–19, 36; 5:40; Romans 9:19–23; 2 Thessalonians 2:10–12; Revelation 22:17). Nevertheless, since sovereign grace includes the means of receiving the gift of salvation as well as the gift itself, sovereign election will result in what God determines. All whom the Father has elected He will effectually call to Himself. All whom the Father effectually calls to Himself will come in faith. And all who come in faith the Father will receive (John 6:37–40, 44; Acts 13:48; Romans 8:30).</p>
                 <p>We teach that God&rsquo;s election of totally depraved sinners is unconditional, grounded only in the sovereign freedom of God&rsquo;s own will. Election is an expression of God&rsquo;s unmerited favor and is not related to any initiative of the sinner&rsquo;s own part. It is not grounded in God&rsquo;s anticipation of what sinners might do by their own will, nor even in response to their foreseen faith. Rather, election is solely of His sovereign grace and mercy (Romans 9:11, 16; Ephesians 1:4–7; Titus 3:4–7; 1 Peter 1:2).</p>
@@ -182,7 +182,7 @@ export default function DoctrinePage() {
             {/* IX. Atonement */}
             <section id="atonement" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">IX. Atonement</h2>
-              <p className="text-glc-on-surface-variant leading-[1.9]">
+              <p className="text-glc-on-surface-variant leading-[1.9] text-justify">
                 We teach that the Lord Jesus, by His perfect obedience and sacrifice of Himself, which He offered up to God through the eternal Spirit (Hebrews 9:14; 10:14), has fully satisfied the justice of God (Hebrews 2:17; 1 John 4:10), propitiated the wrath of God (Romans 3:25–26; cf. 1:18), procured reconciliation (Romans 5:10), and purchased an everlasting inheritance in the kingdom of heaven (Hebrews 9:15), for all those the Father has given to Him (John 6:39; 10:14–15, 28–29; 17:2, 9, 24).
               </p>
             </section>
@@ -190,7 +190,7 @@ export default function DoctrinePage() {
             {/* X. Regeneration */}
             <section id="regeneration" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">X. Regeneration</h2>
-              <p className="text-glc-on-surface-variant leading-[1.9]">
+              <p className="text-glc-on-surface-variant leading-[1.9] text-justify">
                 We teach that regeneration is a supernatural work of the Holy Spirit by which a renewed nature and spiritual life are given (John 3:3–7; 2 Corinthians 5:17; Titus 3:5). It is instantaneous and is accomplished solely by the power of the Holy Spirit through the instrumentality of the Word of God (John 5:24; James 1:18; 1 Peter 1:23). As a result of this divine illumination (2 Corinthians 4:6), the repentant sinner, so enabled by the Holy Spirit, responds in faith in Christ (1 John 5:1).
               </p>
             </section>
@@ -198,7 +198,7 @@ export default function DoctrinePage() {
             {/* XI. Justification */}
             <section id="justification" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">XI. Justification</h2>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that justification before God is the act of God (Romans 8:33) in which He declares righteous those who, by His irresistible grace, repent of their sins (Luke 13:3; Acts 2:38; 3:19; 11:18; Romans 2:4; 2 Corinthians 7:10; cf. Isaiah 55:6–7), turn to Christ in faith (Acts 16:31; 20:21; Romans 1:16; 3:22, 26; Galatians 3:22), and confess Him as sovereign Lord (Romans 10:9–10; 1 Corinthians 12:3; 2 Corinthians 4:5; Philippians 2:11).</p>
                 <p>We teach that the righteousness of justification is not infused into the believer, nor is it attained by any virtue or work of man (Romans 3:20; 4:4–6), but that it is the legal declaration of right standing with God (Deuteronomy 25:1; Romans 8:1, 33–34). We teach that justification consists in the imputation of our sins to Christ (Colossians 2:14; 1 Peter 2:24) and the imputation of Christ&rsquo;s righteousness to us (1 Corinthians 1:30; 2 Corinthians 5:21; cf. Romans 5:18–19), through faith alone apart from works (Romans 3:28; 4:4–5; 5:1; Galatians 2:16; 3:11, 24). In this way, God is &ldquo;just and the justifier of the one who has faith in Jesus&rdquo; (Romans 3:26).</p>
               </div>
@@ -211,7 +211,7 @@ export default function DoctrinePage() {
             {/* XII. Sanctification */}
             <section id="sanctification" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">XII. Sanctification</h2>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that every believer is sanctified (set apart) unto God at conversion, declared to be holy, and is therefore identified as a saint. This sanctification is positional and instantaneous and should not be confused with progressive sanctification. This sanctification has to do with the believer&rsquo;s standing, not his present walk or condition (Acts 20:32; 1 Corinthians 1:2, 30; 6:11; 2 Thessalonians 2:13; Hebrews 2:11; 3:1; 10:10, 14; 13:12; 1 Peter 1:2).</p>
                 <p>We teach that there is also, by the work of the Holy Spirit, a progressive sanctification by which the state of the believer is brought into greater conformity with the standing the believer positionally enjoys through justification. Through obedience to the Word of God and the empowering of the Holy Spirit, the believer is able to live a life of increasing holiness in conformity to the will of God, becoming more and more like our Lord Jesus Christ (John 17:17, 19; Romans 6:1–22; 8:29; 2 Corinthians 3:18; 1 Thessalonians 4:3–4; 5:23).</p>
                 <p>In this respect, we teach that every saved person is involved in a daily conflict—the new creation in Christ doing battle against the flesh—but adequate provision is made for victory through the power of the indwelling Holy Spirit. The struggle nevertheless stays with the believer all through this earthly life and is not completely ended until he sees Christ face to face. All claims to the eradication of sin in this life are unscriptural. Eradication of sin is not possible, but the Holy Spirit does provide for victory over sin (Galatians 5:16–25; Ephesians 4:22–24; Philippians 3:12; Colossians 3:9–10; 1 Peter 1:14–16; 1 John 3:2–9).</p>
@@ -221,7 +221,7 @@ export default function DoctrinePage() {
             {/* XIII. Security */}
             <section id="security" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">XIII. Security</h2>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that all the redeemed, once saved, are kept by God&rsquo;s power and are thus secure in Christ forever (John 5:24; 6:37–40; 10:27–30; Romans 5:9–10; 8:1, 31–39; 1 Corinthians 1:4–8; Ephesians 4:30; Hebrews 7:25; 13:5; 1 Peter 1:5; Jude 24). Those who once professed faith and subsequently deny the Lord demonstrate by their going out from us that they were never truly saved in the first place (1 John 2:19).</p>
                 <p>We teach that it is the privilege of believers to rejoice in the assurance of their salvation through the testimony of God&rsquo;s Word, which, however, clearly forbids the use of Christian liberty as an occasion for sinful living and carnality (Romans 6:15–22; 13:13–14; Galatians 5:13, 25–26; Titus 2:11–14).</p>
                 <p>Genuine salvation is manifested by fruits worthy of repentance as demonstrated in righteous attitudes and conduct. Good works are the proper evidence and fruit of regeneration (1 Corinthians 6:19–20; Ephesians 2:10) and will be experienced to the extent that the believer submits to the control of the Holy Spirit in his life through faithful obedience to the Word of God (Ephesians 5:17–21; Philippians 2:12b; Colossians 3:16; 2 Peter 1:4–10). Such a conformity is climaxed in the believer&rsquo;s glorification at Christ&rsquo;s coming (Romans 8:17; 2 Peter 1:4; 1 John 3:2–3).</p>
@@ -231,7 +231,7 @@ export default function DoctrinePage() {
             {/* XIV. Separation */}
             <section id="separation" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">XIV. Separation</h2>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that separation from sin is clearly called for throughout the Old and New Testaments, and that the Scriptures clearly indicate that in the last days apostasy and worldliness will increase (2 Corinthians 6:14–7:1; 2 Timothy 3:1–5).</p>
                 <p>We teach that, out of deep gratitude for the undeserved grace of God granted to us, and because our glorious God is so worthy of our total consecration, all the saved should live in such a manner as to demonstrate our adoring love to God, bringing no reproach upon our Lord and Savior. We also teach that separation from all religious apostasy and worldly and sinful practices is commanded of us by God (Romans 12:1–2; 1 Corinthians 5:9–13; 2 Corinthians 6:14–7:1; 1 John 2:15–17; 2 John 9–11).</p>
                 <p>We teach that believers should be separated unto our Lord Jesus Christ (2 Thessalonians 1:11–12; Hebrews 12:1–2) and affirm that the Christian life is a life of obedient righteousness that reflects the teaching of the Beatitudes (Matthew 5:2–12) and a continual pursuit of holiness (Romans 12:1–2; 2 Corinthians 7:1; Hebrews 12:14; Titus 2:11–14; 1 John 3:1–10).</p>
@@ -241,7 +241,7 @@ export default function DoctrinePage() {
             {/* XV. The Church */}
             <section id="church" className="scroll-mt-32 space-y-5">
               <h2 className="text-3xl text-glc-on-surface border-l-4 border-[#EFBF04] pl-4">XV. The Church</h2>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that all who place their faith in Jesus Christ are immediately placed by the Holy Spirit into one united spiritual Body, the church (1 Corinthians 12:12–13), the bride of Christ (2 Corinthians 11:2; Ephesians 5:23–32; Revelation 19:7–8), of which Christ is the Head (Ephesians 1:22; 4:15; Colossians 1:18).</p>
                 <p>We teach that the formation of the church, the Body of Christ, began on the Day of Pentecost (Acts 2:1–21, 38–47) and will be completed at the coming of Christ for His own at the rapture (1 Corinthians 15:51–52; 1 Thessalonians 4:13–18).</p>
                 <p>We teach that the church is thus a unique spiritual organism designed by Christ, made up of all regenerate persons in this present age (Ephesians 2:11–3:6). The church is distinct from Israel (1 Corinthians 10:32), a mystery not revealed until this age (Ephesians 3:1–6; 5:32).</p>
@@ -264,14 +264,14 @@ export default function DoctrinePage() {
               <h3 className="text-lg text-[#3399CC]" style={{ fontFamily: 'var(--font-lato)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 Holy Angels
               </h3>
-              <p className="text-glc-on-surface-variant leading-[1.9]">
+              <p className="text-glc-on-surface-variant leading-[1.9] text-justify">
                 We teach that angels are created beings and are therefore not to be worshiped. Although they are a higher order of creation than man, they are created to serve God and to worship Him (Luke 2:9–14; Hebrews 1:6–7, 14; 2:6–7; Revelation 5:11–14; 19:10; 22:9).
               </p>
 
               <h3 className="text-lg text-[#3399CC] mt-6" style={{ fontFamily: 'var(--font-lato)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 Fallen Angels
               </h3>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that Satan is a created angel who was the efficient cause of the first sin. He incurred the judgment of God by rebelling against his Creator (Isaiah 14:12–17; Ezekiel 28:11–19), by taking numerous angels with him in his fall (Matthew 25:41; Revelation 12:1–14), and by introducing sin into the human race by his temptation of Adam and Eve (Genesis 3:1–15).</p>
                 <p>We teach that Satan is the open and declared enemy of God and man (Isaiah 14:13–14; Matthew 4:1–11; Revelation 12:9–10); that he is the prince of this world, who has been defeated through the death and resurrection of Jesus Christ (Romans 16:20); and that he shall be eternally punished in the lake of fire (Isaiah 14:12–17; Ezekiel 28:11–19; Matthew 25:41; Revelation 20:10).</p>
               </div>
@@ -284,7 +284,7 @@ export default function DoctrinePage() {
               <h3 className="text-lg text-[#3399CC]" style={{ fontFamily: 'var(--font-lato)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 Death
               </h3>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that physical death involves no loss of our immaterial consciousness (Revelation 6:9–11), that the soul of the redeemed passes immediately into the presence of Christ (Luke 23:43; Philippians 1:23; 2 Corinthians 5:8), that there is a separation of soul and body (Philippians 1:21–24), and that, for those in Christ, such separation will continue until the rapture (1 Thessalonians 4:13–17), which initiates the first resurrection (Revelation 20:4–6) when our soul and body will be reunited to be glorified forever with our Lord (Philippians 3:21; 1 Corinthians 15:35–44, 50–54). Until that time, the souls of the redeemed in Christ remain in joyful fellowship with Him in the intermediate heaven (2 Corinthians 5:8).</p>
                 <p>We teach the bodily resurrection of all men, the saved to eternal life (John 6:39; Romans 8:10–11, 19–23; 2 Corinthians 4:14), and the unsaved to judgment and everlasting punishment (Daniel 12:2; John 5:29; Revelation 20:13–15).</p>
                 <p>We teach that the souls of the unsaved at death are kept under punishment in the intermediate hell until the second resurrection (Luke 16:19–26; Revelation 20:13–15), when the soul and the resurrection body will be united (John 5:28–29). They shall then appear at the Great White Throne Judgment (Revelation 20:11–15) and shall be cast into eternal hell, the lake of fire (Matthew 25:41–46; Revelation 20:15), cut off from the life of God and enduring His wrath forever (Daniel 12:2; Matthew 25:41–46; 2 Thessalonians 1:7–9).</p>
@@ -293,21 +293,21 @@ export default function DoctrinePage() {
               <h3 className="text-lg text-[#3399CC] mt-6" style={{ fontFamily: 'var(--font-lato)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 The Rapture of the Church
               </h3>
-              <p className="text-glc-on-surface-variant leading-[1.9]">
+              <p className="text-glc-on-surface-variant leading-[1.9] text-justify">
                 We teach the personal, bodily appearing of our Lord Jesus Christ before the seven-year tribulation (1 Thessalonians 4:16; Titus 2:13) to translate His church from this earth (John 14:1–3; 1 Corinthians 15:51–53; 1 Thessalonians 4:15–5:11). We teach that, between the rapture and His glorious return to the earth with His saints, He will reward believers according to their works (1 Corinthians 3:11–15; 2 Corinthians 5:10).
               </p>
 
               <h3 className="text-lg text-[#3399CC] mt-6" style={{ fontFamily: 'var(--font-lato)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 The Tribulation Period
               </h3>
-              <p className="text-glc-on-surface-variant leading-[1.9]">
+              <p className="text-glc-on-surface-variant leading-[1.9] text-justify">
                 We teach that immediately following the removal of the church from the earth (John 14:1–3; 1 Thessalonians 4:13–18) the righteous judgments of God will be poured out upon an unbelieving world (Jeremiah 30:7; Daniel 9:27; 12:1; 2 Thessalonians 2:7–12; Revelation 16), and that these judgments will be climaxed by the return of Christ in glory to the earth (Matthew 24:27–31; 25:31–46; 2 Thessalonians 2:7–12). At that time, the saints of the Old Testament and the tribulation saints will be raised and the living will be judged (Daniel 12:2–3; Revelation 20:4–6). This period includes the seventieth week of Daniel&rsquo;s prophecy (Daniel 9:24–27; Matthew 24:15–31; 25:31–46).
               </p>
 
               <h3 className="text-lg text-[#3399CC] mt-6" style={{ fontFamily: 'var(--font-lato)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 The Second Coming and Millennial Reign
               </h3>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that, after the tribulation period, Christ will come to earth to occupy the throne of David (Matthew 25:31; Luke 1:31–33; Acts 1:10–11; 2:29–30; cf. Revelation 3:21) and establish His messianic kingdom for a thousand years on the earth (Revelation 20:1–7). During this time the resurrected saints will reign with Him over Israel and all the nations of the earth (Ezekiel 37:21–28; Daniel 7:17–22; Revelation 19:11–16). This reign will be preceded by the overthrow of the Antichrist and the False Prophet, and by the removal of Satan from the world (Daniel 7:17–27; Revelation 20:1–7).</p>
                 <p>We teach that the kingdom itself will be the fulfillment of God&rsquo;s promise to Israel (Isaiah 65:17–25; Ezekiel 37:21–28; Zechariah 8:1–17) to restore them to the land which they forfeited through their disobedience (Deuteronomy 28:15–68). The result of their disobedience was that Israel was temporarily set aside (Matthew 21:43; Romans 11:1–26) but will again be awakened through repentance to enter into the land of blessing (Jeremiah 31:31–34; Ezekiel 36:22–32; Romans 11:25–29).</p>
                 <p>We teach that this time of our Lord&rsquo;s reign will be characterized by harmony, justice, peace, righteousness, and long life (Isaiah 11; 65:17–25; Ezekiel 36:33–38; Zechariah 8:4), and that it will be brought to an end with the release of Satan (Revelation 20:7).</p>
@@ -316,7 +316,7 @@ export default function DoctrinePage() {
               <h3 className="text-lg text-[#3399CC] mt-6" style={{ fontFamily: 'var(--font-lato)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 The Judgment of the Lost
               </h3>
-              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9]">
+              <div className="space-y-4 text-glc-on-surface-variant leading-[1.9] text-justify">
                 <p>We teach that, following the release of Satan after the thousand-year reign of Christ (Revelation 20:7), Satan will deceive the nations of the earth and gather them to battle against the saints and the beloved city, at which time Satan and his army will be devoured by fire from heaven (Revelation 20:9). Following this, Satan will be thrown into the lake of fire and brimstone (Matthew 25:41; Revelation 20:10), whereupon Christ, who is the Judge of all men (John 5:22), will resurrect and judge all unbelievers at the Great White Throne Judgment.</p>
                 <p>We teach that this resurrection of the unsaved dead to judgment will be a physical, bodily resurrection (John 5:28–29) in which they will be committed to eternal conscious punishment in the lake of fire (Matthew 25:41; Revelation 20:11–15).</p>
               </div>
@@ -324,7 +324,7 @@ export default function DoctrinePage() {
               <h3 className="text-lg text-[#3399CC] mt-6" style={{ fontFamily: 'var(--font-lato)', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                 Eternity
               </h3>
-              <p className="text-glc-on-surface-variant leading-[1.9]">
+              <p className="text-glc-on-surface-variant leading-[1.9] text-justify">
                 We teach that, after the closing of the millennium, the temporary release of Satan, and the judgment of unbelievers (2 Thessalonians 1:9; Revelation 20:7–15), the saved will enter the eternal state of glory with God, after which the elements of this earth are to be dissolved (2 Peter 3:10) and replaced with a new earth wherein only righteousness dwells (Ephesians 5:5; Revelation 20:15; 21–22). Following this, the heavenly city will come down out of heaven (Revelation 21:2) and will be the dwelling place of the saints, where they will enjoy forever fellowship with God and one another (John 17:3; Revelation 21–22). Our Lord Jesus Christ, having fulfilled His redemptive mission, will then deliver up the kingdom to God the Father (1 Corinthians 15:24–28) that in all spheres the triune God may reign forever and ever (1 Corinthians 15:28).
               </p>
 

@@ -30,38 +30,12 @@ const navLinks: NavItem[] = [
       { label: 'Leadership',   href: '/leadership'         },
     ],
   },
-  {
-    label: 'Ministries',
-    href: '#',
-    groups: [
-      {
-        label: null,
-        children: [
-          { label: 'Children',        href: '/ministries/children'           },
-          { label: 'Women',           href: '/ministries/women'              },
-          { label: 'Youth',           href: '/ministries/youth'              },
-          { label: 'Media',           href: '/ministries/media'              },
-          { label: 'Print',           href: '/ministries/print'              },
-        ],
-      },
-      {
-        label: 'Membership Services',
-        children: [
-          { label: 'Membership',          href: '/ministries/membership'          },
-          { label: 'Serving',             href: '/ministries/serving'             },
-          { label: 'Counseling',         href: '/ministries/counseling'         },
-          { label: 'Congregational Care', href: '/ministries/congregational-care' },
-          { label: 'Prayer',              href: '/ministries/prayer'              },
-          { label: 'Weddings',            href: '/ministries/weddings'            },
-        ],
-      },
-    ],
-  },
-  { label: 'Sermons', href: '/sermons' },
-  { label: 'Events',  href: '/events'  },
-  { label: 'Blog',    href: '/blog'    },
-  { label: "I'm New", href: '/im-new'  },
-  { label: 'Give',    href: '/give'    },
+  { label: 'Sermons',    href: '/sermons'               },
+  { label: 'Events',     href: '/events'                },
+  { label: 'Blog',       href: '/blog'                  },
+  { label: 'Membership', href: '/ministries/membership' },
+  { label: "I'm New",    href: '/im-new'                },
+  { label: 'Give',       href: '/give'                  },
 ];
 
 /* ── Icons ───────────────────────────────────────────────────────────────── */
@@ -117,9 +91,7 @@ function dropdownLinkClass(active: boolean) {
 export default function NavBar() {
   const [mobileOpen,        setMobileOpen]        = useState(false);
   const [mobileAboutOpen,   setMobileAboutOpen]   = useState(false);
-  const [mobileMinistriesOpen, setMobileMinistriesOpen] = useState(false);
-  const [mobileMembershipOpen, setMobileMembershipOpen] = useState(false);
-  const [searchOpen,        setSearchOpen]        = useState(false);
+const [searchOpen,        setSearchOpen]        = useState(false);
   const [searchQuery,       setSearchQuery]       = useState('');
   const [searchResults,     setSearchResults]     = useState<Array<{ title: string; href: string; type: string }>>([]);
   const [searching,         setSearching]         = useState(false);
@@ -184,8 +156,7 @@ export default function NavBar() {
 
   const isActive           = (href: string) => pathname === href;
   const isAboutActive      = pathname.startsWith('/about') || pathname === '/leadership';
-  const isMinistries       = pathname.startsWith('/ministries');
-  const showSearchDropdown = searchOpen && (searching || searchResults.length > 0 || searchQuery.trim().length > 1);
+const showSearchDropdown = searchOpen && (searching || searchResults.length > 0 || searchQuery.trim().length > 1);
 
   return (
     <>
@@ -426,66 +397,6 @@ export default function NavBar() {
                     {child.label}
                   </Link>
                 ))}
-              </div>
-            )}
-          </div>
-
-          {/* Ministries accordion */}
-          <div className="border-b border-[#F0F0F0]">
-            <button
-              onClick={() => setMobileMinistriesOpen(!mobileMinistriesOpen)}
-              className="w-full flex justify-between items-center text-[1.25rem] font-[family-name:var(--font-poppins)] text-[#1A1A1A] py-4 hover:text-[#3399CC] transition-colors bg-transparent border-none text-left"
-              style={{ fontWeight: 300 }}
-            >
-              Ministries
-              <ChevronDown size={10} />
-            </button>
-            {mobileMinistriesOpen && (
-              <div className="pb-3 pl-4 flex flex-col">
-                {/* Direct ministries */}
-                {navLinks[2].groups![0].children.map((child) => (
-                  <Link
-                    key={child.href}
-                    href={child.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="text-[0.8rem] font-[family-name:var(--font-lato)] uppercase tracking-[0.1em] text-[#1A1A1A]/55 hover:text-[#3399CC] py-2.5 transition-colors block"
-                  >
-                    {child.label}
-                  </Link>
-                ))}
-
-                {/* Membership Services sub-accordion */}
-                <div className="mt-2">
-                  <button
-                    onClick={() => setMobileMembershipOpen(!mobileMembershipOpen)}
-                    className="w-full flex justify-between items-center bg-transparent border-none text-left py-2.5 hover:text-[#3399CC] transition-colors"
-                    style={{
-                      fontFamily: 'var(--font-lato)',
-                      fontSize: '0.65rem',
-                      fontWeight: 700,
-                      letterSpacing: '0.14em',
-                      textTransform: 'uppercase',
-                      color: mobileMembershipOpen ? '#EFBF04' : 'rgba(26,26,26,0.4)',
-                    }}
-                  >
-                    Membership Services
-                    <ChevronDown size={8} />
-                  </button>
-                  {mobileMembershipOpen && (
-                    <div className="pl-4 flex flex-col">
-                      {navLinks[2].groups![1].children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          onClick={() => setMobileOpen(false)}
-                          className="text-[0.8rem] font-[family-name:var(--font-lato)] uppercase tracking-[0.1em] text-[#1A1A1A]/55 hover:text-[#3399CC] py-2.5 transition-colors block"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
               </div>
             )}
           </div>

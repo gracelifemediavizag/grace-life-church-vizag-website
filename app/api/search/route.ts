@@ -19,17 +19,7 @@ const staticPages = [
   { type: 'Page', title: 'Give',                         href: '/give',                    description: 'Support the ministry through generous giving.' },
   { type: 'Page', title: "I'm New Here",                 href: '/im-new',                  description: 'Plan your first visit to Grace Life Church.' },
   { type: 'Page', title: 'Contact Us',                   href: '/contact',                 description: 'Get in touch with Grace Life Church Vizag.' },
-  { type: 'Ministry', title: 'Children\'s Ministry',     href: '/ministries/children',     description: 'Nurturing the faith of the next generation.' },
-  { type: 'Ministry', title: "Women's Ministry",         href: '/ministries/women',        description: 'Equipping and discipling women in the grace and knowledge of Christ.' },
-  { type: 'Ministry', title: 'Youth Ministry',           href: '/ministries/youth',        description: 'Equipping young people with the Word of God.' },
-  { type: 'Ministry', title: 'Media Ministry',           href: '/ministries/media',        description: 'Extending the ministry of the Word beyond our walls.' },
-  { type: 'Ministry', title: 'Print Ministry',           href: '/ministries/print',        description: 'Distributing biblical resources to the congregation.' },
   { type: 'Ministry', title: 'Membership',               href: '/ministries/membership',   description: 'Covenantal membership at Grace Life Church.' },
-  { type: 'Ministry', title: 'Serving',                  href: '/ministries/serving',      description: 'Every believer faithfully serving in the body of Christ.' },
-  { type: 'Ministry', title: 'Counseling',               href: '/ministries/counseling',   description: 'Biblical counseling grounded in the whole counsel of God.' },
-  { type: 'Ministry', title: 'Congregational Care',      href: '/ministries/congregational-care', description: 'Shepherding and caring for one another.' },
-  { type: 'Ministry', title: 'Prayer',                   href: '/ministries/prayer',       description: 'Corporate and personal prayer.' },
-  { type: 'Ministry', title: 'Weddings',                 href: '/ministries/weddings',     description: 'Celebrating and honouring the covenant of marriage.' },
   { type: 'Service', title: 'Sunday Telugu Service',     href: '/#service-times',          description: 'Sunday Telugu-medium worship service.' },
   { type: 'Service', title: 'Sunday English Service',    href: '/#service-times',          description: 'Sunday English-medium worship service.' },
   { type: 'Service', title: 'Service Times',             href: '/#service-times',          description: 'When we meet for Sunday worship and other gatherings.' },
@@ -94,15 +84,6 @@ export async function GET(request: NextRequest) {
       const text = [entry.name, entry.title ?? '', entry.category ?? ''].join(' ').toLowerCase();
       if (text.includes(q)) {
         matches.push({ type: 'Leadership', title: entry.name, href: `/leadership/${slug}` });
-      }
-    }
-
-    /* Ministry pages (Keystatic-managed) */
-    const ministryEntries = await reader.collections.ministries.all();
-    for (const { slug, entry } of ministryEntries) {
-      const text = [entry.name, entry.subtitle ?? ''].join(' ').toLowerCase();
-      if (text.includes(q)) {
-        matches.push({ type: 'Ministry', title: entry.name, href: `/ministries/${slug}` });
       }
     }
 

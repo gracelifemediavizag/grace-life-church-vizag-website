@@ -80,17 +80,17 @@ export default async function LeaderPage({ params }: Props) {
             </Link>
 
             {/* Centre content */}
-            <div className="flex flex-col justify-center flex-1 py-16">
+            <div className="flex flex-col items-center justify-center flex-1 py-16">
               {/* Photo or monogram */}
               {entry.photo ? (
                 <div
-                  className="mb-10"
+                  className="mb-10 w-full"
                   style={{
-                    width: 160,
-                    height: 200,
                     position: 'relative',
+                    aspectRatio: '3 / 4',
                     overflow: 'hidden',
                     border: '1px solid rgba(239,191,4,0.3)',
+                    maxWidth: 360,
                   }}
                 >
                   <Image
@@ -98,7 +98,7 @@ export default async function LeaderPage({ params }: Props) {
                     alt={entry.name}
                     fill
                     style={{ objectFit: 'cover', objectPosition: 'top' }}
-                    sizes="160px"
+                    sizes="(max-width: 768px) 90vw, 360px"
                     priority
                   />
                 </div>
@@ -106,8 +106,8 @@ export default async function LeaderPage({ params }: Props) {
                 <div
                   className="mb-10 flex items-center justify-center"
                   style={{
-                    width: 140,
-                    height: 140,
+                    width: 180,
+                    height: 180,
                     border: '1px solid rgba(239,191,4,0.3)',
                     position: 'relative',
                   }}
@@ -217,6 +217,7 @@ export default async function LeaderPage({ params }: Props) {
                         color: '#1A1A1A',
                         lineHeight: 1.9,
                         opacity: 0.82,
+                        textAlign: 'justify',
                       }}
                     >
                       {children}

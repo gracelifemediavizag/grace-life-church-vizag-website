@@ -120,7 +120,7 @@ function MemberCard({ leader }: { leader: Leader }) {
 }
 
 export default function LeadershipTabs({ leaders }: { leaders: Leader[] }) {
-  const [activeTab, setActiveTab] = useState<string>('pastor');
+  const [activeTab, setActiveTab] = useState<string>('all');
 
   const activeMembers = activeTab === 'all'
     ? leaders

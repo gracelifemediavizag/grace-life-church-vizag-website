@@ -205,6 +205,7 @@ export default function TheGospelPage() {
                   color: '#1A1A1A',
                   lineHeight: 1.9,
                   opacity: 0.8,
+                  textAlign: 'justify',
                 }}
               >
                 The first thing to know about the good news of Jesus is that &ldquo;in the beginning,
@@ -219,6 +220,7 @@ export default function TheGospelPage() {
                   color: '#1A1A1A',
                   lineHeight: 1.9,
                   opacity: 0.8,
+                  textAlign: 'justify',
                 }}
               >
                 God describes himself as &ldquo;merciful and gracious, slow to anger, and abounding
@@ -288,6 +290,7 @@ export default function TheGospelPage() {
                   color: '#1A1A1A',
                   lineHeight: 1.9,
                   opacity: 0.8,
+                  textAlign: 'justify',
                 }}
               >
                 When God created the first human beings — Adam and Eve — he intended for them to live
@@ -302,6 +305,7 @@ export default function TheGospelPage() {
                   color: '#1A1A1A',
                   lineHeight: 1.9,
                   opacity: 0.8,
+                  textAlign: 'justify',
                 }}
               >
                 The Bible says &ldquo;all have sinned and fall short of the glory of God…none is
@@ -368,6 +372,7 @@ export default function TheGospelPage() {
                   fontSize: '1.0625rem',
                   color: 'rgba(255,255,255,0.75)',
                   lineHeight: 1.9,
+                  textAlign: 'justify',
                 }}
               >
                 The word &ldquo;Christ&rdquo; means &ldquo;anointed one,&rdquo; referring to anointing
@@ -381,6 +386,7 @@ export default function TheGospelPage() {
                   fontSize: '1.0625rem',
                   color: 'rgba(255,255,255,0.75)',
                   lineHeight: 1.9,
+                  textAlign: 'justify',
                 }}
               >
                 God had promised that he would come as a great King to rescue his people from their
@@ -395,6 +401,7 @@ export default function TheGospelPage() {
                   fontSize: '1.0625rem',
                   color: '#ffffff',
                   lineHeight: 1.9,
+                  textAlign: 'justify',
                 }}
               >
                 But the story doesn&rsquo;t end there. Jesus the Crucified is no longer dead.
@@ -439,6 +446,7 @@ export default function TheGospelPage() {
                   color: '#1A1A1A',
                   lineHeight: 1.9,
                   opacity: 0.8,
+                  textAlign: 'justify',
                 }}
               >
                 God expects us to respond with repentance and faith. To repent of our sins means
@@ -453,6 +461,7 @@ export default function TheGospelPage() {
                   color: '#1A1A1A',
                   lineHeight: 1.9,
                   opacity: 0.8,
+                  textAlign: 'justify',
                 }}
               >
                 Not only that, but we also turn to God in faith. Faith is reliance — a
@@ -466,6 +475,7 @@ export default function TheGospelPage() {
                   color: '#1A1A1A',
                   lineHeight: 1.9,
                   opacity: 0.8,
+                  textAlign: 'justify',
                 }}
               >
                 If God is ever to count us righteous, he will have to do it on the basis of
