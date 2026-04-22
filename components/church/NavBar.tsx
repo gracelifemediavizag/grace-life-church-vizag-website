@@ -225,7 +225,7 @@ const showSearchDropdown = searchOpen && (searching || searchResults.length > 0 
                     // ── Grouped two-column dropdown (Ministries) ──
                     return (
                       <li key={link.label} className="relative group">
-                        <button className={`${navLinkClass(isMinistries)} flex items-center gap-1 bg-transparent p-0 m-0 leading-none`}>
+                        <button className={`${navLinkClass(pathname.startsWith('/ministries'))} flex items-center gap-1 bg-transparent p-0 m-0 leading-none`}>
                           {link.label}
                           <ChevronDown />
                         </button>
