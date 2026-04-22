@@ -106,6 +106,41 @@ Deploys automatically via Vercel on every push to `main`. DNS is managed on Clou
 
 ---
 
+## Domain Migration (Wix → Vercel → Cloudflare)
+
+The domain `gracelifevizag.org` is currently registered at Wix. The plan is to point DNS to Vercel now, and transfer the domain registration to Cloudflare later.
+
+### Step 1 — Add domain to Vercel
+- Vercel project → **Settings → Domains** → add `gracelifevizag.org` and `www.gracelifevizag.org`
+- Note the DNS records Vercel requires:
+  - **A record** `@` → `76.76.21.21`
+  - **CNAME** `www` → `cname.vercel-dns.com`
+
+### Step 2 — Point DNS to Vercel
+**If Wix allows direct DNS editing:** Wix → Domains → Manage → DNS Records. Delete existing A/CNAME records pointing to Wix, add the records above.
+
+**If Wix locks DNS (more likely):** Switch nameservers to Cloudflare instead:
+1. Add `gracelifevizag.org` to Cloudflare (free plan)
+2. Cloudflare provides two nameservers → paste them into Wix → Domains → Nameservers → Custom
+3. In Cloudflare, add the A and CNAME records above pointing to Vercel
+4. Set Cloudflare proxy to **DNS only** (grey cloud) — Vercel handles SSL
+
+### Step 3 — Verify SSL on Vercel
+Once DNS propagates (5 min – 48 hrs), Vercel auto-provisions SSL. Check Vercel → Settings → Domains for a green checkmark.
+
+### Step 4 — Decommission Wix site
+- Wix → Settings → unpublish the site
+- Do NOT cancel the Wix subscription if the domain is registered there — just unpublish
+- Downgrade to the cheapest Wix plan that retains domain registration
+
+### Step 5 — Transfer domain to Cloudflare (when ready)
+1. Unlock domain in Wix → get EPP/auth code
+2. Cloudflare → Domain Registration → Transfer → paste auth code
+3. Approve transfer email from Wix
+4. Takes 5–7 days — site stays live throughout
+
+---
+
 ## Temporary Pre-Launch Changes (Revert When Ministries Pages Are Built)
 
 The following changes were made temporarily before the site went live (April 2026) because the Ministries sub-pages are not yet built out. **Revert all of these once the pages are ready.**
