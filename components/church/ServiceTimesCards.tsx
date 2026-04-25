@@ -20,10 +20,10 @@ const dayGroups = [
     ],
   },
   {
-    day: 'Saturday',
-    shortDay: 'SAT',
+    day: '1st & 3rd Thursday',
+    shortDay: 'THU',
     services: [
-      { label: 'Youth Fellowship', time: '7:00 – 8:30 PM' },
+      { label: "Women's Ministry", time: '6:30 PM – 8:00 PM' },
     ],
   },
   {
@@ -31,6 +31,13 @@ const dayGroups = [
     shortDay: 'FRI',
     services: [
       { label: 'Whole Night Prayer', time: '8:00 PM – 12:00 AM' },
+    ],
+  },
+  {
+    day: 'Saturday',
+    shortDay: 'SAT',
+    services: [
+      { label: 'Youth Fellowship', time: '7:00 – 8:30 PM' },
     ],
   },
 ];

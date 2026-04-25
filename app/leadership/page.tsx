@@ -5,6 +5,8 @@ import LeadershipTabs from '@/components/church/LeadershipTabs';
 import { createReader } from '@keystatic/core/reader';
 import config from '@/keystatic.config';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Leadership',
   description:
@@ -19,7 +21,7 @@ export default async function LeadershipPage() {
       slug,
       name: entry.name,
       role: entry.title ?? '',
-      category: (entry.category ?? 'elder') as 'pastor' | 'elder' | 'deacon' | 'worship' | 'youth' | 'women-children' | 'media',
+      category: (entry.category ?? 'elder') as 'pastor' | 'elder' | 'elder-in-training' | 'deacon' | 'deaconess' | 'worship' | 'youth' | 'women-children' | 'media',
       bio: '',
       photo: entry.photo ?? null,
     }))

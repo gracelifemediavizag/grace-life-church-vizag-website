@@ -3,12 +3,13 @@
 import { useState } from 'react';
 
 const serviceTimes = [
-  { label: 'English Worship',       day: 'Sunday',     time: '4:00 PM – 6:00 PM' },
-  { label: 'Sunday School',         day: 'Sunday',     time: '10:30 AM – 12:30 PM' },
-  { label: 'Telugu Worship',        day: 'Sunday',     time: '10:30 AM – 12:30 PM' },
-  { label: 'Congregational Prayer', day: 'Wednesday',  time: '7:00 PM – 8:30 PM' },
-  { label: 'Whole Night Prayer',    day: '2nd Friday', time: '8:00 PM – 12:00 AM' },
-  { label: 'Youth Fellowship',      day: 'Saturday',   time: '7:00 PM – 8:30 PM' },
+  { label: 'Sunday School',         day: 'Sunday',           time: '10:30 AM – 12:30 PM' },
+  { label: 'Telugu Worship',        day: 'Sunday',           time: '10:30 AM – 12:30 PM' },
+  { label: 'English Worship',       day: 'Sunday',           time: '4:00 PM – 6:00 PM' },
+  { label: 'Congregational Prayer', day: 'Wednesday',        time: '7:00 PM – 8:30 PM' },
+  { label: "Women's Ministry",      day: '1st & 3rd Thu',    time: '6:30 PM – 8:00 PM' },
+  { label: 'Whole Night Prayer',    day: '2nd Friday',       time: '8:00 PM – 12:00 AM' },
+  { label: 'Youth Fellowship',      day: 'Saturday',         time: '7:00 PM – 8:30 PM' },
 ];
 
 export default function ServiceTimesAccordion() {

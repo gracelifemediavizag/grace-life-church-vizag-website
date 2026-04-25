@@ -1,5 +1,23 @@
 import type { NextConfig } from "next";
 
+const securityHeaders = [
+  // Prevent MIME-type sniffing
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  // Disallow this site from being embedded in any iframe (clickjacking)
+  { key: "X-Frame-Options", value: "DENY" },
+  // Enforce strict referrer — don't leak full URL to third parties
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  // Disable browser features the site doesn't use
+  {
+    key: "Permissions-Policy",
+    value: "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+  },
+  // Basic XSS filter for older browsers
+  { key: "X-XSS-Protection", value: "1; mode=block" },
+  // DNS prefetch control — minor privacy improvement
+  { key: "X-DNS-Prefetch-Control", value: "on" },
+];
+
 const nextConfig: NextConfig = {
   devIndicators: false,
 
@@ -11,6 +29,16 @@ const nextConfig: NextConfig = {
         hostname: "*.public.blob.vercel-storage.com",
       },
     ],
+  },
+
+  async headers() {
+    return [
+      {
+        // Apply security headers to every route
+        source: "/(.*)",
+        headers: securityHeaders,
+      },
+    ];
   },
 
   async redirects() {

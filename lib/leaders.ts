@@ -2,7 +2,7 @@ export interface Leader {
   name: string;
   slug: string;
   role: string;
-  category: 'pastor' | 'elder' | 'deacon' | 'worship' | 'youth' | 'women-children' | 'media';
+  category: 'pastor' | 'elder' | 'elder-in-training' | 'deacon' | 'deaconess' | 'worship' | 'youth' | 'women-children' | 'media';
   bio: string;
   photo?: string | null;
 }
@@ -18,8 +18,8 @@ export const leaders: Leader[] = [
   {
     name: 'Mohan Nitta',
     slug: 'mohan-nitta',
-    role: 'Pastoral Assistant & Elder',
-    category: 'elder',
+    role: 'Pastoral Assistant & Elder in Training',
+    category: 'elder-in-training',
     bio: "Mohan Nitta was born in Srikakulam, Andhra Pradesh, in 1996. At 11, his parents accepted the Lord Jesus Christ as their savior after his father recovered from a severe health issue. But he gave his life to the Lord after hearing the true Gospel at the Grace Life Church in 2017.\n\nHe completed a Bachelor of Arts (B.A.) from Andhra University. When he expressed a desire to learn God's word and involve in the ministry, Pastor Daniel took him for pastoral training. He completed all systematic theology classes and trained in preaching. He has been actively involved in various aspects of the ministry.\n\nHe is married to Radha Nitta and they are blessed with a boy Nathan Daniel.",
   },
   {
@@ -32,29 +32,29 @@ export const leaders: Leader[] = [
   {
     name: 'Jagadish Netti',
     slug: 'jagadish-netti',
-    role: 'Elder',
-    category: 'elder',
+    role: 'Elder in Training',
+    category: 'elder-in-training',
     bio: "Netti Jagadish Babu accepted the Lord in his teenage years. He was attracted to God's word and loved the Lord dearly. He greatly desired to do the Lord's work and accelerate it with the correct doctrine to bless the Telugu church. God's sovereign hand brought him in contact with Pastor Daniel Surya Avula and expository preaching at Grace Life Church.\n\nHe holds B.Sc. in Chemistry from Andhra University and a Master's in Computer Applications from Kakatiya University. He is a Branch Manager cum Sr. Principal Surveyor in a commodity and mineral testing inspection agency.\n\nHe married Lalitha Kumari, an obedient and faithful servant of God. The Lord blessed them with two angelic daughters, Vijaya Pratistitha and Nitya Srestitha.",
   },
   {
     name: 'Eliazer Naik',
     slug: 'eliazer-naik',
-    role: 'Elder',
-    category: 'elder',
+    role: 'Elder in Training',
+    category: 'elder-in-training',
     bio: 'Eliazer Naik serves as an elder at Grace Life Church, Vizag, providing faithful pastoral oversight and care for the congregation.',
   },
   {
     name: 'Ajay Chakravarthy Netti',
     slug: 'ajay-chakravarthy-netti',
-    role: 'Elder & Pastor of Youth Ministry',
-    category: 'youth',
+    role: 'Elder in Training & Youth Ministry',
+    category: 'elder-in-training',
     bio: 'Ajay Chakravarthy Netti serves as an elder and leads the youth ministry at Grace Life Church, Vizag, equipping the next generation in faith and biblical understanding.',
   },
   {
     name: 'Mani Dayal',
     slug: 'mani-dayal',
-    role: 'Elder',
-    category: 'elder',
+    role: 'Elder in Training',
+    category: 'elder-in-training',
     bio: 'Mani Dayal serves faithfully as an elder at Grace Life Church, Vizag, shepherding the congregation with diligence and love.',
   },
   {
@@ -70,13 +70,6 @@ export const leaders: Leader[] = [
     role: 'Deacon',
     category: 'deacon',
     bio: 'Purna Netti serves as a deacon at Grace Life Church, Vizag, supporting the ministry with faithful and practical service.',
-  },
-  {
-    name: 'Sandeep Netti',
-    slug: 'sandeep-netti',
-    role: 'Deacon & Administrative In-Charge',
-    category: 'deacon',
-    bio: "Sandeep Netti is an administrative in-charge at Grace Life Church, Vizag. He was born in a Hindu family. He heard the gospel during his post-graduate studies through his classmate Rini Jessie, who later became his wife. He gave his life to Jesus Christ. While searching for a good church that is committed to God's word and instructs the flock with sound doctrine, the sovereign hand of the Lord led them to this church.\n\nHe holds both MBA and MA in Psychology degrees from Andhra University. Sandeep Netti is a businessman. He is married to Rini Jessie, and they have two amazing boys, Risan Eric and Sarin Richard.",
   },
   {
     name: 'Prasadh Tarini',
@@ -130,23 +123,37 @@ export const leaders: Leader[] = [
   {
     name: 'Jhancy Rani Avula',
     slug: 'jhancy-rani-avula',
-    role: "Women's & Children's Ministry",
-    category: 'women-children',
+    role: "Deaconess — Women's & Children's Ministry",
+    category: 'deaconess',
     bio: "Jhancy Rani Avula leads the women's and children's ministry at Grace Life Church, Vizag. She is the wife of Pastor Daniel Surya Avula and a faithful servant of God, committed to equipping women and nurturing children in the faith.",
   },
   {
     name: 'Babita Palakurthi',
     slug: 'babita-palakurthi',
-    role: "Women's & Children's Ministry",
-    category: 'women-children',
+    role: "Deaconess — Women's & Children's Ministry",
+    category: 'deaconess',
     bio: "Babita Palakurthi serves in the women's and children's ministry at Grace Life Church, Vizag, faithfully discipling women and teaching children in the ways of God.",
   },
   {
     name: 'Radha Bai',
     slug: 'radha-bai',
-    role: 'Media Ministry',
-    category: 'media',
+    role: 'Deaconess — Media Ministry',
+    category: 'deaconess',
     bio: 'Radha Bai (Radha Nitta) serves in the media ministry at Grace Life Church, Vizag, ensuring that the ministry of the Word reaches beyond the walls of the church.',
+  },
+  {
+    name: 'Lalitha Netti',
+    slug: 'lalitha-netti',
+    role: 'Deaconess — Women\'s Ministry',
+    category: 'deaconess',
+    bio: "Lalitha Netti is a faithful servant of God at Grace Life Church, Vizag. The wife of Jagadish Netti, she is known for her obedient and devoted walk with the Lord. She serves actively in the women's ministry, encouraging and discipling women in the faith. Together with her husband, they are blessed with two daughters, Vijaya Pratistitha and Nitya Srestitha.",
+  },
+  {
+    name: 'Neelima Boggarapu',
+    slug: 'neelima-boggarapu',
+    role: 'Deaconess — Women\'s Ministry',
+    category: 'deaconess',
+    bio: "Neelima Boggarapu serves faithfully at Grace Life Church, Vizag, contributing to the women's ministry with a heart for discipleship and a love for the Lord and His people.",
   },
   {
     name: 'Srihari Uppe',

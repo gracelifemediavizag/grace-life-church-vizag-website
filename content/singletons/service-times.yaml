@@ -1,16 +1,19 @@
 services:
-  - name: English Worship Service
-    day: Sunday
-    time: 4:00 PM – 6:00 PM
   - name: Sunday School
     day: Sunday
     time: 10:30 AM – 12:30 PM
   - name: Telugu Worship Service
     day: Sunday
     time: 10:30 AM – 12:30 PM
+  - name: English Worship Service
+    day: Sunday
+    time: 4:00 PM – 6:00 PM
   - name: Congregational Prayer
     day: Wednesday
     time: 7:00 PM – 8:30 PM
+  - name: Women's Ministry
+    day: 1st & 3rd Thursday
+    time: 6:30 PM – 8:00 PM
   - name: Whole Night Prayer
     day: 2nd Friday
     time: 8:00 PM – 12:00 AM

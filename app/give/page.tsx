@@ -33,7 +33,7 @@ export default async function GivePage() {
           {/* Mobile: image as full background */}
           <div className="absolute inset-0 md:hidden">
             <Image
-              src="/images/heroes/giving.jpg"
+              src="/images/heroes/giving.jpeg"
               alt="Two hands reaching toward each other"
               fill
               sizes="100vw"
@@ -65,7 +65,7 @@ export default async function GivePage() {
           {/* Right — image panel (desktop only) */}
           <div className="hidden md:block md:w-1/2 relative overflow-hidden">
             <Image
-              src="/images/heroes/giving.jpg"
+              src="/images/heroes/giving.jpeg"
               alt="Two hands reaching toward each other"
               fill
               sizes="50vw"

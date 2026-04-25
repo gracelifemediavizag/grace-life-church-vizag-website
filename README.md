@@ -2,7 +2,20 @@
 
 Official website for Grace Life Church Vizag, a Reformed church in Visakhapatnam, Andhra Pradesh.
 
-**Live site:** [gracelifevizag.org](https://gracelifevizag.org)
+**Live site:** [gracelifechurch.in](https://gracelifechurch.in) · [gracelifevizag.org](https://gracelifevizag.org)
+
+---
+
+## Domains
+
+| Domain | Registrar | Status | DNS |
+|---|---|---|---|
+| `gracelifechurch.in` | GoDaddy (10-yr purchase) | **Primary** — pointed to Vercel | GoDaddy → Vercel |
+| `gracelifevizag.org` | Wix (cancelled) | Active until **Sep 2026**, then expires | Wix DNS → Vercel |
+
+Both domains resolve to the same Vercel deployment. `gracelifevizag.org` will stop working when the Wix registration lapses in Sep 2026 — no action needed before then. All other church domains are also registered on GoDaddy.
+
+> **Note for the future:** If `gracelifechurch.in` needs to be renewed, it's managed at GoDaddy. The `gracelifevizag.org` Wix registration does not need to be renewed — let it lapse.
 
 ---
 
@@ -17,7 +30,7 @@ Official website for Grace Life Church Vizag, a Reformed church in Visakhapatnam
 | Animations | Framer Motion |
 | Analytics | Vercel Analytics |
 | Deployment | Vercel |
-| Domain | Cloudflare (DNS) → Vercel |
+| Domains | GoDaddy (`gracelifechurch.in`) + Wix (`gracelifevizag.org`, until Sep 2026) → Vercel |
 
 ---
 
@@ -88,6 +101,9 @@ KEYSTATIC_SECRET=
 
 For production, set these in the Vercel dashboard under **Project → Settings → Environment Variables**.
 
+### Contact form
+The contact form uses [FormSubmit.co](https://formsubmit.co) — no account or API key needed. The first submission to `gracelifemediavizag@gmail.com` will trigger a one-time activation email; click the confirmation link and all future submissions will deliver normally. Replies go directly to the visitor's email via `reply-to`.
+
 ---
 
 ## CMS (Keystatic)
@@ -96,48 +112,15 @@ Content is managed via Keystatic — a git-based CMS with no database. Editors l
 
 **Editable content:** Blog posts, Events, Leadership team (with photos), Sermon series, Ministry pages, Service times, Site settings.
 
+Admin is accessible at `gracelifechurch.in/keystatic` (protected by GitHub OAuth in production).
+
 > Keystatic setup requires a GitHub OAuth App. See environment variables above.
 
 ---
 
 ## Deployment
 
-Deploys automatically via Vercel on every push to `main`. DNS is managed on Cloudflare pointing to Vercel.
-
----
-
-## Domain Migration (Wix → Vercel → Cloudflare)
-
-The domain `gracelifevizag.org` is currently registered at Wix. The plan is to point DNS to Vercel now, and transfer the domain registration to Cloudflare later.
-
-### Step 1 — Add domain to Vercel
-- Vercel project → **Settings → Domains** → add `gracelifevizag.org` and `www.gracelifevizag.org`
-- Note the DNS records Vercel requires:
-  - **A record** `@` → `76.76.21.21`
-  - **CNAME** `www` → `cname.vercel-dns.com`
-
-### Step 2 — Point DNS to Vercel
-**If Wix allows direct DNS editing:** Wix → Domains → Manage → DNS Records. Delete existing A/CNAME records pointing to Wix, add the records above.
-
-**If Wix locks DNS (more likely):** Switch nameservers to Cloudflare instead:
-1. Add `gracelifevizag.org` to Cloudflare (free plan)
-2. Cloudflare provides two nameservers → paste them into Wix → Domains → Nameservers → Custom
-3. In Cloudflare, add the A and CNAME records above pointing to Vercel
-4. Set Cloudflare proxy to **DNS only** (grey cloud) — Vercel handles SSL
-
-### Step 3 — Verify SSL on Vercel
-Once DNS propagates (5 min – 48 hrs), Vercel auto-provisions SSL. Check Vercel → Settings → Domains for a green checkmark.
-
-### Step 4 — Decommission Wix site
-- Wix → Settings → unpublish the site
-- Do NOT cancel the Wix subscription if the domain is registered there — just unpublish
-- Downgrade to the cheapest Wix plan that retains domain registration
-
-### Step 5 — Transfer domain to Cloudflare (when ready)
-1. Unlock domain in Wix → get EPP/auth code
-2. Cloudflare → Domain Registration → Transfer → paste auth code
-3. Approve transfer email from Wix
-4. Takes 5–7 days — site stays live throughout
+Deploys automatically via Vercel on every push to `main`. Both domains point to the same Vercel project — no separate configuration needed per domain. DNS for `gracelifechurch.in` is managed in GoDaddy; DNS for `gracelifevizag.org` is managed in Wix (redirect-only until Sep 2026).
 
 ---
 

@@ -5,6 +5,8 @@ import EventsList, { type ChurchEvent } from './EventsList';
 import { createReader } from '@keystatic/core/reader';
 import config from '@/keystatic.config';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Events',
   description:
@@ -29,20 +31,52 @@ function nthDayOfMonth(year: number, month: number, weekday: number, n: number):
 }
 
 /**
- * Given a recurrenceDay string (e.g. "Sunday", "Wednesday", "2nd Friday"),
- * return the next `count` ISO date strings starting from today.
+ * Given a recurrenceDay string, return the next `count` ISO date strings from today.
+ * Supported formats:
+ *   "Sunday"              — every week on that day
+ *   "2nd Friday"          — single nth occurrence per month
+ *   "1st & 3rd Thursday"  — two nth occurrences per month
  */
 function getNextOccurrences(recurrenceDay: string, count: number): string[] {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   const dates: string[] = [];
 
-  const nthMatch = recurrenceDay.match(/^(\d+)(st|nd|rd|th)\s+(.+)$/i);
+  // "1st & 3rd Thursday" — multiple nth occurrences per month
+  const multiNthMatch = recurrenceDay.match(
+    /^(\d+)(st|nd|rd|th)\s*&\s*(\d+)(st|nd|rd|th)\s+(.+)$/i
+  );
+  if (multiNthMatch) {
+    const nth1 = parseInt(multiNthMatch[1], 10);
+    const nth2 = parseInt(multiNthMatch[3], 10);
+    const dayName = multiNthMatch[5].trim();
+    const weekday = DAY_NAMES.indexOf(dayName);
+    if (weekday === -1) return [];
 
+    let year = today.getFullYear();
+    let month = today.getMonth();
+    while (dates.length < count) {
+      const d1 = nthDayOfMonth(year, month, weekday, nth1);
+      const d2 = nthDayOfMonth(year, month, weekday, nth2);
+      const candidates = [d1, d2]
+        .filter((d): d is Date => d !== null && d >= today)
+        .map(toISODate)
+        .sort();
+      for (const iso of candidates) {
+        if (dates.length < count) dates.push(iso);
+      }
+      month++;
+      if (month > 11) { month = 0; year++; }
+      if (year > today.getFullYear() + 2) break;
+    }
+    return dates;
+  }
+
+  // "2nd Friday" — single nth occurrence per month
+  const nthMatch = recurrenceDay.match(/^(\d+)(st|nd|rd|th)\s+(.+)$/i);
   if (nthMatch) {
-    // "2nd Friday" style
     const nth = parseInt(nthMatch[1], 10);
-    const dayName = nthMatch[3];
+    const dayName = nthMatch[3].trim();
     const weekday = DAY_NAMES.indexOf(dayName);
     if (weekday === -1) return [];
 
@@ -55,19 +89,19 @@ function getNextOccurrences(recurrenceDay: string, count: number): string[] {
       if (month > 11) { month = 0; year++; }
       if (year > today.getFullYear() + 2) break;
     }
-  } else {
-    // "Sunday", "Wednesday" etc. — every week
-    const weekday = DAY_NAMES.indexOf(recurrenceDay);
-    if (weekday === -1) return [];
+    return dates;
+  }
 
-    const d = new Date(today);
-    const daysUntil = (weekday - d.getDay() + 7) % 7;
-    d.setDate(d.getDate() + daysUntil);
+  // "Sunday", "Wednesday" etc. — every week
+  const weekday = DAY_NAMES.indexOf(recurrenceDay.trim());
+  if (weekday === -1) return [];
 
-    while (dates.length < count) {
-      dates.push(toISODate(new Date(d)));
-      d.setDate(d.getDate() + 7);
-    }
+  const d = new Date(today);
+  const daysUntil = (weekday - d.getDay() + 7) % 7;
+  d.setDate(d.getDate() + daysUntil);
+  while (dates.length < count) {
+    dates.push(toISODate(new Date(d)));
+    d.setDate(d.getDate() + 7);
   }
 
   return dates;

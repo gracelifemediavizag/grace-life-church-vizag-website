@@ -4,6 +4,35 @@ import config from '@/keystatic.config';
 
 export const dynamic = 'force-dynamic';
 
+/* ── Rate limiter — 30 requests per IP per 60 s ─────────────────────────── */
+const LIMIT = 30;
+const WINDOW_MS = 60_000;
+const ipMap = new Map<string, { count: number; resetAt: number }>();
+
+function getIp(req: NextRequest): string {
+  return (
+    req.headers.get('x-forwarded-for')?.split(',')[0].trim() ??
+    req.headers.get('x-real-ip') ??
+    'unknown'
+  );
+}
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  // Purge stale entries if the map grows large
+  if (ipMap.size > 1000) {
+    for (const [k, v] of ipMap) if (now > v.resetAt) ipMap.delete(k);
+  }
+  const entry = ipMap.get(ip);
+  if (!entry || now > entry.resetAt) {
+    ipMap.set(ip, { count: 1, resetAt: now + WINDOW_MS });
+    return false;
+  }
+  if (entry.count >= LIMIT) return true;
+  entry.count++;
+  return false;
+}
+
 /* ── Static pages always included in the index ──────────────────────────── */
 const staticPages = [
   { type: 'Page', title: 'Home',                         href: '/',                       description: '' },
@@ -23,11 +52,19 @@ const staticPages = [
   { type: 'Service', title: 'Sunday Telugu Service',     href: '/#service-times',          description: 'Sunday Telugu-medium worship service.' },
   { type: 'Service', title: 'Sunday English Service',    href: '/#service-times',          description: 'Sunday English-medium worship service.' },
   { type: 'Service', title: 'Service Times',             href: '/#service-times',          description: 'When we meet for Sunday worship and other gatherings.' },
+  { type: 'Service', title: "Women's Ministry",          href: '/events',                  description: "Women's Ministry meets every 1st and 3rd Thursday, 6:30 PM – 8:00 PM." },
 ];
 
 type SearchResult = { type: string; title: string; href: string; description?: string };
 
 export async function GET(request: NextRequest) {
+  if (isRateLimited(getIp(request))) {
+    return NextResponse.json(
+      { error: 'Too many requests. Please wait a moment.' },
+      { status: 429, headers: { 'Retry-After': '60' } }
+    );
+  }
+
   const q = request.nextUrl.searchParams.get('q')?.trim().toLowerCase() ?? '';
 
   if (q.length < 2) {

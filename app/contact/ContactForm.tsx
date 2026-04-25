@@ -5,23 +5,36 @@ import { useState } from 'react';
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
+    setError(null);
     const form = e.currentTarget;
     const data = new FormData(form);
 
     try {
-      await fetch('https://formspree.io/f/PLACEHOLDER', {
+      const res = await fetch('https://formsubmit.co/ajax/gracelifemediavizag@gmail.com', {
         method: 'POST',
-        body: data,
-        headers: { Accept: 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name:     data.get('name'),
+          email:    data.get('email'),
+          message:  data.get('message'),
+          _subject: `Website contact: ${data.get('name')}`,
+          _replyto: data.get('email'),
+          _captcha: 'false',
+        }),
       });
-      setSubmitted(true);
+      const result = await res.json();
+      if (result.success === 'true' || result.success === true) {
+        setSubmitted(true);
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
     } catch {
-      // still mark submitted for UX; formspree handles errors
-      setSubmitted(true);
+      setError('Could not send your message. Please check your connection and try again.');
     } finally {
       setLoading(false);
     }
@@ -81,6 +94,12 @@ export default function ContactForm() {
           className="w-full border-b-2 border-glc-outline-variant bg-transparent py-3 text-glc-on-surface placeholder:text-glc-on-surface-variant/40 focus:outline-none focus:border-glc-navy transition-colors text-base resize-none"
         />
       </div>
+
+      {error && (
+        <p className="text-sm" style={{ color: '#cc3333', fontFamily: 'var(--font-poppins)', fontWeight: 300 }}>
+          {error}
+        </p>
+      )}
 
       <button
         type="submit"

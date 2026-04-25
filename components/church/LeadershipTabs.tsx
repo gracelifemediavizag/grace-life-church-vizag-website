@@ -7,14 +7,14 @@ import { AnimatePresence, motion } from 'framer-motion';
 import type { Leader } from '@/lib/leaders';
 
 const tabs = [
-  { key: 'all',             label: 'All'                  },
-  { key: 'pastor',          label: 'Pastor'               },
-  { key: 'elder',           label: 'Elders'               },
-  { key: 'deacon',          label: 'Deacons'              },
-  { key: 'worship',         label: 'Worship'              },
-  { key: 'youth',           label: 'Youth'                },
-  { key: 'women-children',  label: "Women & Children"     },
-  { key: 'media',           label: 'Media'                },
+  { key: 'all',               label: 'All'                  },
+  { key: 'elder',             label: 'Elders'               },
+  { key: 'elder-in-training', label: 'Elders in Training'   },
+  { key: 'deacon',            label: 'Deacons'              },
+  { key: 'deaconess',         label: 'Deaconesses'          },
+  { key: 'worship',           label: 'Worship'              },
+  { key: 'youth',             label: 'Youth'                },
+  { key: 'media',             label: 'Media'                },
 ] as const;
 
 function getInitials(name: string) {
@@ -122,9 +122,13 @@ function MemberCard({ leader }: { leader: Leader }) {
 export default function LeadershipTabs({ leaders }: { leaders: Leader[] }) {
   const [activeTab, setActiveTab] = useState<string>('all');
 
-  const activeMembers = activeTab === 'all'
-    ? leaders
-    : leaders.filter(l => l.category === activeTab);
+  const filterMembers = (tab: string) => {
+    if (tab === 'all') return leaders;
+    if (tab === 'elder') return leaders.filter(l => l.category === 'elder' || l.category === 'pastor');
+    return leaders.filter(l => l.category === tab);
+  };
+
+  const activeMembers = filterMembers(activeTab);
 
   return (
     <section className="bg-[#0d0d0d] px-6 md:px-8 pb-24">
@@ -137,9 +141,7 @@ export default function LeadershipTabs({ leaders }: { leaders: Leader[] }) {
         >
           {tabs.map((tab) => {
             const isActive = activeTab === tab.key;
-            const count = tab.key === 'all'
-              ? leaders.length
-              : leaders.filter(l => l.category === tab.key).length;
+            const count = filterMembers(tab.key).length;
             return (
               <button
                 key={tab.key}
