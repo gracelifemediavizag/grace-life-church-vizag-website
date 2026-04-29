@@ -251,3 +251,50 @@
   border-color: #EFBF04;
   color: #000000;
 }
+
+/* ─── Events hero — aurora blobs ─────────────────────────────────────────── */
+
+.aurora-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(72px);
+  will-change: transform;
+  pointer-events: none;
+}
+
+.aurora-blob-1 {
+  width: 55vw; height: 55vw;
+  max-width: 680px; max-height: 680px;
+  background: radial-gradient(circle, rgba(51,153,204,0.42) 0%, transparent 65%);
+  top: -30%; left: -12%;
+  animation: aurora-drift-1 14s ease-in-out infinite alternate;
+}
+
+.aurora-blob-2 {
+  width: 44vw; height: 44vw;
+  max-width: 540px; max-height: 540px;
+  background: radial-gradient(circle, rgba(51,153,204,0.22) 0%, transparent 65%);
+  top: 5%; right: -8%;
+  animation: aurora-drift-2 19s ease-in-out infinite alternate;
+}
+
+.aurora-blob-3 {
+  width: 38vw; height: 38vw;
+  max-width: 460px; max-height: 460px;
+  background: radial-gradient(circle, rgba(12,44,72,0.6) 0%, transparent 65%);
+  bottom: -15%; left: 38%;
+  animation: aurora-drift-3 11s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift-1 {
+  from { transform: translate(0,    0)    scale(1);    }
+  to   { transform: translate(10%,  16%)  scale(1.1);  }
+}
+@keyframes aurora-drift-2 {
+  from { transform: translate(0,    0)    scale(1);    }
+  to   { transform: translate(-9%, -13%)  scale(0.9);  }
+}
+@keyframes aurora-drift-3 {
+  from { transform: translate(0,   0)    scale(1);    }
+  to   { transform: translate(6%, -11%)  scale(1.18); }
+}
