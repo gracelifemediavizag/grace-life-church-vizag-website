@@ -21,6 +21,13 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   devIndicators: false,
 
+  // createReader() reads content files at runtime — Vercel's output file tracing
+  // won't detect these dynamic reads, so we must explicitly include them in every
+  // serverless function bundle.
+  outputFileTracingIncludes: {
+    '/**': ['./content/**/*'],
+  },
+
   images: {
     // Vercel Blob URLs for uploaded media (headshots, images via Keystatic)
     remotePatterns: [
