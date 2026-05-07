@@ -14,9 +14,9 @@ services:
   - name: Women's Ministry
     day: 1st & 3rd Thursday
     time: 6:30 PM – 8:00 PM
-  - name: Whole Night Prayer
+  - name: Fasting Prayer
     day: 2nd Friday
-    time: 8:00 PM – 12:00 AM
+    time: 7:00 PM – 10:00 PM
   - name: Youth Fellowship
     day: Saturday
     time: 7:00 PM – 8:30 PM

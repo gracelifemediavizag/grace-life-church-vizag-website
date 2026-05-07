@@ -2,8 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import NavBar from '@/components/church/NavBar';
 import Footer from '@/components/church/Footer';
-import { createReader } from '@keystatic/core/reader';
-import config from '@/keystatic.config';
 
 export const metadata: Metadata = {
   title: 'Sermons',
@@ -11,17 +9,7 @@ export const metadata: Metadata = {
     'Listen to sermons from Grace Life Church Vizag. Audio and video messages from the pulpit, covering the whole counsel of God.',
 };
 
-export default async function SermonsPage() {
-  const reader = createReader(process.cwd(), config);
-  const allEntries = await reader.collections.sermonSeries.all();
-  const series = allEntries
-    .map(({ entry }) => ({
-      name: entry.name,
-      description: entry.description ?? '',
-      reference: entry.reference ?? '',
-      status: entry.status ?? 'Past',
-    }))
-    .sort((a) => (a.status === 'Current' ? -1 : a.status === 'Recent' ? 0 : 1));
+export default function SermonsPage() {
   return (
     <>
       <NavBar />
@@ -284,93 +272,6 @@ export default async function SermonsPage() {
           </div>
         </section>
 
-        {/* ── Current Series ── */}
-        <section className="px-6 md:px-8 py-20" style={{ background: '#ffffff' }}>
-          <div className="max-w-screen-2xl mx-auto">
-            <p
-              className="mb-10"
-              style={{
-                fontFamily: 'var(--font-lato)',
-                fontSize: '0.6rem',
-                fontWeight: 700,
-                letterSpacing: '0.18em',
-                textTransform: 'uppercase',
-                color: '#1A1A1A',
-                opacity: 0.3,
-              }}
-            >
-              Expository Series
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {series.map((s, i) => (
-                <div
-                  key={s.name}
-                  style={{
-                    background: '#F8F8F8',
-                    borderTop: `3px solid ${i === 0 ? '#3399CC' : '#EFBF04'}`,
-                    padding: '2rem',
-                  }}
-                >
-                  <div>
-                    <div className="flex items-center gap-3 mb-3">
-                      <p
-                        style={{
-                          fontFamily: 'var(--font-lato)',
-                          fontSize: '0.58rem',
-                          fontWeight: 700,
-                          letterSpacing: '0.16em',
-                          textTransform: 'uppercase',
-                          color: i === 0 ? '#3399CC' : '#EFBF04',
-                        }}
-                      >
-                        {s.status}
-                      </p>
-                    </div>
-                    <h3
-                      className="mb-3"
-                      style={{
-                        fontFamily: 'var(--font-poppins)',
-                        fontWeight: 300,
-                        fontSize: '1.75rem',
-                        color: '#1A1A1A',
-                        lineHeight: 1.1,
-                      }}
-                    >
-                      {s.name}
-                    </h3>
-                    <p
-                      className="mb-4"
-                      style={{
-                        fontFamily: 'var(--font-poppins)',
-                        fontWeight: 300,
-                        fontSize: '0.9rem',
-                        color: '#1A1A1A',
-                        opacity: 0.6,
-                        lineHeight: 1.75,
-                        maxWidth: '28rem',
-                      }}
-                    >
-                      {s.description}
-                    </p>
-                    <p
-                      style={{
-                        fontFamily: 'var(--font-lato)',
-                        fontSize: '0.6rem',
-                        fontWeight: 700,
-                        letterSpacing: '0.12em',
-                        textTransform: 'uppercase',
-                        color: '#1A1A1A',
-                        opacity: 0.35,
-                      }}
-                    >
-                      {s.reference}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
 
       </main>
       <Footer />

@@ -90,6 +90,22 @@ export default config({
           ],
           defaultValue: 'elder',
         }),
+        tags: fields.multiselect({
+          label: 'Additional Tabs',
+          description: 'Show this person under additional tabs (e.g. an elder who also leads youth).',
+          options: [
+            { label: 'Pastor',                  value: 'pastor'             },
+            { label: 'Elder',                   value: 'elder'              },
+            { label: 'Elder in Training',       value: 'elder-in-training'  },
+            { label: 'Deacon',                  value: 'deacon'             },
+            { label: 'Deaconess',               value: 'deaconess'          },
+            { label: 'Worship',                 value: 'worship'            },
+            { label: 'Youth Ministry',          value: 'youth'              },
+            { label: "Women's & Children's",    value: 'women-children'     },
+            { label: 'Media Ministry',          value: 'media'              },
+            { label: 'Staff',                   value: 'staff'              },
+          ],
+        }),
         photo: fields.image({
           label: 'Photo',
           directory: 'public/leadership',

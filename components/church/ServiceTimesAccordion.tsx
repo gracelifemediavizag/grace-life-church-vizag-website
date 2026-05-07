@@ -8,7 +8,7 @@ const serviceTimes = [
   { label: 'English Worship',       day: 'Sunday',           time: '4:00 PM – 6:00 PM' },
   { label: 'Congregational Prayer', day: 'Wednesday',        time: '7:00 PM – 8:30 PM' },
   { label: "Women's Ministry",      day: '1st & 3rd Thu',    time: '6:30 PM – 8:00 PM' },
-  { label: 'Whole Night Prayer',    day: '2nd Friday',       time: '8:00 PM – 12:00 AM' },
+  { label: 'Fasting Prayer',        day: '2nd Friday',       time: '7:00 PM – 10:00 PM' },
   { label: 'Youth Fellowship',      day: 'Saturday',         time: '7:00 PM – 8:30 PM' },
 ];
 

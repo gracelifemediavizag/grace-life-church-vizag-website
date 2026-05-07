@@ -55,7 +55,7 @@ export default function EventsHero() {
               maxWidth: '34rem',
             }}
           >
-            Gather with us — worship, prayer, and community.
+            Gather with us — worship, prayer, and fellowship.
           </p>
         </div>
       </div>

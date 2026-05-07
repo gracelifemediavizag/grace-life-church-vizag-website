@@ -30,7 +30,7 @@ const dayGroups = [
     day: '2nd Friday',
     shortDay: 'FRI',
     services: [
-      { label: 'Whole Night Prayer', time: '8:00 PM – 12:00 AM' },
+      { label: 'Fasting Prayer', time: '7:00 PM – 10:00 PM' },
     ],
   },
   {

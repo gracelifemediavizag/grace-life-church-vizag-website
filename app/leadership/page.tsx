@@ -22,6 +22,7 @@ export default async function LeadershipPage() {
       name: entry.name,
       role: entry.title ?? '',
       category: (entry.category ?? 'elder') as 'pastor' | 'elder' | 'elder-in-training' | 'deacon' | 'deaconess' | 'worship' | 'youth' | 'women-children' | 'media',
+      tags: (entry.tags ?? []) as string[],
       bio: '',
       photo: entry.photo ?? null,
     }))

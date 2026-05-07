@@ -60,7 +60,7 @@ export default async function CoreValuesPage() {
                       className={`flex-1 relative overflow-hidden w-full ${isEven ? 'md:order-2' : 'md:order-1'}`}
                       style={{ aspectRatio: '4/3', maxWidth: '480px', borderRadius: 8, minHeight: '260px' }}
                     >
-                      <Image src={v.image} alt={v.value} fill sizes="(max-width: 768px) 100vw, 480px" className="object-cover" />
+                      <Image src={v.image} alt={v.value} fill sizes="(max-width: 768px) 100vw, 480px" className={`object-cover ${i === 9 ? 'object-left' : 'object-center'}`} />
                     </div>
                   ) : (
                     <div

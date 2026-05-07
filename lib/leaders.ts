@@ -3,6 +3,7 @@ export interface Leader {
   slug: string;
   role: string;
   category: 'pastor' | 'elder' | 'elder-in-training' | 'deacon' | 'deaconess' | 'worship' | 'youth' | 'women-children' | 'media';
+  tags?: string[];
   bio: string;
   photo?: string | null;
 }
@@ -44,11 +45,11 @@ export const leaders: Leader[] = [
     bio: 'Eliazer Naik serves as an elder at Grace Life Church, Vizag, providing faithful pastoral oversight and care for the congregation.',
   },
   {
-    name: 'Ajay Chakravarthy Netti',
+    name: 'Ajay Chakravarthy',
     slug: 'ajay-chakravarthy-netti',
     role: 'Elder in Training & Youth Ministry',
     category: 'elder-in-training',
-    bio: 'Ajay Chakravarthy Netti serves as an elder and leads the youth ministry at Grace Life Church, Vizag, equipping the next generation in faith and biblical understanding.',
+    bio: 'Ajay Chakravarthy serves as an elder and leads the youth ministry at Grace Life Church, Vizag, equipping the next generation in faith and biblical understanding.',
   },
   {
     name: 'Mani Dayal',
@@ -107,11 +108,11 @@ export const leaders: Leader[] = [
     bio: 'Rahul Roy serves as a worship leader at Grace Life Church, Vizag, leading the congregation in heartfelt, God-centered worship each week.',
   },
   {
-    name: 'Sunil Kumar P.',
+    name: 'Sunil Kumar',
     slug: 'sunil-kumar-p',
     role: 'Worship Leader',
     category: 'worship',
-    bio: 'Sunil Kumar P. serves as a worship leader at Grace Life Church, Vizag, ministering through music and song to the glory of God.',
+    bio: 'Sunil Kumar serves as a worship leader at Grace Life Church, Vizag, ministering through music and song to the glory of God.',
   },
   {
     name: 'Anney Arpita Netti',

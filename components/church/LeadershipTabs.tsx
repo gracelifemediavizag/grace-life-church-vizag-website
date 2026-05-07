@@ -124,8 +124,8 @@ export default function LeadershipTabs({ leaders }: { leaders: Leader[] }) {
 
   const filterMembers = (tab: string) => {
     if (tab === 'all') return leaders;
-    if (tab === 'elder') return leaders.filter(l => l.category === 'elder' || l.category === 'pastor');
-    return leaders.filter(l => l.category === tab);
+    if (tab === 'elder') return leaders.filter(l => l.category === 'elder' || l.category === 'pastor' || (l.tags ?? []).includes('elder'));
+    return leaders.filter(l => l.category === tab || (l.tags ?? []).includes(tab));
   };
 
   const activeMembers = filterMembers(activeTab);
